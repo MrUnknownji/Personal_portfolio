@@ -126,7 +126,7 @@ const ContactForm = () => {
         <div className="flex gap-10 flex-col z-10">
           <p
             id="contactFormPara"
-            className="leading-snug tracking-wider text-lg px-10 "
+            className="px-10 "
           >
             {`Have a question, feedback, or a project in mind? I'd love to hear from
         you. Your input is invaluable. Just drop your message in the form, and

@@ -1,8 +1,11 @@
 "use client";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { InfoCardArr } from "./Arrays";
 import gsap from "gsap";
 import { useWindowSize } from "./useWindowSize";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe = () => {
   const aboutMe = useRef();
@@ -10,30 +13,43 @@ const AboutMe = () => {
 
   useLayoutEffect(() => {
     const animateInfoContainers = () => {
-      InfoCardArr.forEach((card, index) => {
-        gsap.from(`#infoContainer${index}`, {
-          x: index * 200 - 200,
-          y: index * 50,
+      const tl = gsap.timeline();
+      if (innerWidth > 1024) {
+        tl.from(".firstContainer", {
+          x: -200,
           opacity: 0,
-          duration: 2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: `#infoContainer${index}`,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
+          duration: 0.5,
+        }).from(".notFirstContainer", {
+          x: 200,
+          y: 200,
+          stagger: 0.5,
+          opacity: 0,
         });
-        if (index > 0 && innerWidth > 1024) {
-          const container = document.getElementById(`infoContainer${index}`);
-          addMouseEvents(container);
-        }
-      });
+        ScrollTrigger.create({
+          trigger: ".aboutMeInfoContainer",
+          start: "top 80%",
+          animation: tl,
+          toggleActions: "play none none reverse",
+        });
+      } else {
+        tl.from(".aboutMeInfoContainer", {
+          x: 200,
+          opacity: 0,
+          stagger: 0.5,
+        });
+        ScrollTrigger.create({
+          trigger: ".aboutMeInfoContainer",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+          animation: tl,
+        });
+      }
     };
 
     const ctx = gsap.context(animateInfoContainers, aboutMe);
 
     return () => ctx.revert();
-  }, []);
+  }, [innerWidth]);
 
   const addMouseEvents = (container) => {
     container.addEventListener("mouseenter", () => {
@@ -73,7 +89,9 @@ const InfoContainer = ({ title, desc, rotateNone, idNumber }) => {
   return (
     <div
       id={`infoContainer${idNumber}`}
-      className={`aboutMeInfoContainer ${rotateNone ? "" : "rotate-[-10deg]"}`}
+      className={`aboutMeInfoContainer ${
+        idNumber == 0 ? "firstContainer" : "notFirstContainer"
+      } ${rotateNone ? "" : "rotate-[-10deg]"}`}
     >
       {title && <h3>{title}</h3>}
       <p>{desc}</p>

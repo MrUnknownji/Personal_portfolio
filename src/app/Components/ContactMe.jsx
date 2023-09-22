@@ -26,7 +26,7 @@ const ContactMe = () => {
 
       ScrollTrigger.create({
         trigger: "#contactMeParagraph",
-        start: "top 80%",
+        start: "top 70%",
         animation: tl,
         toggleActions: "play none none reverse",
       });

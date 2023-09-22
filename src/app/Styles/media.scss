@@ -27,26 +27,7 @@
     font: 900 3rem $nunito;
   }
 }
-@media screen and (max-height: 1180px) and (max-width:820px) {
-  .heroSection {
-    height: 50vh;
-  }
-  .contactForm {
-    height: 50vh;
-  }
-  .formAndDesc {
-    @apply gap-5 py-5;
-  }
-  #ThanksImage{
-    height: 10vh;
-  }
-  #heading3 {
-    @apply mt-10;
-  }
-  textarea {
-    height: 10vh;
-  }
-}
+
 @media screen and (max-width: 820px) {
   .projectInfoDiv {
     @apply gap-4 w-[40vw];
@@ -77,4 +58,48 @@
   .sendBtn {
     font: 700 1rem $quicksand;
   }
+}
+
+@media screen and (max-width: 768px) {
+  // .heroSection {
+  //   height: 50vh;
+  // }
+  // .contactForm {
+  //   height: 50vh;
+  // }
+  .formAndDesc {
+    @apply gap-5 py-5;
+  }
+  #ThanksImage {
+    height: 10vh;
+  }
+  #heading3 {
+    @apply mt-10;
+  }
+  textarea {
+    height: 10vh;
+  }
+  p {
+    line-height: 1rem;
+    font-size: 0.8;
+    letter-spacing: 0;
+  }
+  .greenBtn,
+  .LogoBtn,
+  .sendBtn {
+    font: 700 0.9rem $quicksand;
+  }
+  .heading {
+    font: 600 1.8rem $nunito;
+  }
+  h3 {
+    font: 700 1.2rem $quicksand;
+  }
+  h4 {
+    font: 700 1.3rem $nunito;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  
 }
