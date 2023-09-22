@@ -1,0 +1,41 @@
+"use client";
+import gsap from "gsap";
+import React, { useLayoutEffect, useRef } from "react";
+
+const loadingArr = ["L", "o", "a", "d", "i", "n", "g", ".", ".", "."];
+
+const Loading = () => {
+  const ref = useRef();
+  useLayoutEffect(() => {
+    const tl = gsap.timeline({repeat: -1,});
+    tl.from(".loadingName", {
+      stagger: 0.2,
+      x:50,
+      y:-50,
+      opacity: 0,
+      rotateX:-180,
+    }).to(".loadingName", {
+      stagger: 0.2,
+      x:-50,
+      y:50,
+      opacity: 0,
+      rotateX:180,
+    },"+=0.5");
+  });
+  return (
+    <div
+      className="loadingDiv h-[100vh] flex items-center justify-center font-bold text-white"
+      ref={ref}
+    >
+      <div>
+        {loadingArr.map((value, index) => (
+          <font className="loadingName inline-block" key={index}>
+            {value}
+          </font>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Loading;

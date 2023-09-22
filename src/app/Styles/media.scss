@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "./utils.scss";
+@import "./globals.scss";
+
+@media screen and (max-width: 1160px) {
+  h1 {
+    font: 900 3.5rem $nunito;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .image-container {
+    height: 200px;
+    width: 400px;
+  }
+  .projectContainer {
+    @apply gap-16;
+  }
+  .aboutMeSubDiv {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 950px) {
+  h1 {
+    font: 900 3rem $nunito;
+  }
+}
+@media screen and (max-height: 1180px) and (max-width:820px) {
+  .heroSection {
+    height: 50vh;
+  }
+  .contactForm {
+    height: 50vh;
+  }
+  .formAndDesc {
+    @apply gap-5 py-5;
+  }
+  #ThanksImage{
+    height: 10vh;
+  }
+  #heading3 {
+    @apply mt-10;
+  }
+  textarea {
+    height: 10vh;
+  }
+}
+@media screen and (max-width: 820px) {
+  .projectInfoDiv {
+    @apply gap-4 w-[40vw];
+  }
+  .image-container {
+    height: 160px;
+    width: 320px;
+  }
+  .projectContainer {
+    @apply gap-12;
+  }
+  h1 {
+    font: 900 2.5rem $nunito;
+  }
+
+  h2 {
+    font: 400 0.8rem $rubik;
+    letter-spacing: 1.2px;
+  }
+  h5 {
+    font: 400 1rem $nunito;
+  }
+  p {
+    @apply tracking-wider text-sm;
+  }
+  .greenBtn,
+  .LogoBtn,
+  .sendBtn {
+    font: 700 1rem $quicksand;
+  }
+}

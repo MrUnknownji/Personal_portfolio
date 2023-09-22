@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$primary: #00ffff;
+$secondary: #2aff00;
+$nunito: "Nunito", sans-serif;
+$quicksand: "Quicksand", sans-serif;
+$rubik: "Rubik", sans-serif;
+
+form {
+  @apply border border-white backdrop-blur-sm rounded-2xl p-10 flex flex-col gap-4;
+}
+
+input {
+  @apply outline-none px-2 py-1 bg-transparent border-b-2 border-white/50 placeholder-white/75;
+  transition: border-color 0.3s;
+  &:hover {
+    border-color: $secondary;
+  }
+  &:focus {
+    border-color: $primary;
+  }
+}
+textarea {
+  @apply w-full max-h-[30vh] resize-none outline-none px-2 py-1 bg-transparent border-b-2 border-white/50 placeholder-white/75;
+  transition: border-color 0.3s;
+  &:hover {
+    border-color: $secondary;
+  }
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+h1 {
+  font: 900 4.5rem $nunito;
+}
+
+h2 {
+  font: 400 1rem $rubik;
+  letter-spacing: 1.5px;
+}
+
+h3 {
+  font: 700 1.5rem $quicksand;
+  letter-spacing: 1.5px;
+}
+
+h4 {
+  font: 700 1.5rem $nunito;
+  letter-spacing: 1.5px;
+}
+
+h5 {
+  font: 400 1.2rem $nunito;
+  letter-spacing: 1.2px;
+}
+
+p {
+  @apply leading-snug tracking-wider text-lg;
+  font-family: $nunito;
+  font-weight: 600;
+}
+
+.LogoBtn {
+  background-color: $primary;
+  font: 700 1.1rem $quicksand;
+  @apply rounded-full px-4 py-1 text-black cursor-default;
+}
+
+.greenBtn {
+  background-color: $primary;
+  font: 700 1.1rem $quicksand;
+  @apply flex items-center justify-center gap-2 rounded-full px-4 py-2 text-black;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $secondary;
+  }
+}
+.sendBtn {
+  background-color: $primary;
+  font: 700 1.1rem $quicksand;
+  @apply flex items-center justify-center gap-2 rounded-full px-4 py-2 text-black;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $secondary;
+  }
+}
+
+.transparentBtn {
+  font: 500 1.1rem $quicksand;
+  @apply border border-transparent hover:border-white rounded-full px-4 py-1;
+  transition: border 0.3s;
+}
+
+.greenTransparentBtn {
+  font: 500 1.1rem $quicksand;
+  @apply border border-white rounded-full py-1 px-4;
+  transition: color 0.3s, border-color 0.3s;
+  &:hover {
+    color: cyan;
+    border-color: cyan;
+  }
+}
+
+.heading {
+  font: 600 2rem $nunito;
+  @apply text-center z-10;
+}

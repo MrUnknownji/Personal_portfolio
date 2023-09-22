@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "./utils.scss";
+
+body {
+  overflow-x: hidden;
+  width: 100vw;
+  font-family: $quicksand;
+  background-color: rgb(0, 15, 15);
+  &::-webkit-scrollbar {
+    @apply w-[8px] bg-black;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-[#606060] rounded-[8px];
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#888];
+  }
+}
+
+.header {
+  font: 500 1.1rem $quicksand;
+  @apply text-white bg-transparent w-full grid grid-cols-2 items-center py-6 px-20 sticky top-0 z-50 duration-500;
+}
+
+.heroSection {
+  @apply overflow-hidden relative text-white h-[90vh] px-20 grid grid-cols-[55%_35%] items-center;
+}
+
+.heroSvg {
+  @apply w-[70vw] absolute right-[-10%] bottom-[50%];
+  transform: translateY(50%);
+}
+.myImage {
+  @apply w-[40vw] absolute right-[5%] bottom-[50%];
+  transform: translateY(50%);
+}
+
+.skill {
+  @apply w-[60vw] bg-gray-900 gap-4 pt-4 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
+}
+
+.skill_sub_div {
+  @apply text-white w-[5vmax] h-[5vmax] rounded-xl p-[0.5vmax] overflow-hidden flex items-center justify-center hover:invert;
+  transition: filter 0.3s;
+}
+
+.skillsText {
+  @apply hidden;
+}
+
+.projectContainer {
+  @apply w-[100vw] px-20 py-24 flex items-center justify-between gap-28 relative;
+}
+
+.aboutMeInfoContainer {
+  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 duration-300 hover:scale-110 hover:invert;
+}
+
+.socialMediaCard {
+  @apply rounded-3xl py-8 px-10 flex flex-col items-center gap-10 duration-300 hover:scale-110 bg-gray-900 -rotate-6 hover:rotate-0 w-[15vw] hover:invert;
+}
+
+.contactForm {
+  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center;
+}
+
+.formAndDesc{
+  @apply grid grid-cols-2 gap-10 items-center px-20 py-10 z-10;
+}
+
+// For Image inside Project Container
+.image-container {
+  overflow: hidden;
+  position: relative;
+  height: 240px;
+  width: 420px;
+}
+
+.projectInfoDiv{
+  @apply flex flex-col gap-5 z-10 w-[45vw];
+}
+
+.projectImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Loading Screen
+.loadingName {
+  font: 900 3rem $quicksand;
+  margin: 1px;
+}
+
+// Images Container Scrollbar customization of a Project
+.imageContainer::-webkit-scrollbar {
+  @apply h-[8px] mb-[4px];
+}
+.imageContainer::-webkit-scrollbar-thumb {
+  @apply bg-[#606060] rounded-[8px];
+}
+.imageContainer::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#888];
+}
+
+//For Image Viewer
+
+#image-viewer {
+  @apply fixed top-0 left-0 z-[100];
+  > div {
+    @apply fixed top-0 left-0 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.8)] overflow-auto flex items-center justify-center;
+    > img {
+      @apply block w-[80%] h-[80%] max-w-[800px] object-contain;
+      animation: showImage 0.5s;
+    }
+  }
+}
+
+@keyframes showImage {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#close {
+  @apply absolute top-[15px] right-[35px] text-white text-[40px] duration-300 cursor-pointer;
+}
+
+#close:hover,
+#close:focus {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 700px) {
+  .viewer {
+    width: 100%;
+  }
+}
