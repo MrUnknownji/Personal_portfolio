@@ -4,6 +4,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
+import ContactFormBg from "../Assets/ContactForm/ContactFormBg.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,24 +94,30 @@ const ContactForm = () => {
     };
   }, []);
   return (
-    <div className="contactForm" ref={formSection}>
-      <div className="absolute w-[60vw] right-0 z-10 top-[50%]" style={{transform:"translateY(-50%)"}}>
+    <div
+      className="contactForm"
+      ref={formSection}
+      style={{ backgroundImage: `url(${ContactFormBg.src})` }}
+    >
+      <div
+        className="absolute w-[60vw] right-0 z-10 top-[50%]"
+        style={{ transform: "translateY(-50%)" }}
+      >
         <Image
-          className="object-contain"
+          className="SvgBubble object-contain"
           layout="responsive"
           src={require("../Assets/ContactForm/blob8.svg")}
           alt="ContactFormSvg"
         />
       </div>
-      <Image
-        className="absolute w-[100vw] max-h-[100vh] z-0"
-        layout="responsive"
-        src={require("../Assets/ContactForm/ContactFormBg.jpg")}
-        alt="ContactFormBg"
-      />
-      <h2 id="heading3" className="heading z-10 mt-20">
+      <h2 id="heading3" className="heading contactFormHeading">
         Suggestion/Feedback
       </h2>
+      <p id="contactFormParaTop" className="topPara">
+        {`Have a question, feedback, or a project in mind? I'd love to hear from
+        you. Your input is invaluable. Just drop your message in the form, and
+        I'll get back to you as soon as possible`}
+      </p>
       <div className="formAndDesc">
         <form>
           <input id="input1" type="email" placeholder="Email" required />
@@ -124,10 +131,7 @@ const ContactForm = () => {
         </form>
 
         <div className="flex gap-10 flex-col z-10">
-          <p
-            id="contactFormPara"
-            className="px-10 "
-          >
+          <p id="contactFormPara" className="px-10">
             {`Have a question, feedback, or a project in mind? I'd love to hear from
         you. Your input is invaluable. Just drop your message in the form, and
         I'll get back to you as soon as possible`}

@@ -45,6 +45,7 @@ h1 {
 h2 {
   font: 400 1rem $rubik;
   letter-spacing: 1.5px;
+  @apply mb-20;
 }
 
 h3 {
@@ -111,5 +112,5 @@ p {
 
 .heading {
   font: 600 2rem $nunito;
-  @apply text-center z-10;
+  @apply text-center z-10 mt-10;
 }

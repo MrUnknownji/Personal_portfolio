@@ -8,22 +8,11 @@ const SocialMediaCard = ({ value, index }) => {
   useLayoutEffect(() => {
     const animateSocialMediaCard = () => {
       const currentElem = ref.current;
-      gsap.from(currentElem, {
-        opacity: 0,
-        y: index % 2 === 0 ? -100 : 100,
-        duration: 1.5,
-        ease: "ease",
-        scrollTrigger: {
-          trigger: currentElem,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
       currentElem.addEventListener("mouseenter", () => {
-        currentElem.style.transform = "rotateZ(0)";
+        gsap.to(currentElem, { scale: 1.1, duration: 1, ease: "back.out(4)" });
       });
       currentElem.addEventListener("mouseleave", () => {
-        currentElem.style.transform = "rotateZ(-10deg)";
+        gsap.to(currentElem, { scale: 1, duration: 1, ease: "back.out(4)" });
       });
     };
     const ctx = gsap.context(animateSocialMediaCard, ref);

@@ -38,7 +38,8 @@ const Skills = () => {
           opacity: 0,
           stagger: 0.1,
           scrub: true,
-        },"-=1"
+        },
+        "-=1"
       );
       ScrollTrigger.create({
         trigger: ".skill",
@@ -64,11 +65,9 @@ const Skills = () => {
           </span>
         ))}
       </h5>
-      <div className="w-full flex items-center justify-evenly">
-        {skillsList} {/* Render the memoized skills list */}
-      </div>
+      <div className="skillsListContainer">{skillsList}</div>
       <div>
-        <br />
+        <hr className="py-1" />
       </div>
     </div>
   );

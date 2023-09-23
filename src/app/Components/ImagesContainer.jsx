@@ -29,7 +29,7 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
   }, []);
   return (
     <div ref={ref} className="imagesDivContainer h-full">
-      <div className="imageContainer mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh]">
+      <div className="imageContainer">
         {allImages.map((value, index) => (
           <Image
             id={`image-${index}`}
@@ -37,7 +37,7 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
             src={require(`../Assets/Project/${title}/${value}`)}
             layout="responsive"
             alt={title}
-            className="containerImage cursor-pointer image rounded-lg z-10 w-1/4 h-1/6"
+            className="containerImage image"
             onClick={() => {
               document.body.style.overflow = "hidden";
               setViewerImage(value);

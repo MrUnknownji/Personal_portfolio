@@ -6,7 +6,7 @@ import { ProjectArr } from "./Arrays";
 const Projects = () => {
   return (
     <div className="w-[100vw] text-white" id="projects">
-      <h3 id="heading0" className="heading pt-10">
+      <h3 id="heading0" className="heading pt-5">
         Explore My Work
       </h3>
       {ProjectArr.map((project, index) => (

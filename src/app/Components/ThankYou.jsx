@@ -78,38 +78,31 @@ const ThankYou = () => {
   }, []);
   return (
     <div ref={ThanksRef}>
-      <div
-        id="ThanksDiv"
-        className="text-white flex flex-col items-center p-20"
-      >
+      <div id="ThanksDiv" className="ThanksDiv">
         <Image
           id="ThanksImage"
-          className="rounded-[50px] w-[20vw] h-[15vh]"
           src={require("../Assets/ThankYou/ThankYou.jpg")}
-          width={1000}
-          height={1000}
+          width={500}
+          height={500}
           alt="Thank You"
         />
-        <p id="ThanksPara" className="pt-20">
+        <p id="ThanksPara">
           {`Thank you for visiting my portfolio! I'm excited about the endless
           possibilities in the world of technology and development. Whether you're
           interested in collaborating on a project, discussing the latest tech
           trends, or just want to say hi, I'm just a click away.`}
         </p>
-        <div
-          id="Regards"
-          className="w-full flex items-center justify-end pt-10 px-28"
-        >
+        <div id="Regards" className="regardsDiv">
           <p className="w-fit">
             Best regards,
             <br />
             Sandeep Kumar
           </p>
         </div>
-        <div className="w-full flex items-center justify-end pt-10 px-28">
+        <div className="topBtnDiv">
           <GsapMegnetic>
             <Link id="GoToTopButton" href="#home">
-              <button className="greenBtn">
+              <button className="greenBtn topBtn">
                 <p>
                   <ArrowUpwardRoundedIcon />
                 </p>
@@ -118,14 +111,9 @@ const ThankYou = () => {
           </GsapMegnetic>
         </div>
       </div>
-      <div
-        id="copyrightDiv"
-        className="text-white bg-gray-800 text-sm py-4 px-20 flex items-center justify-between"
-      >
+      <div id="copyrightDiv">
         <p id="copyrightTxt">© 2023 Sandeep Kumar. All rights reserved</p>
-        <p id="developerTxt" className="text-xs">
-          Designed and developed by Sandeep Kumar
-        </p>
+        <p id="developerTxt">Designed and developed by Sandeep Kumar</p>
       </div>
     </div>
   );

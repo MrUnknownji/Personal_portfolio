@@ -73,7 +73,7 @@ const HeroSection = () => {
         />
       </div>
       <div className="heroSection">
-        <div className="flex flex-col gap-5">
+        <div className="heroHeadingContainer">
           <h1 id="mainHeading">
             {mainHeadingArr.map((value, index) => (
               <>
@@ -87,7 +87,7 @@ const HeroSection = () => {
               </>
             ))}
           </h1>
-          <h2 id="mainSubHeading" className="mb-20">
+          <h2 id="mainSubHeading">
             {subHeadingArr.map((value, index) => (
               <>
                 <span className="subHeadingWords inline-block" key={index}>
@@ -101,7 +101,7 @@ const HeroSection = () => {
               </>
             ))}
           </h2>
-          <div className="flex items-center justify-evenly gap-5 pr-20 -mt-5">
+          <div className="heroBtnsDiv">
             <GsapMegnetic>
               <Link href="#contactme" id="contactBtn">
                 <button className="greenBtn">Contact Me</button>

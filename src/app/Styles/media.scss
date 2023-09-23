@@ -61,12 +61,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  // .heroSection {
-  //   height: 50vh;
-  // }
-  // .contactForm {
-  //   height: 50vh;
-  // }
   .formAndDesc {
     @apply gap-5 py-5;
   }
@@ -100,6 +94,230 @@
   }
 }
 
-@media screen and (max-width: 425px) {
-  
+@media screen and (max-width: 426px) {
+  .header {
+    @apply w-full grid grid-cols-[auto_auto] py-2 px-2 duration-500;
+  }
+  .heroSection {
+    @apply h-[70vh] px-5 pt-20 flex flex-col items-center;
+  }
+  .myImage {
+    @apply w-[40vw] absolute right-[5%] bottom-[50%];
+    transform: translateY(50%);
+  }
+  .heroHeadingContainer {
+    @apply text-center;
+  }
+  .heroBtnsDiv {
+    @apply flex items-center justify-center gap-10 pr-0 -mt-5;
+  }
+  .SvgBubble,
+  .heroSvg {
+    display: none;
+  }
+  .myImage {
+    @apply w-[50vw] right-[-15%] bottom-[55%] -z-10 opacity-75;
+    transform: translateY(50%);
+  }
+  .skill {
+    @apply w-[80vw] gap-2 text-white rounded-xl;
+  }
+  .skill_sub_div {
+    @apply w-[7vmax] h-[7vmax] rounded-lg;
+    transition: filter 0.3s;
+  }
+  .projectContainer {
+    @apply px-10 py-10 flex flex-col items-center gap-4 justify-between relative;
+  }
+  .projectInfoDiv {
+    @apply gap-4 w-full;
+  }
+  .projectInfoDivBtnContainer {
+    @apply justify-evenly mt-0;
+  }
+  .image-container {
+    width: 280px;
+  }
+  .imageContainer {
+    @apply mx-5 p-3 gap-5 h-[30vh];
+  }
+  .containerImage {
+    @apply rounded-md;
+  }
+  .Btn1 > svg {
+    font-size: 14px;
+  }
+  .aboutMe {
+    @apply px-10;
+  }
+  .aboutMeSubDiv {
+    @apply mt-10 gap-10;
+  }
+  .aboutMeInfoContainer {
+    @apply rounded-3xl p-5 gap-3;
+  }
+  .contactMeSection {
+    @apply text-white py-5 px-10;
+  }
+  .contactMeParagraph {
+    @apply text-justify my-5;
+  }
+  .socialMediaCardContainer {
+    @apply my-5 grid-cols-2 gap-10;
+  }
+  .socialMediaCard {
+    @apply rounded-xl p-5 gap-5 w-full;
+  }
+  .contactForm {
+    @apply h-[50vh];
+  }
+  .contactFormHeading {
+    @apply absolute top-[-8%];
+  }
+  .formAndDesc {
+    @apply gap-5 h-full items-center px-10 py-0;
+    > form {
+      @apply rounded-lg p-2 gap-2 m-0 text-sm self-center justify-self-center;
+    }
+    > div {
+      @apply gap-3 self-center justify-self-center;
+      > p {
+        @apply px-0 text-justify;
+        line-height: 1;
+      }
+    }
+  }
+  .ThanksDiv {
+    @apply p-10;
+    > img {
+      @apply rounded-full w-[40vw] h-[10vh];
+    }
+    > p {
+      @apply pt-4 text-justify;
+    }
+  }
+  .regardsDiv,
+  .topBtnDiv {
+    @apply pt-5 px-0;
+  }
+  .topBtn > p > svg {
+    font-size: 18px;
+  }
+  #copyrightDiv {
+    @apply py-2 px-4 flex-col;
+  }
+  #copyrightTxt {
+    font-size: 12px;
+  }
+  #developerTxt {
+    font-size: xx-small;
+  }
+
+  h1 {
+    font: 900 2.5rem $nunito;
+  }
+  h2 {
+    font: 400 0.7rem $rubik;
+    @apply mb-10;
+  }
+  h3 {
+    font: 700 1.1rem $quicksand;
+    letter-spacing: 1.2px;
+  }
+  h4 {
+    font: 600 1.3rem $nunito;
+    letter-spacing: 1.3px;
+  }
+  h5 {
+    font: 600 0.8rem $quicksand;
+    letter-spacing: 1.2px;
+  }
+  p {
+    font-weight: 400;
+  }
+  .greenBtn,
+  .LogoBtn,
+  .sendBtn,
+  .transparentBtn,
+  .greenTransparentBtn {
+    font: 600 0.7rem $quicksand;
+  }
+  .heading {
+    font: 600 1.2rem $nunito;
+    @apply mt-5;
+  }
+  .greenBtn,
+  .LogoBtn,
+  .sendBtn {
+    @apply px-2 py-1;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .heroSection {
+    @apply h-[60vh];
+  }
+  .myImage {
+    @apply w-[70vw] bottom-[60%];
+  }
+  .skill {
+    @apply w-[90vw] gap-2;
+  }
+  .skill_sub_div {
+    @apply w-[6vmax] h-[6vmax];
+    transition: filter 0.3s;
+  }
+  .contactForm {
+    @apply h-[55vh] py-10;
+  }
+  .contactFormHeading {
+    @apply top-[-7%];
+  }
+  .topPara {
+    display: block;
+    @apply px-10 pt-3 pb-4 text-justify;
+    line-height: 0.95;
+  }
+  .formAndDesc {
+    @apply w-[100vw] flex flex-col;
+    > form {
+      @apply w-full p-2 gap-2;
+    }
+    > div {
+      @apply w-full;
+      > p {
+        display: none;
+      }
+      > button {
+        @apply self-end mx-0;
+      }
+    }
+  }
+}
+@media screen and (max-width: 321px) {
+  .skill_sub_div {
+    @apply w-[5vmax] h-[5vmax];
+    transition: filter 0.3s;
+  }
+  .image-container {
+    width: 200px;
+    height: 115px;
+  }
+  .projectInfoDivBtnContainer {
+    @apply gap-10;
+  }
+  h1 {
+    font: 900 2.2rem $nunito;
+  }
+  h2 {
+    font: 400 0.65rem $rubik;
+    @apply mb-10;
+  }
+  h5 {
+    font: 500 0.7rem $quicksand;
+    letter-spacing: 1.1px;
+  }
+  .transparentBtn {
+    @apply px-0 py-0;
+  }
 }

@@ -8,7 +8,6 @@ body {
   overflow-x: hidden;
   width: 100vw;
   font-family: $quicksand;
-  background-color: rgb(0, 15, 15);
   &::-webkit-scrollbar {
     @apply w-[8px] bg-black;
   }
@@ -21,12 +20,17 @@ body {
 }
 
 .header {
-  font: 500 1.1rem $quicksand;
   @apply text-white bg-transparent w-full grid grid-cols-2 items-center py-6 px-20 sticky top-0 z-50 duration-500;
 }
 
 .heroSection {
-  @apply overflow-hidden relative text-white h-[90vh] px-20 grid grid-cols-[55%_35%] items-center;
+  @apply overflow-hidden relative text-white h-[90vh] w-[100vw] px-20 grid grid-cols-[55%_35%] items-center;
+}
+.heroHeadingContainer{
+  @apply flex flex-col gap-5;
+}
+.heroBtnsDiv {
+  @apply flex items-center justify-center gap-10 pr-20 -mt-5;
 }
 
 .heroSvg {
@@ -39,9 +43,11 @@ body {
 }
 
 .skill {
-  @apply w-[60vw] bg-gray-900 gap-4 pt-4 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
+  @apply w-[60vw] bg-gray-900 gap-1 pt-2 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
 }
-
+.skillsListContainer {
+  @apply w-full flex items-center justify-evenly;
+}
 .skill_sub_div {
   @apply text-white w-[5vmax] h-[5vmax] rounded-xl p-[0.5vmax] overflow-hidden flex items-center justify-center hover:invert;
   transition: filter 0.3s;
@@ -55,21 +61,79 @@ body {
   @apply w-[100vw] px-20 py-24 flex items-center justify-between gap-28 relative;
 }
 
-.aboutMeInfoContainer {
-  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 duration-300 hover:scale-110 hover:invert;
+.projectInfoDiv {
+  @apply flex flex-col gap-5 z-10 w-[45vw];
 }
 
+.projectInfoDivBtnContainer{
+  @apply flex gap-24 items-center mx-auto mt-5;
+}
+
+.imageContainer{
+  @apply mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh];
+}
+
+.containerImage{
+  @apply cursor-pointer rounded-lg z-10;
+}
+
+.aboutMe{
+  @apply text-white px-20;
+}
+
+.aboutMeSubDiv{
+@apply flex items-center gap-14 mt-16;
+}
+
+.aboutMeInfoContainer {
+  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 hover:invert;
+  transition: filter 0.3s;
+}
+
+.contactMeSection{
+  @apply text-white p-20;
+}
+.contactMeParagraph{
+  @apply text-justify my-10;
+}
+.socialMediaCardContainer{
+  @apply my-10 grid grid-cols-4 gap-10;
+}
 .socialMediaCard {
-  @apply rounded-3xl py-8 px-10 flex flex-col items-center gap-10 duration-300 hover:scale-110 bg-gray-900 -rotate-6 hover:rotate-0 w-[15vw] hover:invert;
+  @apply rounded-3xl py-8 px-10 flex flex-col items-center self-center justify-self-center gap-10 bg-gray-900 w-[15vw] hover:invert;
+  transition: filter 0.3s;
 }
 
 .contactForm {
-  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center;
+  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center bg-center bg-cover;
+}
+.topPara{
+  display: none;
+}
+.formAndDesc {
+  @apply grid grid-cols-2 gap-10 px-20 py-10 z-10;
 }
 
-.formAndDesc{
-  @apply grid grid-cols-2 gap-10 items-center px-20 py-10 z-10;
+
+.ThanksDiv{
+   @apply text-white flex flex-col items-center p-20;
+   >img{
+    @apply rounded-[50px] w-[20vw] h-[15vh];
+   }
+   >p{
+    @apply pt-20;
+   }
 }
+.regardsDiv,.topBtnDiv{
+  @apply w-full flex items-center justify-end pt-10 px-28;
+}
+#copyrightDiv{
+  @apply text-white bg-gray-800 m-0 text-sm py-4 px-20 flex items-center justify-between;
+}
+#developerTxt{
+  @apply text-xs;
+}
+
 
 // For Image inside Project Container
 .image-container {
@@ -77,10 +141,6 @@ body {
   position: relative;
   height: 240px;
   width: 420px;
-}
-
-.projectInfoDiv{
-  @apply flex flex-col gap-5 z-10 w-[45vw];
 }
 
 .projectImage {

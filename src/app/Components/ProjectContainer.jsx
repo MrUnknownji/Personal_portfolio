@@ -99,7 +99,7 @@ const ProjectContainer = ({ project, index }) => {
         <div className="projectInfoDiv">
           <h4 className="text-center projectTitle">{title}</h4>
           <p className="desc text-justify">{desc}</p>
-          <div className="flex gap-24 items-center mx-auto mt-5">
+          <div className="projectInfoDivBtnContainer">
             <GsapMegnetic>
               <Link href={url} target={"_blank"}>
                 <button className="greenBtn Btn1">
