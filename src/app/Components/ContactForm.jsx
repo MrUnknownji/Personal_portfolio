@@ -6,8 +6,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
 import ContactFormBg from "../Assets/ContactForm/ContactFormBg.jpg"
 
-gsap.registerPlugin(ScrollTrigger);
-
 const ContactForm = () => {
   const formSection = useRef(null);
 
@@ -105,8 +103,9 @@ const ContactForm = () => {
       >
         <Image
           className="SvgBubble object-contain"
-          layout="responsive"
           src={require("../Assets/ContactForm/blob8.svg")}
+          width={1000}
+          height={1000}
           alt="ContactFormSvg"
         />
       </div>

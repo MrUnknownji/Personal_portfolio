@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
 
-gsap.registerPlugin(ScrollTrigger);
 const ThankYou = () => {
   const ThanksRef = useRef();
   useLayoutEffect(() => {

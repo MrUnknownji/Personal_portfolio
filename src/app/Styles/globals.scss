@@ -26,7 +26,7 @@ body {
 .heroSection {
   @apply overflow-hidden relative text-white h-[90vh] w-[100vw] px-20 grid grid-cols-[55%_35%] items-center;
 }
-.heroHeadingContainer{
+.heroHeadingContainer {
   @apply flex flex-col gap-5;
 }
 .heroBtnsDiv {
@@ -38,12 +38,12 @@ body {
   transform: translateY(50%);
 }
 .myImage {
-  @apply w-[40vw] absolute right-[5%] bottom-[50%];
+  @apply w-[40vw] absolute right-[5%] bottom-[55%];
   transform: translateY(50%);
 }
 
 .skill {
-  @apply w-[60vw] bg-gray-900 gap-1 pt-2 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
+  @apply w-[60vw] bg-gray-900 gap-1 py-2 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
 }
 .skillsListContainer {
   @apply w-full flex items-center justify-evenly;
@@ -65,24 +65,24 @@ body {
   @apply flex flex-col gap-5 z-10 w-[45vw];
 }
 
-.projectInfoDivBtnContainer{
+.projectInfoDivBtnContainer {
   @apply flex gap-24 items-center mx-auto mt-5;
 }
 
-.imageContainer{
+.imageContainer {
   @apply mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh];
 }
 
-.containerImage{
+.containerImage {
   @apply cursor-pointer rounded-lg z-10;
 }
 
-.aboutMe{
+.aboutMe {
   @apply text-white px-20;
 }
 
-.aboutMeSubDiv{
-@apply flex items-center gap-14 mt-16;
+.aboutMeSubDiv {
+  @apply flex items-center gap-14 mt-16;
 }
 
 .aboutMeInfoContainer {
@@ -90,13 +90,13 @@ body {
   transition: filter 0.3s;
 }
 
-.contactMeSection{
+.contactMeSection {
   @apply text-white p-20;
 }
-.contactMeParagraph{
+.contactMeParagraph {
   @apply text-justify my-10;
 }
-.socialMediaCardContainer{
+.socialMediaCardContainer {
   @apply my-10 grid grid-cols-4 gap-10;
 }
 .socialMediaCard {
@@ -107,33 +107,35 @@ body {
 .contactForm {
   @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center bg-center bg-cover;
 }
-.topPara{
+.topPara {
   display: none;
 }
 .formAndDesc {
-  @apply grid grid-cols-2 gap-10 px-20 py-10 z-10;
+  @apply grid grid-cols-2 gap-10 px-20 z-10;
+  > div {
+    @apply self-center justify-self-center;
+  }
 }
 
-
-.ThanksDiv{
-   @apply text-white flex flex-col items-center p-20;
-   >img{
+.ThanksDiv {
+  @apply text-white flex flex-col items-center p-20;
+  > img {
     @apply rounded-[50px] w-[20vw] h-[15vh];
-   }
-   >p{
+  }
+  > p {
     @apply pt-20;
-   }
+  }
 }
-.regardsDiv,.topBtnDiv{
+.regardsDiv,
+.topBtnDiv {
   @apply w-full flex items-center justify-end pt-10 px-28;
 }
-#copyrightDiv{
+#copyrightDiv {
   @apply text-white bg-gray-800 m-0 text-sm py-4 px-20 flex items-center justify-between;
 }
-#developerTxt{
+#developerTxt {
   @apply text-xs;
 }
-
 
 // For Image inside Project Container
 .image-container {

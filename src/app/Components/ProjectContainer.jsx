@@ -25,7 +25,6 @@ const ProjectContainer = ({ project, index }) => {
   const projectSection = useRef();
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const animateProjects = () => {
       const tl = gsap.timeline();
       tl.from(".SvgBubble", { duration: 1, scale: 0, opacity: 0 })

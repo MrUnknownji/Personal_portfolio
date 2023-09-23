@@ -5,8 +5,6 @@ import gsap from "gsap";
 import SocialMediaCard from "./SocialMediaCard";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const ContactMe = () => {
   const contactMeSection = useRef();
   useLayoutEffect(() => {
@@ -22,21 +20,21 @@ const ContactMe = () => {
         .from(
           "#ContactMeArrowText",
           { x: -100, duration: 1, opacity: 0 },
-          "-=0.3"
+          "-=0.5"
         )
         .from(".socialMediaCard", {
           opacity: 0,
-          x: -100,
+          x: -400,
           duration: 1,
-          stagger: 0.5,
+          stagger: 0.3,
           ease: "ease",
-        });
+        },"-=0.5");
 
       ScrollTrigger.create({
         trigger: "#contactMeParagraph",
-        start: "top 70%",
+        start: "top 75%",
         animation: tl,
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none reverse"
       });
     };
 

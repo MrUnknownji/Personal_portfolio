@@ -4,7 +4,7 @@ import React, { useLayoutEffect, useRef } from "react";
 
 const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
   const allImages = Object.values(images);
-  
+
   const ref = useRef();
   useLayoutEffect(() => {
     const tl = gsap.timeline();
@@ -35,16 +35,14 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
             id={`image-${index}`}
             key={index}
             src={require(`../Assets/Project/${title}/${value}`)}
-            layout="responsive"
+            width={700}
+            height={700}
             alt={title}
             className="containerImage image"
             onClick={() => {
               document.body.style.overflow = "hidden";
               setViewerImage(value);
               setViewImage(true);
-              setTimeout(() => {
-                document.querySelector("#image-viewer div").style.top = `${window.scrollY}px`;
-              }, 100);
             }}
           />
         ))}

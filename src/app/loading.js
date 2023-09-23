@@ -9,18 +9,18 @@ const Loading = () => {
   useLayoutEffect(() => {
     const tl = gsap.timeline({repeat: -1,});
     tl.from(".loadingName", {
-      stagger: 0.2,
+      stagger: 0.1,
       x:50,
       y:-50,
       opacity: 0,
       rotateX:-180,
     }).to(".loadingName", {
-      stagger: 0.2,
+      stagger: 0.1,
       x:-50,
       y:50,
       opacity: 0,
       rotateX:180,
-    },"+=0.5");
+    });
   });
   return (
     <div

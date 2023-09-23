@@ -5,8 +5,6 @@ import { SkillArr, skillHeadingArr } from "./Arrays";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Skills = () => {
   const skillContainer = useRef();
 
@@ -19,7 +17,8 @@ const Skills = () => {
       >
         <Image
           src={require(`../Assets/Skills/${value.name}`)}
-          layout="responsive"
+          width={500}
+          height={500}
           alt={value.Text}
           loading="lazy"
         />
@@ -36,8 +35,7 @@ const Skills = () => {
         {
           y: 50,
           opacity: 0,
-          stagger: 0.1,
-          scrub: true,
+          stagger: 0.1
         },
         "-=1"
       );

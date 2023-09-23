@@ -41,7 +41,7 @@ const HeroSection = () => {
       ease: "bounce",
       stagger: 0.05,
     });
-    animateElement("#mainImage", { y: -200, ease: "bounce" }, "-=1");
+    animateElement("#mainImage", { y: -200, ease: "bounce" }, "-=3");
     animateElement("#contactBtn", { y: 200 }, "-=1");
     animateElement("#projectBtn", { y: 200, ease: "power1.out" }, "-=1");
 
@@ -68,7 +68,8 @@ const HeroSection = () => {
           id="HeroSvg"
           src={svg1}
           alt="Svg"
-          layout="responsive"
+          width={900}
+          height={900}
           className="object-contain"
         />
       </div>
@@ -76,20 +77,21 @@ const HeroSection = () => {
         <div className="heroHeadingContainer">
           <h1 id="mainHeading">
             {mainHeadingArr.map((value, index) => (
-              <>
+              <span key={index}>
                 <span className="mainHeadingWord inline-block" key={index}>
                   {value.split("").map((char, charIndex) => (
                     <span className="mainChar inline-block" key={charIndex}>
                       {char}
                     </span>
                   ))}
-                </span>{" "}
-              </>
+                </span>
+                {index === 1 && <br />}{" "}
+              </span>
             ))}
           </h1>
           <h2 id="mainSubHeading">
             {subHeadingArr.map((value, index) => (
-              <>
+              <span key={index}>
                 <span className="subHeadingWords inline-block" key={index}>
                   {" "}
                   {value.split("").map((char, charIndex) => (
@@ -98,7 +100,7 @@ const HeroSection = () => {
                     </span>
                   ))}
                 </span>{" "}
-              </>
+              </span>
             ))}
           </h2>
           <div className="heroBtnsDiv">
@@ -132,7 +134,9 @@ const HeroSection = () => {
             className="object-contain"
             src={MyImage}
             alt="MyImage"
-            layout="responsive"
+            width={900}
+            height={900}
+            priority={true}
           />
         </div>
       </div>

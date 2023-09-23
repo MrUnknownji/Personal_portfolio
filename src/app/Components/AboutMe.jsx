@@ -2,53 +2,27 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { InfoCardArr } from "./Arrays";
 import gsap from "gsap";
-// import { useWindowSize } from "./useWindowSize";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe = () => {
   const aboutMe = useRef();
-  // const innerWidth = useWindowSize();
 
   useLayoutEffect(() => {
     const animateInfoContainers = () => {
       const tl = gsap.timeline();
-      // if (innerWidth > 1024) {
-      //   tl.from(".firstContainer", {
-      //     x: -100,
-      //     opacity: 0,
-      //     duration: 1,
-      //     ease: "back.out(4)" 
-      //   }).from(".notFirstContainer", {
-      //     x: 100,
-      //     y: 100,
-      //     duration:1,
-      //     stagger: 0.4,
-      //     opacity: 0,
-      //     ease: "back.out(4)" 
-      //   },"-=0.4");
-      //   ScrollTrigger.create({
-      //     trigger: ".aboutMeInfoContainer",
-      //     start: "top 80%",
-      //     animation: tl,
-      //     toggleActions: "play none none reverse",
-      //   });
-      // } else {
-        tl.from(".aboutMeInfoContainer", {
-          x: 200,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.4,
-          ease: "back.out(4)",
-        });
-        ScrollTrigger.create({
-          trigger: ".aboutMeInfoContainer",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-          animation: tl,
-        });
-      // }
+      tl.from(".aboutMeInfoContainer", {
+        x: 200,
+        opacity: 0,
+        duration:3,
+        stagger: 0.3,
+        ease: "elastic.out(2, 0.5)",
+      });
+      ScrollTrigger.create({
+        trigger: ".aboutMeInfoContainer",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        animation: tl,
+      });
     };
 
     const ctx = gsap.context(animateInfoContainers, aboutMe);
