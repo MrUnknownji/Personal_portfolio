@@ -13,8 +13,8 @@ export default function RootLayout({ children }) {
       <head>
         <title>{`Sandeep's portfolio`}</title>
       </head>
-      <body data-scroll-container style={{ backgroundImage: `url(${Bg.src})`, backgroundRepeat:"no-repeat", backgroundSize:"cover"}}>
-        <div>{children}</div>
+      <body data-scroll-container style={{ backgroundImage: `url(${Bg.src})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" }}>
+        <div className="topLevelDiv">{children}</div>
       </body>
     </html>
   );

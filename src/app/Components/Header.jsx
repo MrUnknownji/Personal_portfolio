@@ -11,6 +11,7 @@ const Header = () => {
   const scrollFunction = useCallback(() => {
     let currentScrollPos = window.scrollY;
     const headerStyle = headerSection.current.style;
+    headerStyle.transition = "transform 0.7s";
     if (currentScrollPos > prevScrollPosRef.current) {
       headerStyle.transform = "translateY(-80px)";
     } else {

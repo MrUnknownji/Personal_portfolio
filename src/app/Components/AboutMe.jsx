@@ -14,8 +14,8 @@ const AboutMe = () => {
         x: 200,
         opacity: 0,
         duration:3,
-        stagger: 0.3,
-        ease: "elastic.out(2, 0.5)",
+        stagger: 0.4,
+        ease: "elastic.out(3, 0.7)",
       });
       ScrollTrigger.create({
         trigger: ".aboutMeInfoContainer",

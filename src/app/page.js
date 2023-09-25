@@ -11,6 +11,7 @@ import ContactForm from "./Components/ContactForm";
 import ThankYou from "./Components/ThankYou";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import ChangeTheme from "./Components/ChangeTheme";
 // import LocomotiveScroll from "locomotive-scroll";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -68,6 +69,7 @@ export default function Home() {
     <Loading />
   ) : (
     <div ref={ref}>
+      <ChangeTheme />
       <Header />
       <HeroSection />
       <Skills />

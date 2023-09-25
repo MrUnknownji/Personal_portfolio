@@ -27,7 +27,7 @@ const ContactMe = () => {
           x: -400,
           duration: 1,
           stagger: 0.3,
-          ease: "ease",
+          ease: "back",
         },"-=0.5");
 
       ScrollTrigger.create({

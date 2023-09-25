@@ -70,7 +70,7 @@ const HeroSection = () => {
           alt="Svg"
           width={900}
           height={900}
-          className="object-contain"
+          className="object-contain SvgBubble"
         />
       </div>
       <div className="heroSection">

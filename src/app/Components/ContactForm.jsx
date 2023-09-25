@@ -47,6 +47,15 @@ const ContactForm = () => {
           "-=0.2"
         )
         .from(
+          ".SvgBubble",
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 0.8,
+          },
+          "-=0.2"
+        )
+        .from(
           "#contactFormPara",
           {
             opacity: 0,
@@ -93,31 +102,32 @@ const ContactForm = () => {
 
   return (
     <div
-      className="contactForm"
-      ref={formSection}
+      className="bg-center bg-cover"
       style={{ backgroundImage: `url(${ContactFormBg.src})` }}
     >
-      <div
-        className="absolute w-[60vw] right-0 z-10 top-[50%]"
-        style={{ transform: "translateY(-50%)" }}
-      >
-        <Image
-          className="SvgBubble object-contain"
-          src={require("../Assets/ContactForm/blob8.svg")}
-          width={1000}
-          height={1000}
-          alt="ContactFormSvg"
-        />
-      </div>
-      <h2 id="heading3" className="heading contactFormHeading">
-        Suggestion/Feedback
-      </h2>
-      <p id="contactFormParaTop" className="topPara">
-        {`Have a question, feedback, or a project in mind? I'd love to hear from
+      <div className="contactForm" ref={formSection}>
+        <div
+          className="absolute w-[60vw] right-0 z-10 top-[50%]"
+          style={{ transform: "translateY(-50%)" }}
+        >
+          <Image
+            className="SvgBubble object-contain"
+            src={require("../Assets/ContactForm/blob8.svg")}
+            width={1000}
+            height={1000}
+            alt="ContactFormSvg"
+          />
+        </div>
+        <h2 id="heading3" className="heading contactFormHeading">
+          Suggestion/Feedback
+        </h2>
+        <p id="contactFormParaTop" className="topPara">
+          {`Have a question, feedback, or a project in mind? I'd love to hear from
         you. Your input is invaluable. Just drop your message in the form, and
         I'll get back to you as soon as possible`}
-      </p>
-      <Form />
+        </p>
+        <Form />
+      </div>
     </div>
   );
 };

@@ -14,7 +14,8 @@ const ThankYou = () => {
     const tl2 = gsap.timeline();
 
     tl.from("#ThanksImage", {
-      scale: 1.4,
+      scale: 2,
+      opacity:0,
       borderRadius: 0,
       duration: 1,
     })

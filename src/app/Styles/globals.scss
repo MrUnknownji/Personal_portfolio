@@ -4,6 +4,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "./utils.scss";
 
+html{
+  transition: filter 1s;
+}
 body {
   overflow-x: hidden;
   width: 100vw;
@@ -30,7 +33,7 @@ body {
   @apply flex flex-col gap-5;
 }
 .heroBtnsDiv {
-  @apply flex items-center justify-center gap-10 pr-20 -mt-5;
+  @apply flex items-center justify-center gap-28 pr-20 -mt-5;
 }
 
 .heroSvg {
@@ -105,7 +108,7 @@ body {
 }
 
 .contactForm {
-  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center bg-center bg-cover;
+  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center;
 }
 .topPara {
   display: none;
