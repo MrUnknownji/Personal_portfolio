@@ -1,4 +1,3 @@
-import { Skeleton } from "@mui/material";
 import gsap from "gsap";
 import Image from "next/image";
 import React, { useLayoutEffect, useMemo, useRef } from "react";
