@@ -3,10 +3,11 @@ import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import NightlightRoundedIcon from "@mui/icons-material/NightlightRounded";
 import GsapMegnetic from "./GsapMegnetic";
 
-const ChangeTheme = () => {
+const ChangeTheme = ({setFlag}) => {
   const [isDark, setIsDark] = useState(true);
 
   const btnHandler = () => {
+    setFlag(true);
     const elements = document.querySelectorAll(
       ".header, .heroHeadingContainer, #heading0, .SvgBubble, .formSvg, .heroSvg, .projectInfoDiv, .aboutMe, .contactMeSection, #contactFormParaTop, #contactFormSendBtn, #copyrightDiv, .topBtnDiv, #ThanksPara, .regardsDiv"
     );

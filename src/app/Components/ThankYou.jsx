@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
 import ChangeTheme from "./ChangeTheme";
 
-const ThankYou = () => {
+const ThankYou = ({setFlag}) => {
   const ThanksRef = useRef();
   useLayoutEffect(() => {
     const tl = gsap.timeline();
@@ -116,7 +116,7 @@ const ThankYou = () => {
         <p id="copyrightTxt">© 2023 Sandeep Kumar. All rights reserved</p>
         <p id="developerTxt">Designed and developed by Sandeep Kumar</p>
         <div className="absolute bottom-[50%] right-5 translate-y-[50%]">
-          <ChangeTheme />
+          <ChangeTheme setFlag={setFlag}/>
         </div>
       </div>
     </div>

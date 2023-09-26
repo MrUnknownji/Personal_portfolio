@@ -8,7 +8,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageViewer from "./ImageViewer";
 
-const ProjectContainer = ({ project, index }) => {
+const ProjectContainer = ({ project, index, flag }) => {
   const [imagesShown, setImagesShown] = useState(false);
   const [viewImage, setViewImage] = useState(false);
   const [viewerImage, setViewerImage] = useState(null);
@@ -126,6 +126,7 @@ const ProjectContainer = ({ project, index }) => {
           images={images}
           setViewImage={setViewImage}
           setViewerImage={setViewerImage}
+          flag={flag}
         />
       )}
     </div>

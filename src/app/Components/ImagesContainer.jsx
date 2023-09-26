@@ -2,7 +2,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import React, { useLayoutEffect, useRef } from "react";
 
-const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
+const ImagesContainer = ({ title, images, setViewerImage, setViewImage, flag }) => {
   const allImages = Object.values(images);
 
   const ref = useRef();
@@ -40,6 +40,7 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
             alt={title}
             className="containerImage image"
             onClick={() => {
+              flag ? document.querySelector("#top").scrollIntoView() : "";
               document.body.style.overflow = "hidden";
               setViewerImage(value);
               setViewImage(true);

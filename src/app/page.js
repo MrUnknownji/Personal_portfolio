@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const ref = useRef();
   const [IsLoading, setLoading] = useState(true);
+  const [flag, setFlag] = useState(false);
 
   useLayoutEffect(() => {
     const headingAnimation = () => {
@@ -49,17 +50,17 @@ export default function Home() {
   return IsLoading ? (
     <Loading />
   ) : (
-    <div ref={ref}>
+    <div id="top" ref={ref}>
       <Header />
       <HeroSection />
       <Skills />
-      <Projects />
+      <Projects flag={flag} />
       <hr className="mt-10" />
       <AboutMe />
       <hr className="mt-10" />
       <ContactMe />
       <ContactForm />
-      <ThankYou />
+      <ThankYou setFlag={setFlag} />
     </div>
   );
 }
