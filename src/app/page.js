@@ -11,30 +11,14 @@ import ContactForm from "./Components/ContactForm";
 import ThankYou from "./Components/ThankYou";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import ChangeTheme from "./Components/ChangeTheme";
-// import LocomotiveScroll from "locomotive-scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const ref = useRef();
   const [IsLoading, setLoading] = useState(true);
+
   useLayoutEffect(() => {
-    // const scroll = new LocomotiveScroll({
-    //   el: document.querySelector("[data-scroll-container]"),
-    //   smooth: true,
-    // });
-
-    // const disableScrollBtn = Array.from(
-    //   document.getElementsByClassName("containerImage")
-    // );
-
-    // disableScrollBtn.map((value, index) => {
-    //   value.addEventListener("click", () => {
-    //     scroll.destroy();
-    //   });
-    // });
-
     const headingAnimation = () => {
       document.querySelectorAll(".heading").forEach((value, index) => {
         const anim = gsap.from(`#heading${index}`, {
@@ -60,16 +44,12 @@ export default function Home() {
     return () => {
       clearTimeout(timeoutId);
       ctx.revert();
-      // if (scroll) {
-      //   scroll.destroy();
-      // }
     };
   }, []);
   return IsLoading ? (
     <Loading />
   ) : (
     <div ref={ref}>
-      <ChangeTheme />
       <Header />
       <HeroSection />
       <Skills />

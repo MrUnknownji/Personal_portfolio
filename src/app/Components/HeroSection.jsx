@@ -4,7 +4,8 @@ import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import svg1 from "../Assets/HeroDivSvg.svg";
-import MyImage from "../Assets/MyImagePng.png";
+import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
+// import MyImage from "../Assets/MyImagePng.png";
 import { mainHeadingArr, subHeadingArr } from "./Arrays";
 import GsapMegnetic from "./GsapMegnetic";
 
@@ -13,39 +14,44 @@ const HeroSection = () => {
   const [arrowRotation, setArrowRotation] = useState(0);
 
   useLayoutEffect(() => {
-    const tl = gsap.timeline();
-
-    const animateElement = (
-      elementId,
-      animationProps,
-      subDuration = "-=0.6"
-    ) => {
-      tl.from(
-        elementId,
-        {
-          opacity: 0,
-          duration: 1,
-          ease: "expo",
-          ...animationProps,
-        },
-        subDuration
-      );
-    };
-
-    animateElement(".mainChar", { y: -50, stagger: 0.1, ease: "bounce" });
-
-    animateElement(".subChar", {
-      y: "random(-300,300)",
-      x: "random(-100,400)",
-      opacity: 0,
-      ease: "bounce",
-      stagger: 0.05,
-    });
-    animateElement("#mainImage", { y: -200, ease: "bounce" }, "-=3");
-    animateElement("#contactBtn", { y: 200 }, "-=1");
-    animateElement("#projectBtn", { y: 200, ease: "power1.out" }, "-=1");
-
     const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      const animateElement = (
+        elementId,
+        animationProps,
+        subDuration = "-=0.6"
+      ) => {
+        tl.from(
+          elementId,
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "expo",
+            ...animationProps,
+          },
+          subDuration
+        );
+      };
+
+      animateElement(".mainChar", { y: -50, stagger: 0.1,duration:1, ease: "bounce" });
+
+      animateElement(".subChar", {
+        y: "random(-300,300)",
+        x: "random(-100,400)",
+        opacity: 0,
+        duration:1,
+        ease: "bounce",
+        stagger: 0.05,
+      },"-=1.5");
+      animateElement(
+        "#mainImage",
+        { y: 100, duration: 0.7, ease: "none" },
+        "-=1.5"
+      );
+      animateElement("#contactBtn", { y: 200 }, "-=2");
+      animateElement("#projectBtn", { y: 200, ease: "power1.out" }, "-=2");
+
       gsap.from("#HeroSvg", { scale: 0, duration: 1, opacity: 0 });
       tl.play();
     }, heroSection);
@@ -68,9 +74,9 @@ const HeroSection = () => {
           id="HeroSvg"
           src={svg1}
           alt="Svg"
-          width={900}
-          height={900}
-          className="object-contain SvgBubble"
+          width={1000}
+          height={1000}
+          className="object-contain HeroSvg"
         />
       </div>
       <div className="heroSection">

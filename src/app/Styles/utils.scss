@@ -119,3 +119,10 @@ p {
   font: 600 2rem $nunito;
   @apply text-center z-10 mt-10;
 }
+
+.themeBtn {
+  @apply cursor-pointer z-50 text-white;
+  button > svg {
+    @apply border-2 border-white p-1 rounded-full w-7 h-7;
+  }
+}

@@ -111,7 +111,7 @@ const ContactForm = () => {
           style={{ transform: "translateY(-50%)" }}
         >
           <Image
-            className="SvgBubble object-contain"
+            className="formSvg object-contain"
             src={require("../Assets/ContactForm/blob8.svg")}
             width={1000}
             height={1000}

@@ -5,6 +5,22 @@
 @import "./utils.scss";
 @import "./globals.scss";
 
+@media screen and (max-width: 2560px) {
+  .heroSvg {
+    @apply right-[-33%] bottom-[33%];
+  }
+  .myImage {
+    @apply w-[25vw] bottom-[55%];
+  }
+}
+@media screen and (max-width: 1440px) {
+  .heroSvg {
+    @apply w-[60vw] right-[-7%] bottom-[38%];
+  }
+  .myImage {
+    @apply w-[35vw];
+  }
+}
 @media screen and (max-width: 1160px) {
   h1 {
     font: 900 3.5rem $nunito;
@@ -20,6 +36,9 @@
   }
   .aboutMeSubDiv {
     flex-direction: column;
+  }
+  .themeBtn > button > svg {
+    @apply w-6 h-6;
   }
 }
 @media screen and (max-width: 950px) {
@@ -61,6 +80,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .heroSvg {
+    @apply w-[70vw] right-[-10%] bottom-[45%];
+  }
+  .myImage {
+    @apply w-[40vw];
+  }
   .formAndDesc {
     @apply gap-5 py-5;
   }
@@ -101,10 +126,6 @@
   .heroSection {
     @apply h-[70vh] px-5 pt-20 flex flex-col items-center;
   }
-  .myImage {
-    @apply w-[40vw] absolute right-[5%] bottom-[50%];
-    transform: translateY(50%);
-  }
   .heroHeadingContainer {
     @apply text-center;
   }
@@ -116,8 +137,7 @@
     display: none;
   }
   .myImage {
-    @apply w-[50vw] right-[-15%] bottom-[55%] -z-10 opacity-75;
-    transform: translateY(50%);
+    @apply w-[60vw] right-[-20%] bottom-[65%] -z-10 opacity-75;
   }
   .skill {
     @apply w-[80vw] gap-2 text-white rounded-xl;
@@ -251,6 +271,9 @@
   .sendBtn {
     @apply px-2 py-1;
   }
+  .themeBtn > button > svg {
+    @apply w-5 h-5;
+  }
 }
 
 @media screen and (max-width: 376px) {
@@ -292,6 +315,9 @@
         @apply self-end mx-0;
       }
     }
+  }
+  .themeBtn > button > svg {
+    @apply border w-4 h-4;
   }
 }
 @media screen and (max-width: 321px) {

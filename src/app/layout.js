@@ -1,4 +1,3 @@
-"use client";
 import "./Styles/media.scss";
 import Bg from "./Assets/BackgroundPortfolioBg.jpg";
 

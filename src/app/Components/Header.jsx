@@ -45,7 +45,7 @@ const Header = () => {
     };
   }, [scrollFunction]);
   return (
-    <div className="header" ref={headerSection}>
+    <div className={"header"} ref={headerSection}>
       <div>
         <GsapMegnetic>
           <button className="LogoBtn">{`Sandeep's Portfolio`}</button>

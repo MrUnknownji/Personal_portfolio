@@ -6,6 +6,7 @@ import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
+import ChangeTheme from "./ChangeTheme";
 
 const ThankYou = () => {
   const ThanksRef = useRef();
@@ -15,7 +16,7 @@ const ThankYou = () => {
 
     tl.from("#ThanksImage", {
       scale: 2,
-      opacity:0,
+      opacity: 0,
       borderRadius: 0,
       duration: 1,
     })
@@ -111,9 +112,12 @@ const ThankYou = () => {
           </GsapMegnetic>
         </div>
       </div>
-      <div id="copyrightDiv">
+      <div id="copyrightDiv" className="relative">
         <p id="copyrightTxt">© 2023 Sandeep Kumar. All rights reserved</p>
         <p id="developerTxt">Designed and developed by Sandeep Kumar</p>
+        <div className="absolute bottom-[50%] right-5 translate-y-[50%]">
+          <ChangeTheme />
+        </div>
       </div>
     </div>
   );
