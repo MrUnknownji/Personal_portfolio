@@ -105,7 +105,7 @@ export const SocialMediaInfo = [
   {
     title: "Instagram",
     image: "instagram.svg",
-    url: "https://www.instagram.com/sandeep_jangid_g",
+    url: "https://www.instagram.com/sandeepkhati987",
   },
   {
     title: "Github",
