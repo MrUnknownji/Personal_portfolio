@@ -1,5 +1,5 @@
 import "./Styles/media.scss";
-import Bg from "./Assets/BackgroundPortfolioBg.jpg";
+import Bg from "./Assets/BackgroundPortfolioBgSmall.jpg";
 
 export const metadata = {
   title: "sandeep-portfolio",
@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <head>
         <title>{`Sandeep's portfolio`}</title>
       </head>
-      <body data-scroll-container style={{ backgroundImage: `url(${Bg.src})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" }}>
+      <body style={{ backgroundImage: `url(${Bg.src})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" }}>
         <div className="topLevelDiv">{children}</div>
       </body>
     </html>

@@ -50,7 +50,7 @@ export default function Home() {
   return IsLoading ? (
     <Loading />
   ) : (
-    <div id="top" ref={ref}>
+    <div id="top" ref={ref} style={{width:"100vw", overflowX:"hidden"}}>
       <Header />
       <HeroSection />
       <Skills />
