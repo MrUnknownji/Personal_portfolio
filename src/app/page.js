@@ -50,17 +50,19 @@ export default function Home() {
   return IsLoading ? (
     <Loading />
   ) : (
-    <div id="top" ref={ref} style={{width:"100vw", overflowX:"hidden"}}>
+    <>
       <Header />
-      <HeroSection />
-      <Skills />
-      <Projects flag={flag} />
-      <hr className="mt-10" />
-      <AboutMe />
-      <hr className="mt-10" />
-      <ContactMe />
-      <ContactForm />
-      <ThankYou setFlag={setFlag} />
-    </div>
+      <div ref={ref} style={{ width: "100vw", overflowX: "hidden" }}>
+        <HeroSection />
+        <Skills />
+        <Projects flag={flag} />
+        <hr className="mt-10" />
+        <AboutMe />
+        <hr className="mt-10" />
+        <ContactMe />
+        <ContactForm />
+        <ThankYou setFlag={setFlag} />
+      </div>
+    </>
   );
 }

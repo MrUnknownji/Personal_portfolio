@@ -6,7 +6,9 @@
 
 html {
   transition: filter 1s;
+  scroll-behavior: smooth;
 }
+
 body {
   overflow-x: hidden;
   width: 100vw;
