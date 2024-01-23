@@ -2,31 +2,28 @@ import gsap from "gsap";
 import Image from "next/image";
 import React, { useLayoutEffect, useMemo, useRef } from "react";
 
-const ImagesContainer = ({
-  title,
-  images,
-  setViewerImage,
-  setViewImage,
-  flag,
-}) => {
+const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
   const allImages = Object.values(images);
   const ref = useRef();
 
   useLayoutEffect(() => {
     const tl = gsap.timeline();
-    tl.from(ref.current, {
-      y: -100,
-      height: 0,
-      opacity: 0,
-      duration: 1,
-    }).from(
+    tl.fromTo(
+      ref.current,
+      {
+        y: -100,
+        height: 0,
+        opacity: 0,
+      },
+      { opacity: 1, y: 0, height: "100%", duration: 1 }
+    ).fromTo(
       ".containerImage",
       {
         y: 80,
         opacity: 0,
         stagger: 0.2,
-        duration: 1,
       },
+      { opacity: 1, y: 0 },
       "-=0.3"
     );
     const ctx = gsap.context(tl, ref);
@@ -46,7 +43,6 @@ const ImagesContainer = ({
           loading="lazy"
           className="containerImage image"
           onClick={() => {
-            flag ? document.querySelector("#top").scrollIntoView() : "";
             document.body.style.overflow = "hidden";
             setViewerImage(value);
             setViewImage(true);
@@ -54,7 +50,7 @@ const ImagesContainer = ({
         />
       );
     });
-  }, [allImages, setViewImage, title, flag, setViewerImage]);
+  }, [allImages, setViewImage, title, setViewerImage]);
 
   return (
     <div ref={ref} className="imagesDivContainer h-full">

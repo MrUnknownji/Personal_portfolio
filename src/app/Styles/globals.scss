@@ -75,11 +75,11 @@ body {
 }
 
 .imageContainer {
-  @apply mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh];
+  @apply opacity-100 mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh];
 }
 
 .containerImage {
-  @apply cursor-pointer rounded-lg z-10;
+  @apply cursor-pointer rounded-lg z-10 opacity-100;
 }
 
 .aboutMe {
@@ -123,9 +123,9 @@ body {
 }
 
 .ThanksDiv {
-  @apply text-white flex flex-col items-center p-20;
+  @apply text-white flex flex-col items-center p-20 opacity-100;
   > img {
-    @apply rounded-[50px] w-[20vw] h-[15vh];
+    @apply w-[20vw] h-[15vh];
   }
   > p {
     @apply pt-20;

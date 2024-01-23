@@ -17,10 +17,11 @@ const Skills = () => {
       >
         <Image
           src={require(`../Assets/Skills/${value.name}`)}
-          width={500}
-          height={500}
+          width={100}
+          height={100}
           alt={value.Text}
           loading="lazy"
+          style={value.name === "java-vertical.svg" ? { padding: 8 } : {}}
         />
         <h4 className="skillsText">{value.Text}</h4>
       </div>
@@ -30,12 +31,12 @@ const Skills = () => {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
-      tl.from(".skillChar", { y: 50, opacity: 0, stagger: 0.05 }).from(
+      tl.from(".skillChar", { y: 10, opacity: 0, stagger: 0.05 }).from(
         ".skill_sub_div",
         {
           y: 50,
           opacity: 0,
-          stagger: 0.1
+          stagger: 0.1,
         },
         "-=1"
       );

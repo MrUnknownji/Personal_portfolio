@@ -8,7 +8,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageViewer from "./ImageViewer";
 
-const ProjectContainer = ({ project, index, flag }) => {
+const ProjectContainer = ({ project, index }) => {
   const [imagesShown, setImagesShown] = useState(false);
   const [viewImage, setViewImage] = useState(false);
   const [viewerImage, setViewerImage] = useState(null);
@@ -27,7 +27,11 @@ const ProjectContainer = ({ project, index, flag }) => {
   useLayoutEffect(() => {
     const animateProjects = () => {
       const tl = gsap.timeline();
-      tl.from(".SvgBubble", { duration: 1, scale: 0, opacity: 0 })
+      tl.fromTo(
+        ".SvgBubble",
+        { scale: 0, opacity: 0 },
+        { duration: 1, scale: 0.75, opacity: 1 }
+      )
         .from(".projectTitle", { scale: 0.5, opacity: 0 }, "-=0.5")
         .from(".desc", { y: -50, opacity: 0 })
         .from(".image-container", { width: 0, duration: 2 }, "-=1")
@@ -126,7 +130,6 @@ const ProjectContainer = ({ project, index, flag }) => {
           images={images}
           setViewImage={setViewImage}
           setViewerImage={setViewerImage}
-          flag={flag}
         />
       )}
     </div>

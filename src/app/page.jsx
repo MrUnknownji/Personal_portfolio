@@ -11,13 +11,14 @@ import ContactForm from "./Components/ContactForm";
 import ThankYou from "./Components/ThankYou";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import ImageProvider from "./Contexts/ImageContext/ImageProvider";
+import CustomThemeProvider from "./Contexts/ImageContext/CustomThemeProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const ref = useRef();
   const [IsLoading, setLoading] = useState(true);
-  const [flag, setFlag] = useState(false);
 
   useLayoutEffect(() => {
     const headingAnimation = () => {
@@ -40,29 +41,30 @@ export default function Home() {
 
     const timeoutId = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 2650);
 
     return () => {
       clearTimeout(timeoutId);
       ctx.revert();
     };
   }, []);
+
   return IsLoading ? (
     <Loading />
   ) : (
-    <>
-      <Header />
-      <div ref={ref} style={{ width: "100vw", overflowX: "hidden" }}>
+    <CustomThemeProvider>
+      <ImageProvider>
+        <Header />
         <HeroSection />
         <Skills />
-        <Projects flag={flag} />
+        <Projects />
         <hr className="mt-10" />
         <AboutMe />
         <hr className="mt-10" />
         <ContactMe />
         <ContactForm />
-        <ThankYou setFlag={setFlag} />
-      </div>
-    </>
+        <ThankYou />
+      </ImageProvider>
+    </CustomThemeProvider>
   );
 }

@@ -7,19 +7,28 @@ const loadingArr = ["L", "o", "a", "d", "i", "n", "g", ".", ".", "."];
 const Loading = () => {
   const ref = useRef();
   useLayoutEffect(() => {
-    const tl = gsap.timeline({repeat: -1,});
-    tl.from(".loadingName", {
-      stagger: 0.1,
-      x:50,
-      y:-50,
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.fromTo(
+      ".loadingName",
+      {
+        x: 50,
+        y: -50,
+        opacity: 0,
+        rotateX: -180,
+      },
+      {
+        stagger: 0.09,
+        x: 0,
+        y: 0,
+        opacity: 1,
+        rotateX: 0,
+      },"+=0.1"
+    ).to(".loadingName", {
+      stagger: 0.09,
+      x: -50,
+      y: 50,
       opacity: 0,
-      rotateX:-180,
-    }).to(".loadingName", {
-      stagger: 0.1,
-      x:-50,
-      y:50,
-      opacity: 0,
-      rotateX:180,
+      rotateX: 180,
     });
   });
   return (

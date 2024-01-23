@@ -6,43 +6,63 @@ import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
-import ChangeTheme from "./ChangeTheme";
+// import ChangeTheme from "./ChangeTheme";
 
-const ThankYou = ({setFlag}) => {
+const ThankYou = () => {
   const ThanksRef = useRef();
   useLayoutEffect(() => {
     const tl = gsap.timeline();
     const tl2 = gsap.timeline();
 
-    tl.from("#ThanksImage", {
-      scale: 2,
-      opacity: 0,
-      borderRadius: 0,
-      duration: 1,
-    })
-      .from(
+    tl.fromTo(
+      "#ThanksImage",
+      {
+        scale: 2,
+        opacity: 0,
+        borderRadius: 0,
+      },
+      {
+        opacity: 1,
+        borderRadius: "50px",
+        scale: 1,
+        duration: 1,
+      }
+    )
+      .fromTo(
         "#ThanksPara",
         {
           x: -100,
           opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
           duration: 1,
         },
         "-=0.5"
       )
-      .from(
+      .fromTo(
         "#Regards",
         {
           x: 100,
           opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
           duration: 1,
         },
         "-=0.5"
       )
-      .from(
+      .fromTo(
         "#GoToTopButton",
         {
           y: 50,
           opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
           duration: 1,
         },
         "-=0.5"
@@ -56,17 +76,28 @@ const ThankYou = ({setFlag}) => {
     });
 
     tl2
-      .from("#copyrightTxt", {
-        x: -100,
-        duration: 1,
-        opacity: 0,
-      })
-      .from(
+      .fromTo(
+        "#copyrightTxt",
+        {
+          x: -100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+        }
+      )
+      .fromTo(
         "#developerTxt",
         {
           x: 100,
-          duration: 1,
           opacity: 0,
+        },
+        {
+          x: 0,
+          duration: 1,
+          opacity: 1,
         },
         "-=0.5"
       );
@@ -88,10 +119,11 @@ const ThankYou = ({setFlag}) => {
           alt="Thank You"
         />
         <p id="ThanksPara">
-          {`Thank you for visiting my portfolio! I'm excited about the endless
-          possibilities in the world of technology and development. Whether you're
-          interested in collaborating on a project, discussing the latest tech
-          trends, or just want to say hi, I'm just a click away.`}
+          {`Thank you for exploring my portfolio! I'm thrilled by the boundless
+          possibilities within the realm of technology and development. Whether
+          you're keen on collaboration for a project, engaging in discussions
+          about the latest tech trends, or simply dropping a greeting, I'm just
+          a click away.`}
         </p>
         <div id="Regards" className="regardsDiv">
           <p className="w-fit">
@@ -115,9 +147,9 @@ const ThankYou = ({setFlag}) => {
       <div id="copyrightDiv" className="relative">
         <p id="copyrightTxt">© 2023 Sandeep Kumar. All rights reserved</p>
         <p id="developerTxt">Designed and developed by Sandeep Kumar</p>
-        <div className="absolute bottom-[50%] right-5 translate-y-[50%]">
-          <ChangeTheme setFlag={setFlag}/>
-        </div>
+        {/* <div className="absolute bottom-[50%] right-5 translate-y-[50%]">
+          <ChangeTheme />
+        </div> */}
       </div>
     </div>
   );

@@ -22,19 +22,23 @@ const ContactMe = () => {
           { x: -100, duration: 1, opacity: 0 },
           "-=0.5"
         )
-        .from(".socialMediaCard", {
-          opacity: 0,
-          x: -400,
-          duration: 1,
-          stagger: 0.3,
-          ease: "back",
-        },"-=0.5");
+        .from(
+          ".socialMediaCard",
+          {
+            opacity: 0,
+            x: -400,
+            duration: 1,
+            stagger: 0.3,
+            ease: "back",
+          },
+          "-=0.5"
+        );
 
       ScrollTrigger.create({
         trigger: "#contactMeParagraph",
         start: "top 75%",
         animation: tl,
-        toggleActions: "play none none reverse"
+        toggleActions: "play none none reverse",
       });
     };
 
@@ -45,12 +49,13 @@ const ContactMe = () => {
     <div id="contactme" className="contactMeSection" ref={contactMeSection}>
       <h1 id="heading2" className="heading">{`Let's Connect`}</h1>
       <p id="contactMeParagraph" className="contactMeParagraph">
-        {`If you're looking to harness the power of web development for your
-        projects or ventures, I'm here to help. Connect with me through my
-        social handles to explore how we can collaborate on building
-        cutting-edge websites and digital solutions. I'm excited to collaborate
-        and help bring your digital dreams to life. Let's create something
-        amazing together!`}
+        {`Welcome! If you're ready to enhance your projects or ventures through
+        the prowess of software development, I'm here to collaborate with you.
+        Connect with me through my social handles, and let's explore the
+        exciting possibilities of crafting cutting-edge software solutions
+        together. I'm enthusiastic about turning your digital aspirations into
+        reality. Let's embark on the journey of creating something extraordinary
+        together!`}
       </p>
       <h2 id="ContactMeArrowText" className="text-center my-5">
         Contact Me →

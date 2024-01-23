@@ -1,5 +1,21 @@
 export const ProjectArr = [
   {
+    title: "AudioVibes",
+    desc: `A simple but beautiful android/ios local music player application. It also includes very beautiful and mesmerizing animations. Also supports meterial you theming.`,
+    url: "https://github.com/MrUnknownji/AudioVibes2",
+    images: {
+      DescHome: "DescHome.png",
+      img1: "ScreenShot1.jpg",
+      img2: "ScreenShot2.jpg",
+      img3: "ScreenShot3.jpg",
+      img4: "ScreenShot4.jpg",
+      img5: "ScreenShot5.jpg",
+      img6: "ScreenShot6.jpg",
+      img7: "ScreenShot7.jpg",
+    },
+    svg: "blob6.svg",
+  },
+  {
     title: "CryptoPedia",
     desc: `A sleek web app delivering real-time cryptocurrency data through interactive graphs. It features coin rankings, price ranges, exchange platform details, and supports both dark and light modes for an optimal user experience.`,
     url: "https://crypto-pedia-three.vercel.app/",
@@ -84,20 +100,19 @@ export const ProjectArr = [
 
 export const InfoCardArr = [
   {
-    desc: `Hey there! 👋 I'm Sandeep Kumar, and I'm absolutely passionate about the world of tech and development. Let me tell you a bit about my journey.
-I recently completed my BSc CAS in 2023, and while there might have been a few bumps along the way, my determination to become a top-notch developer has never wavered.`,
+    desc: `Greetings! 👋 I'm Sandeep Kumar, a dedicated technologist deeply immersed in the dynamic realm of development. I recently achieved my BSc in Computer Science in 2023, overcoming challenges with unwavering determination.`,
   },
   {
     title: "Approach",
-    desc: "In my development journey, I believe in the power of continuous learning and creative problem-solving. Every line of code is a puzzle waiting to be solved, and I'm here for it!",
+    desc: "In my development journey, I embrace the ethos of continuous learning and employ creative problem-solving strategies. Each line of code presents a unique puzzle, and I approach it with enthusiasm and precision.",
   },
   {
     title: "Goal",
-    desc: "My big dream? To work at a innovative and contribute to groundbreaking projects. The journey is just as important as the destination, and I'm excited about every step of it.",
+    desc: "My ultimate aspiration is to contribute to groundbreaking projects within an innovative environment. I am committed to ensuring that the journey towards achieving this goal is as rewarding and impactful as the destination itself.",
   },
   {
-    title: "Beyond Codding...",
-    desc: "When I'm not coding, I'm exploring the latest tech trends, staying updated with industry innovations, or simply enjoying a cup of coffee while brainstorming my next ambitious project.",
+    title: "Beyond Coding...",
+    desc: "Beyond coding, I immerse myself in exploring the latest tech trends, staying abreast of industry innovations, and occasionally taking a reflective pause over a cup of coffee to brainstorm and conceptualize my next ambitious project.",
   },
 ];
 
@@ -134,10 +149,6 @@ export const SkillArr = [
     Text: "Next js",
   },
   {
-    name: "nodejs-1.svg",
-    Text: "Node js",
-  },
-  {
     name: "sass-1.svg",
     Text: "Sass",
   },
@@ -146,19 +157,19 @@ export const SkillArr = [
     Text: "Tailwind CSS",
   },
   {
-    name: "express-109.svg",
-    Text: "Express",
+    name: "ts-logo-round-256.svg",
+    Text: "TypeScript",
   },
   {
-    name: "mongodb-icon-1.svg",
-    Text: "MongoDB",
+    name: "java-vertical.svg",
+    Text: "Java",
   },
 ];
 
 const mainHeading = "Hi, I'm Sandeep Kumar";
 export const mainHeadingArr = mainHeading.split(" ");
 
-const subHeading = "A Web developer | Bring your ideas to real life";
+const subHeading = "A Software developer | Bring your ideas to real life";
 export const subHeadingArr = subHeading.split(" ");
 
 const skillHeading = "Evolving Skills, Endless Potential";
