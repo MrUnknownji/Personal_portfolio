@@ -1,7 +1,10 @@
 import gsap from "gsap";
 import React, { useLayoutEffect, useRef } from "react";
 
-const isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
+let isWindowsOrMac = false;
+if (typeof navigator !== "undefined") {
+  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
+}
 
 const GsapMegnetic = ({ children }) => {
   const ref = useRef();

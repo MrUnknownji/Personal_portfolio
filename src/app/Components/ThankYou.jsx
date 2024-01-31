@@ -12,7 +12,10 @@ import GsapMegnetic from "./GsapMegnetic";
 //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 //     navigator.userAgent
 //   );
-const isWindows = /Windows/i.test(navigator.userAgent);
+let isWindowsOrMac = false;
+if (typeof navigator !== "undefined") {
+  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
+}
 
 const ThankYou = () => {
   const ThanksRef = useRef();
@@ -75,7 +78,7 @@ const ThankYou = () => {
       );
     ScrollTrigger.create({
       trigger: "#ThanksDiv",
-      start: isWindows ? "top center" : "top 80%",
+      start: isWindowsOrMac ? "top center" : "top 80%",
       animation: tl,
       toggleActions: "play none none reverse",
     });
