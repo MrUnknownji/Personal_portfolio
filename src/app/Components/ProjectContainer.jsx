@@ -8,6 +8,8 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageViewer from "./ImageViewer";
 
+const isWindows = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
+
 const ProjectContainer = ({ project, index }) => {
   const [imagesShown, setImagesShown] = useState(false);
   const [viewImage, setViewImage] = useState(false);
@@ -40,7 +42,7 @@ const ProjectContainer = ({ project, index }) => {
 
       ScrollTrigger.create({
         trigger: ".projectTitle",
-        start: "top 75%",
+        start: isWindows ? "top 75%" : "top 90%",
         animation: tl,
         toggleActions: "play none none reverse",
       });

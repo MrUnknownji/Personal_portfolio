@@ -8,6 +8,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GsapMegnetic from "./GsapMegnetic";
 // import ChangeTheme from "./ChangeTheme";
 
+// const isMobile =
+//   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+//     navigator.userAgent
+//   );
+const isWindows = /Windows/i.test(navigator.userAgent);
+
 const ThankYou = () => {
   const ThanksRef = useRef();
   useLayoutEffect(() => {
@@ -67,10 +73,9 @@ const ThankYou = () => {
         },
         "-=0.5"
       );
-
     ScrollTrigger.create({
       trigger: "#ThanksDiv",
-      start: "top center",
+      start: isWindows ? "top center" : "top 80%",
       animation: tl,
       toggleActions: "play none none reverse",
     });
