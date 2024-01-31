@@ -12,6 +12,8 @@ html {
 body {
   overflow-x: hidden;
   width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: $quicksand;
   &::-webkit-scrollbar {
     @apply w-[8px] bg-black;

@@ -12,18 +12,12 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/src/app/favicon.ico" sizes="any" />
       </head>
-      <body>
-        <div
-          style={{
-            width: "100vw",
-            overflowX: "hidden",
-            backgroundImage: `url(${Bg.src})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
-          {children}
-        </div>
+      <body
+        style={{
+          backgroundImage: `url(${Bg.src})`,
+        }}
+      >
+        {children}
       </body>
     </html>
   );
