@@ -1,5 +1,6 @@
 import "./Styles/media.scss";
 import Bg from "./Assets/BackgroundPortfolioBgSmall.jpg";
+import Header from "./Components/Header";
 
 export const metadata = {
   title: "Sandeep-portfolio",
@@ -17,7 +18,8 @@ export default function RootLayout({ children }) {
           backgroundImage: `url(${Bg.src})`,
         }}
       >
-        {children}
+        <Header />
+        <div style={{ width: "100vw", overflowX: "hidden" }}> {children} </div>
       </body>
     </html>
   );

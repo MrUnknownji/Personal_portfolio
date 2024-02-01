@@ -1,7 +1,6 @@
 "use client";
 import { useLayoutEffect, useRef, useState } from "react";
 import Loading from "./loading";
-import Header from "./Components/Header";
 import HeroSection from "./Components/HeroSection";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
@@ -54,7 +53,6 @@ export default function Home() {
   ) : (
     <CustomThemeProvider>
       <ImageProvider>
-        <Header />
         <HeroSection />
         <Skills />
         <Projects />
