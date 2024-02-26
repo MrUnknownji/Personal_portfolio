@@ -5,6 +5,11 @@ import { SkillArr, skillHeadingArr } from "./Arrays";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
+let isWindowsOrMac = false;
+if (typeof navigator !== "undefined") {
+  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
+}
+
 const Skills = () => {
   const skillContainer = useRef();
 
@@ -14,8 +19,16 @@ const Skills = () => {
         key={i}
         id={`skill_sub_div${i}`}
         className={`skill_sub_div ${i % 2 === 1 ? "bg-white" : "bg-black"}`}
+        onMouseEnter={(item) => {
+          isWindowsOrMac &&
+            (item.currentTarget.style.transform = "scale(1.25)");
+        }}
+        onMouseLeave={(item) => {
+          isWindowsOrMac && (item.currentTarget.style.transform = "scale(1)");
+        }}
       >
         <Image
+          className="skillImage"
           src={require(`../Assets/Skills/${value.name}`)}
           width={100}
           height={100}
@@ -23,7 +36,12 @@ const Skills = () => {
           loading="lazy"
           style={value.name === "java-vertical.svg" ? { padding: 8 } : {}}
         />
-        <h4 className="skillsText">{value.Text}</h4>
+        {isWindowsOrMac && (
+          <div className="skillTextOverlay">
+            <h4 className="skillsTextPC">{value.Text}</h4>
+          </div>
+        )}
+        {!isWindowsOrMac && <h4 className="skillsTextMobile">{value.Text}</h4>}
       </div>
     ));
   }, []);
@@ -47,6 +65,14 @@ const Skills = () => {
         toggleActions: "play none none reverse",
       });
     });
+    isWindowsOrMac &&
+      gsap.fromTo(
+        ".skillsTextMobile",
+        {
+          opacity: 0,
+        },
+        { opacity: 1, duration: 2, repeat: -1, yoyo: true }
+      );
     return () => ctx.revert();
   }, []);
 

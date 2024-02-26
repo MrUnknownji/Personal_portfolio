@@ -143,26 +143,32 @@ export const SkillArr = [
   {
     name: "react-2.svg",
     Text: "React",
+    url: "https://react.dev/",
   },
   {
     name: "next-js.svg",
     Text: "Next js",
+    url: "https://nextjs.org/",
   },
   {
     name: "sass-1.svg",
     Text: "Sass",
+    url: "https://sass-lang.com/",
   },
   {
     name: "tailwind-css-2.svg",
     Text: "Tailwind CSS",
+    url: "https://tailwindcss.com/",
   },
   {
     name: "ts-logo-round-256.svg",
-    Text: "TypeScript",
+    Text: "Type Script",
+    url: "https://www.typescriptlang.org/",
   },
   {
     name: "java-vertical.svg",
     Text: "Java",
+    url: "https://www.java.com/",
   },
 ];
 

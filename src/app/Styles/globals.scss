@@ -56,12 +56,22 @@ body {
   @apply w-full flex items-center justify-evenly;
 }
 .skill_sub_div {
-  @apply text-white w-[5vmax] h-[5vmax] rounded-xl p-[0.5vmax] overflow-hidden flex items-center justify-center hover:invert;
-  transition: filter 0.3s;
+  @apply text-white w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden flex flex-col items-center justify-center cursor-pointer;
+  transition: transform 0.3s;
+  &:hover > .skillTextOverlay {
+    @apply opacity-100;
+  }
 }
-
-.skillsText {
-  @apply hidden;
+.skillTextOverlay {
+  @apply absolute w-full h-full opacity-0 flex items-center justify-center bg-[rgba(0,0,0,0.8)] transition-opacity duration-300;
+}
+.skillsTextPC {
+  @apply text-[14px] font-bold text-center;
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+.skillsTextMobile{
+  @apply absolute text-[6px] font-bold text-center;
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
 
 .projectContainer {
