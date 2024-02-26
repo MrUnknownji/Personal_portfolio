@@ -26,6 +26,9 @@ const Skills = () => {
         onMouseLeave={(item) => {
           isWindowsOrMac && (item.currentTarget.style.transform = "scale(1)");
         }}
+        onClick={() => {
+          window.open(value.url);
+        }}
       >
         <Image
           className="skillImage"
@@ -65,7 +68,7 @@ const Skills = () => {
         toggleActions: "play none none reverse",
       });
     });
-    isWindowsOrMac &&
+    !isWindowsOrMac &&
       gsap.fromTo(
         ".skillsTextMobile",
         {
