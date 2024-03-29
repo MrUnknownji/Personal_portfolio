@@ -1,8 +1,8 @@
 import { cn } from "../../../app/utils/cn";
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const width = window.innerWidth;
+// const width = window.innerWidth;
 export const Meteors = ({
   number,
   className,
@@ -10,6 +10,11 @@ export const Meteors = ({
   number?: number;
   className?: string;
 }) => {
+  const [width, setWidth] = useState(0); // Initial width as 0
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []); // Empty dependency array: runs only on component mount
   const meteors = new Array(number || 20).fill(true);
   return (
     <>
