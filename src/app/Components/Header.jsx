@@ -46,7 +46,7 @@ const Header = () => {
       window.removeEventListener("scroll", scrollFunction);
       ctx.revert();
     };
-  }, []);
+  }, [scrollFunction]);
 
   useLayoutEffect(() => {
     const timeoutId = setTimeout(() => {

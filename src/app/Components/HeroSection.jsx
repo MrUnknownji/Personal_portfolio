@@ -8,6 +8,7 @@ import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
 // import MyImage from "../Assets/MyImagePng.png";
 import { mainHeadingArr, subHeadingArr } from "./Arrays";
 import GsapMegnetic from "./GsapMegnetic";
+import FlexibleDragAndDrop from "./elements/FlexibleDragAndDrop";
 
 const HeroSection = () => {
   const heroSection = useRef();
@@ -34,16 +35,25 @@ const HeroSection = () => {
         );
       };
 
-      animateElement(".mainChar", { y: -50, stagger: 0.1,duration:1, ease: "bounce" });
-
-      animateElement(".subChar", {
-        y: "random(-300,300)",
-        x: "random(-100,400)",
-        opacity: 0,
-        duration:1,
+      animateElement(".mainChar", {
+        y: -50,
+        stagger: 0.1,
+        duration: 1,
         ease: "bounce",
-        stagger: 0.05,
-      },"-=1.5");
+      });
+
+      animateElement(
+        ".subChar",
+        {
+          y: "random(-300,300)",
+          x: "random(-100,400)",
+          opacity: 0,
+          duration: 1,
+          ease: "bounce",
+          stagger: 0.05,
+        },
+        "-=1.5"
+      );
       animateElement(
         "#mainImage",
         { y: 100, duration: 0.7, ease: "none" },
@@ -68,7 +78,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative" ref={heroSection}>
+    <div className="relative" id="hero-div" ref={heroSection}>
       <div className="heroSvg">
         <Image
           id="HeroSvg"
@@ -87,7 +97,9 @@ const HeroSection = () => {
                 <span className="mainHeadingWord inline-block" key={index}>
                   {value.split("").map((char, charIndex) => (
                     <span className="mainChar inline-block" key={charIndex}>
-                      {char}
+                      <FlexibleDragAndDrop key={index}>
+                        {char}
+                      </FlexibleDragAndDrop>
                     </span>
                   ))}
                 </span>

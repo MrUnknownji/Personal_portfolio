@@ -27,7 +27,7 @@ const ProjectContainer = ({ project, index }) => {
   const imageClass = isEvenIndex ? "left-5" : "right-5";
   const imageOrigin = isEvenIndex ? "object-right" : "object-left";
 
-  const projectSection = useRef();
+  const projectSectionRef = useRef();
 
   useLayoutEffect(() => {
     const animateProjects = () => {
@@ -51,7 +51,7 @@ const ProjectContainer = ({ project, index }) => {
       });
     };
 
-    const ctx = gsap.context(animateProjects, projectSection);
+    const ctx = gsap.context(animateProjects, projectSectionRef);
     return () => ctx.revert();
   }, []);
 
@@ -64,7 +64,7 @@ const ProjectContainer = ({ project, index }) => {
         height: 0,
         opacity: 0,
         duration: 1,
-        onComplete: () => setImagesShown(!imagesShown),
+        onComplete: () => setImagesShown(false),
       });
       gsap.to(".containerImage", {
         y: 80,
@@ -74,7 +74,7 @@ const ProjectContainer = ({ project, index }) => {
       });
     } else {
       fontArrow.style.transform = "rotateZ(45deg)";
-      setImagesShown(!imagesShown);
+      setImagesShown(true);
     }
   };
 
@@ -87,7 +87,7 @@ const ProjectContainer = ({ project, index }) => {
           setViewImage={setViewImage}
         />
       )}
-      <div ref={projectSection} className={`projectContainer ${divClass}`}>
+      <div ref={projectSectionRef} className={`projectContainer ${divClass}`}>
         <Image
           src={imageSrc}
           width={400}

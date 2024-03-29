@@ -12,6 +12,10 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageProvider from "./Contexts/ImageContext/ImageProvider";
 import CustomThemeProvider from "./Contexts/ImageContext/CustomThemeProvider";
+import Ring from "./Components/elements/Ring";
+import FlexibleDragAndDrop from "./Components/elements/FlexibleDragAndDrop";
+import PinnedFan from "./Components/elements/PinnedFan";
+import { Meteors } from "./Components/ui/meteors";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +57,9 @@ export default function Home() {
   ) : (
     <CustomThemeProvider>
       <ImageProvider>
+        <Meteors number={30} className="" />
+        <FlexibleDragAndDrop />
+        <PinnedFan />
         <HeroSection />
         <Skills />
         <Projects />
@@ -62,6 +69,7 @@ export default function Home() {
         <ContactMe />
         <ContactForm />
         <ThankYou />
+        {/* <Ring /> */}
       </ImageProvider>
     </CustomThemeProvider>
   );

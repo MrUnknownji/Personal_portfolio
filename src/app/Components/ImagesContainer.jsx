@@ -4,12 +4,12 @@ import React, { useLayoutEffect, useMemo, useRef } from "react";
 
 const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
   const allImages = Object.values(images);
-  const ref = useRef();
+  const containerRef = useRef();
 
   useLayoutEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
-      ref.current,
+      containerRef.current,
       {
         y: -100,
         height: 0,
@@ -26,35 +26,33 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
       { opacity: 1, y: 0 },
       "-=0.3"
     );
-    const ctx = gsap.context(tl, ref);
-    return () => ctx.revert();
+    const context = gsap.context(tl, containerRef);
+    return () => context.revert();
   }, []);
 
-  const memoizedImage = useMemo(() => {
-    return allImages.map((value, index) => {
-      return (
-        <Image
-          id={`image-${index}`}
-          key={index}
-          src={require(`../Assets/Project/${title}/${value}`)}
-          width={700}
-          height={700}
-          alt={title}
-          loading="lazy"
-          className="containerImage image"
-          onClick={() => {
-            document.body.style.overflow = "hidden";
-            setViewerImage(value);
-            setViewImage(true);
-          }}
-        />
-      );
-    });
+  const memoizedImages = useMemo(() => {
+    return allImages.map((value, index) => (
+      <Image
+        id={`image-${index}`}
+        key={index}
+        src={require(`../Assets/Project/${title}/${value}`)}
+        width={700}
+        height={700}
+        alt={title}
+        loading="lazy"
+        className="containerImage image"
+        onClick={() => {
+          document.body.style.overflow = "hidden";
+          setViewerImage(value);
+          setViewImage(true);
+        }}
+      />
+    ));
   }, [allImages, setViewImage, title, setViewerImage]);
 
   return (
-    <div ref={ref} className="imagesDivContainer h-full">
-      <div className="imageContainer">{memoizedImage}</div>
+    <div ref={containerRef} className="imagesDivContainer h-full">
+      <div className="imageContainer">{memoizedImages}</div>
     </div>
   );
 };
