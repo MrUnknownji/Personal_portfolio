@@ -1,4 +1,4 @@
-import { cn } from "/IMP/WebProject/React/portfolio/src/app/utils/cn";
+import { cn } from "../../../app/utils/cn";
 import clsx from "clsx";
 import React from "react";
 const width = window.innerWidth;
