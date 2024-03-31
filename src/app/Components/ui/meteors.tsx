@@ -2,7 +2,6 @@ import { cn } from "../../../app/utils/cn";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
-// const width = window.innerWidth;
 export const Meteors = ({
   number,
   className,

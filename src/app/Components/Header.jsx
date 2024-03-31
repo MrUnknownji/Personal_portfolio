@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import GsapMegnetic from "./GsapMegnetic";
@@ -7,7 +7,6 @@ import GsapMegnetic from "./GsapMegnetic";
 const Header = () => {
   const headerSection = useRef();
   const prevScrollPosRef = useRef(0);
-  const [IsLoading, setLoading] = useState(true);
 
   const scrollFunction = useCallback(() => {
     let currentScrollPos = window.scrollY;
@@ -30,7 +29,6 @@ const Header = () => {
         backgroundColor: "blue",
         color: "white",
         duration: 2,
-        delay: 2.65,
         filter: "invert(1)",
         ease: "back",
       });
@@ -38,7 +36,6 @@ const Header = () => {
         x: 100,
         opacity: 0,
         duration: 2,
-        delay: 2.65,
         ease: "back",
       });
     }, headerSection);
@@ -47,22 +44,8 @@ const Header = () => {
       ctx.revert();
     };
   }, [scrollFunction]);
-
-  useLayoutEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    }, 2650);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
   return (
-    <div
-      className={"header"}
-      ref={headerSection}
-      style={{ visibility: IsLoading ? "hidden" : "visible" }}
-    >
+    <div className={"header"} ref={headerSection}>
       <div>
         <GsapMegnetic>
           <button className="LogoBtn">{`Sandeep's Portfolio`}</button>

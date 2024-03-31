@@ -3,6 +3,7 @@ import gsap from "gsap";
 import React, { useLayoutEffect, useRef } from "react";
 
 const loadingArr = ["L", "o", "a", "d", "i", "n", "g", ".", ".", "."];
+const welcomeArr = ["W", "e", "l", "c", "o", "m", "e", ".", ".", "."];
 
 const Loading = () => {
   const ref = useRef();
@@ -22,7 +23,8 @@ const Loading = () => {
         y: 0,
         opacity: 1,
         rotateX: 0,
-      },"+=0.1"
+      },
+      "+=0.1"
     ).to(".loadingName", {
       stagger: 0.09,
       x: -50,
@@ -37,7 +39,7 @@ const Loading = () => {
       ref={ref}
     >
       <div>
-        {loadingArr.map((value, index) => (
+        {welcomeArr.map((value, index) => (
           <font className="loadingName inline-block" key={index}>
             {value}
           </font>

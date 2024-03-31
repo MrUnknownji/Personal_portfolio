@@ -58,3 +58,5 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
 };
 
 export default ImagesContainer;
+
+

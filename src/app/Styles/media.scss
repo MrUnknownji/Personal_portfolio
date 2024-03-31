@@ -108,6 +108,12 @@
   .sendBtn {
     font: 700 0.9rem $quicksand;
   }
+  .greenTransparentBtn {
+    font: 500 0.9rem $quicksand;
+  }
+  .socialMediaCard {
+    @apply w-[18vw];
+  }
   .heading {
     font: 600 1.8rem $nunito;
   }
@@ -130,7 +136,8 @@
     @apply text-center;
   }
   .heroBtnsDiv {
-    @apply flex items-center justify-center gap-10 pr-0 -mt-5;
+    // @apply flex items-center justify-center gap-10 pr-0 -mt-5;
+    @apply px-8;
   }
   .SvgBubble,
   .heroSvg {
@@ -140,11 +147,14 @@
     @apply w-[60vw] right-[-20%] bottom-[65%] -z-10 opacity-75;
   }
   .skill {
-    @apply w-[80vw] gap-2 text-white rounded-xl;
+    @apply w-[80vw] gap-2 rounded-xl;
   }
   .skill_sub_div {
     @apply w-[7vmax] h-[7vmax] rounded-lg;
     transition: filter 0.3s;
+  }
+  #pin-windmill {
+    visibility: hidden;
   }
   .projectContainer {
     @apply px-10 py-10 flex flex-col items-center gap-4 justify-between relative;
@@ -177,7 +187,7 @@
     @apply rounded-3xl p-5 gap-3;
   }
   .contactMeSection {
-    @apply text-white py-5 px-10;
+    @apply py-5 px-10;
   }
   .contactMeParagraph {
     @apply text-justify my-5;
@@ -316,6 +326,9 @@
       }
     }
   }
+  .formSvg {
+    visibility: hidden;
+  }
   .themeBtn > button > svg {
     @apply border w-4 h-4;
   }
@@ -326,8 +339,8 @@
     transition: filter 0.3s;
   }
   .image-container {
-    width: 200px;
-    height: 115px;
+    width: 240px;
+    height: 135px;
   }
   .projectInfoDivBtnContainer {
     @apply gap-10;

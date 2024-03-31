@@ -73,7 +73,8 @@ const Form = () => {
       alert("Data Submitted successfully");
       setSubmitting(false);
     } catch (error) {
-      console.error("Error submitting data:", error);
+      alert("Error submitting data:", error);
+      setSubmitting(false);
     }
   };
   return (

@@ -1,45 +1,55 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useLayoutEffect, useRef, useContext } from "react";
+import Image from "next/image";
+import SimpleFan from "../../Assets/SimpleFan.svg";
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { DeviceTypeContext } from "../../Contexts/DeviceTypeProvider";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Ring = () => {
+  const ringDiv = useRef();
+  const { isDesktop } = useContext(DeviceTypeContext);
+
+  useLayoutEffect(() => {
+    if (isDesktop) {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline();
+
+        tl.to("#simpleFanSvg", {
+          rotateZ: 1080,
+          ease: "power1.inOut",
+        });
+
+        ScrollTrigger.create({
+          trigger: `body`,
+          start: "top 0%",
+          end: "bottom 100%",
+          scrub: true,
+          animation: tl,
+        });
+      }, ringDiv);
+
+      return () => ctx.revert();
+    }
+  }, [isDesktop]);
   return (
     <>
-      <motion.div
-        className="z-10 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-52 h-52 rounded-full flex items-center justify-center bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
-        initial={{ rotateZ: 0 }}
-        animate={{ rotateZ: 360 }}
-        transition={{
-          ease: "linear",
-          duration: 3,
-          repeat: Infinity,
-          delay: 0,
-          repeatType: "loop",
-        }}
-      />
-      {/* <motion.div
-        className="z-20 absolute top-[50%] left-[50%] w-40 h-40 rounded-full flex items-center justify-center bg-gradient-to-r from-red-500 via-purple-500 to-yellow-500 shadow-sm"
-        initial={{ rotateZ: 0 }}
-        animate={{ rotateZ: -360 }}
-        transition={{
-          ease: "linear",
-          duration: 2,
-          repeat: Infinity,
-          delay: 0,
-          repeatType: "loop",
-        }}
-      />
-      <motion.div
-        className="z-30 absolute top-[50%] left-[50%] w-28 h-28 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-sm"
-        initial={{ rotateZ: 0 }}
-        animate={{ rotateZ: 360 }}
-        transition={{
-          ease: "linear",
-          duration: 1,
-          repeat: Infinity,
-          delay: 0,
-          repeatType: "loop",
-        }}
-      /> */}
+      {isDesktop && (
+        <div
+          className="z-10 fixed bottom-8 right-20 w-16 h-16 flex items-center justify-center"
+          ref={ringDiv}
+        >
+          <Image
+            id="simpleFanSvg"
+            src={SimpleFan}
+            alt="SimpleFan"
+            width={200}
+            height={200}
+            className="object-contain simpleFanSvg absolute"
+          />
+        </div>
+      )}
     </>
   );
 };

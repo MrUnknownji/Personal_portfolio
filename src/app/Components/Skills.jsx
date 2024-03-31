@@ -1,17 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef, useMemo } from "react";
+import React, { useLayoutEffect, useRef, useMemo, useContext } from "react";
 import { SkillArr, skillHeadingArr } from "./Arrays";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
-let isWindowsOrMac = false;
-if (typeof navigator !== "undefined") {
-  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
-}
+import { DeviceTypeContext } from "../Contexts/DeviceTypeProvider";
 
 const Skills = () => {
   const skillContainer = useRef();
+  const { isDesktop } = useContext(DeviceTypeContext);
 
   const skillsList = useMemo(() => {
     return SkillArr.map((value, i) => (
@@ -20,11 +17,10 @@ const Skills = () => {
         id={`skill_sub_div${i}`}
         className={`skill_sub_div ${i % 2 === 1 ? "bg-white" : "bg-black"}`}
         onMouseEnter={(item) => {
-          isWindowsOrMac &&
-            (item.currentTarget.style.transform = "scale(1.25)");
+          isDesktop && (item.currentTarget.style.transform = "scale(1.25)");
         }}
         onMouseLeave={(item) => {
-          isWindowsOrMac && (item.currentTarget.style.transform = "scale(1)");
+          isDesktop && (item.currentTarget.style.transform = "scale(1)");
         }}
         onClick={() => {
           window.open(value.url);
@@ -39,15 +35,15 @@ const Skills = () => {
           loading="lazy"
           style={value.name === "java-vertical.svg" ? { padding: 8 } : {}}
         />
-        {isWindowsOrMac && (
+        {isDesktop && (
           <div className="skillTextOverlay">
             <h4 className="skillsTextPC">{value.Text}</h4>
           </div>
         )}
-        {!isWindowsOrMac && <h4 className="skillsTextMobile">{value.Text}</h4>}
+        {!isDesktop && <h4 className="skillsTextMobile">{value.Text}</h4>}
       </div>
     ));
-  }, []);
+  }, [isDesktop]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,7 +64,7 @@ const Skills = () => {
         toggleActions: "play none none reverse",
       });
     });
-    !isWindowsOrMac &&
+    !isDesktop &&
       gsap.fromTo(
         ".skillsTextMobile",
         {
@@ -77,7 +73,7 @@ const Skills = () => {
         { opacity: 1, duration: 2, repeat: -1, yoyo: true }
       );
     return () => ctx.revert();
-  }, []);
+  }, [isDesktop]);
 
   return (
     <div className="skill" ref={skillContainer}>

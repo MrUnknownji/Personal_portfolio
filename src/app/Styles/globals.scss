@@ -5,8 +5,8 @@
 @import "./utils.scss";
 
 html {
-  transition: filter 1s;
   scroll-behavior: smooth;
+  @apply selection:bg-[#ffa442] selection:text-black;
 }
 
 body {
@@ -14,6 +14,7 @@ body {
   width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #0e100f;
   font-family: $quicksand;
   &::-webkit-scrollbar {
     @apply w-[8px] bg-black;
@@ -27,17 +28,17 @@ body {
 }
 
 .header {
-  @apply text-white backdrop-blur-sm bg-black/25 shadow-sm w-full grid grid-cols-2 items-center py-6 px-20 fixed top-0 z-50 duration-500;
+  @apply text-text-color-1 backdrop-blur-sm bg-black/25 shadow-sm w-full grid grid-cols-2 items-center py-6 px-20 fixed top-0 z-50 duration-500;
 }
 
 .heroSection {
-  @apply overflow-hidden relative text-white h-[90vh] w-[100vw] px-20 grid grid-cols-[55%_35%] items-center;
+  @apply overflow-hidden relative text-text-color-1 h-[90vh] w-[100vw] px-20 grid grid-cols-[55%_35%] items-center;
 }
 .heroHeadingContainer {
   @apply flex flex-col gap-5;
 }
 .heroBtnsDiv {
-  @apply flex items-center justify-center gap-28 pr-20 -mt-5;
+  @apply flex items-center justify-between px-[10%] -mt-5;
 }
 
 .heroSvg {
@@ -50,13 +51,13 @@ body {
 }
 
 .skill {
-  @apply w-[60vw] bg-gray-900 gap-1 py-2 text-white rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
+  @apply w-[60vw] bg-gray-900 gap-1 py-2 text-text-color-1 rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
 }
 .skillsListContainer {
   @apply w-full flex items-center justify-evenly;
 }
 .skill_sub_div {
-  @apply text-white w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden flex flex-col items-center justify-center cursor-pointer;
+  @apply text-text-color-1 w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden flex flex-col items-center justify-center cursor-pointer;
   transition: transform 0.3s;
   &:hover > .skillTextOverlay {
     @apply opacity-100;
@@ -95,7 +96,7 @@ body {
 }
 
 .aboutMe {
-  @apply text-white px-20;
+  @apply text-text-color-1 px-20;
 }
 
 .aboutMeSubDiv {
@@ -103,12 +104,12 @@ body {
 }
 
 .aboutMeInfoContainer {
-  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 hover:invert;
+  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 hover:invert selection:bg-[#005bbd] selection:text-white;
   transition: filter 0.3s;
 }
 
 .contactMeSection {
-  @apply text-white p-20;
+  @apply text-text-color-1 p-20;
 }
 .contactMeParagraph {
   @apply text-justify my-10;
@@ -122,7 +123,7 @@ body {
 }
 
 .contactForm {
-  @apply w-[100vw] h-[100vh] text-white relative flex flex-col items-center;
+  @apply w-[100vw] h-[100vh] text-text-color-1 relative flex flex-col items-center;
 }
 .topPara {
   display: none;
@@ -135,7 +136,7 @@ body {
 }
 
 .ThanksDiv {
-  @apply text-white flex flex-col items-center p-20 opacity-100;
+  @apply text-text-color-1 flex flex-col items-center p-20 opacity-100;
   > img {
     @apply w-[20vw] h-[15vh];
   }
@@ -148,7 +149,7 @@ body {
   @apply w-full flex items-center justify-end pt-10 px-28;
 }
 #copyrightDiv {
-  @apply text-white bg-gray-800 m-0 text-sm py-4 px-20 flex items-center justify-between;
+  @apply text-text-color-1 bg-gray-800 m-0 text-sm py-4 px-20 flex items-center justify-between;
 }
 #developerTxt {
   @apply text-xs;
@@ -211,7 +212,7 @@ body {
 }
 
 #close {
-  @apply absolute top-[15px] right-[35px] text-white text-[40px] duration-300 cursor-pointer;
+  @apply absolute top-[15px] right-[35px] text-text-color-1 text-[40px] duration-300 cursor-pointer;
 }
 
 #close:hover,

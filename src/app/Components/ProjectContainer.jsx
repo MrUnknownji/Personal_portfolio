@@ -55,26 +55,39 @@ const ProjectContainer = ({ project, index }) => {
     return () => ctx.revert();
   }, []);
 
-  const toggleImages = () => {
+  const toggleImages = async () => {
     const fontArrow = document.querySelector(`#fontArrow${index}`);
     if (imagesShown) {
-      fontArrow.style.transform = "rotateZ(0)";
-      gsap.to(".imagesDivContainer", {
+      await gsap.to(".imagesDivContainer", {
         y: -100,
         height: 0,
         opacity: 0,
         duration: 1,
         onComplete: () => setImagesShown(false),
       });
+      fontArrow.style.transform = "rotateZ(0)";
       gsap.to(".containerImage", {
         y: 80,
         opacity: 0,
         stagger: 0.1,
-        duration: 0.5,
       });
     } else {
-      fontArrow.style.transform = "rotateZ(45deg)";
       setImagesShown(true);
+      fontArrow.style.transform = "rotateZ(45deg)";
+      gsap.fromTo(
+        ".imagesDivContainer",
+        {
+          y: -100,
+          height: "0%",
+          opacity: 0,
+        },
+        {
+          y: 0,
+          height: "100%",
+          opacity: 1,
+          duration: 1,
+        }
+      );
     }
   };
 

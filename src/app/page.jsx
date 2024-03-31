@@ -12,10 +12,14 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageProvider from "./Contexts/ImageContext/ImageProvider";
 import CustomThemeProvider from "./Contexts/ImageContext/CustomThemeProvider";
+import DeviceTypeProvider from "./Contexts/DeviceTypeProvider";
 import Ring from "./Components/elements/Ring";
 import FlexibleDragAndDrop from "./Components/elements/FlexibleDragAndDrop";
 import PinnedFan from "./Components/elements/PinnedFan";
 import { Meteors } from "./Components/ui/meteors";
+import Header from "./Components/Header";
+// import Image from "next/image";
+// import Bg from "./Assets/BackgroundPortfolioBgSmall.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,19 +61,38 @@ export default function Home() {
   ) : (
     <CustomThemeProvider>
       <ImageProvider>
-        <Meteors number={30} className="" />
-        <FlexibleDragAndDrop />
-        <PinnedFan />
-        <HeroSection />
-        <Skills />
-        <Projects />
-        <hr className="mt-10" />
-        <AboutMe />
-        <hr className="mt-10" />
-        <ContactMe />
-        <ContactForm />
-        <ThankYou />
-        {/* <Ring /> */}
+        <DeviceTypeProvider>
+          {/* <Image
+            src={Bg}
+            width={1000}
+            height={1000}
+            alt="background"
+            style={{
+              position: "fixed",
+              zIndex: -1,
+              width: "100%",
+              top: 0,
+              left: 0,
+              backgroundSize: "cover",
+              backgroundPosition: "top",
+              backgroundRepeat: "no-repeat",
+            }}
+          /> */}
+          <Header />
+          <Meteors number={30} className="" />
+          <FlexibleDragAndDrop />
+          <PinnedFan />
+          <HeroSection />
+          <Skills />
+          <Projects />
+          <hr className="mt-10" />
+          <AboutMe />
+          <hr className="mt-10" />
+          <ContactMe />
+          <ContactForm />
+          <ThankYou />
+          <Ring />
+        </DeviceTypeProvider>
       </ImageProvider>
     </CustomThemeProvider>
   );

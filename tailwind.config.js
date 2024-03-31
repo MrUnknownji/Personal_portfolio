@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'text-color-1': '#fffce1', 
+      },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
       },

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import svg1 from "../Assets/HeroDivSvg.svg";
 import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
-// import MyImage from "../Assets/MyImagePng.png";
 import { mainHeadingArr, subHeadingArr } from "./Arrays";
 import GsapMegnetic from "./GsapMegnetic";
 import FlexibleDragAndDrop from "./elements/FlexibleDragAndDrop";
