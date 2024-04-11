@@ -1,9 +1,9 @@
 "use client";
 import React, { useLayoutEffect, useRef } from "react";
 import { InfoCardArr } from "./Arrays";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import GsapHeading from "../Components/GsapAnimations/GsapHeading";
 
 const AboutMe = () => {
   const aboutMe = useRef();
@@ -33,15 +33,11 @@ const AboutMe = () => {
 
   return (
     <div id="aboutme" className="aboutMe" ref={aboutMe}>
-      <motion.h2
-        id="heading1"
-        className="heading my-10"
-        initial={{ opacity: 0, y: 70 }}
-        transition={{ type: "spring", duration: 2, delay: 0.5, stiffness: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-      >
-        About Me
-      </motion.h2>
+      <GsapHeading>
+        <h2 id="heading1" className="heading my-10">
+          About Me
+        </h2>
+      </GsapHeading>
       <InfoContainer
         desc={InfoCardArr[0].desc}
         rotateNone={true}

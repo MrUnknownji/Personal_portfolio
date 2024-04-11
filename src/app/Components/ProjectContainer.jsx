@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 import ImagesContainer from "./ImagesContainer";
-import GsapMegnetic from "./GsapMegnetic";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ImageViewer from "./ImageViewer";

@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import React, { useLayoutEffect, useRef, useContext } from "react";
-import { DeviceTypeContext } from "../Contexts/DeviceTypeProvider";
+import { DeviceTypeContext } from "../../Contexts/DeviceTypeProvider";
 
 const GsapMegnetic = ({ children }) => {
   const ref = useRef();

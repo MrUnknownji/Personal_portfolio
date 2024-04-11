@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import GsapMegnetic from "./GsapMegnetic";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import { v4 as uuidv4 } from "uuid";
 import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";

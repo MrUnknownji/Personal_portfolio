@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useContext } from "react";
 import Image from "next/image";
-import SimpleFan from "../../Assets/SimpleFan.svg";
+import SimpleFan from "../../Assets/RoundedFan.svg";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { DeviceTypeContext } from "../../Contexts/DeviceTypeProvider";
@@ -18,14 +18,14 @@ const Ring = () => {
 
         tl.to("#simpleFanSvg", {
           rotateZ: 1080,
-          ease: "power1.inOut",
+          ease: "none",
         });
 
         ScrollTrigger.create({
           trigger: `body`,
           start: "top 0%",
           end: "bottom 100%",
-          scrub: true,
+          scrub: 1,
           animation: tl,
         });
       }, ringDiv);

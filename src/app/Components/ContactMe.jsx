@@ -4,6 +4,7 @@ import { SocialMediaInfo } from "./Arrays";
 import gsap from "gsap";
 import SocialMediaCard from "./SocialMediaCard";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import GsapHeading from "./GsapAnimations/GsapHeading";
 
 const ContactMe = () => {
   const contactMeSection = useRef();
@@ -47,7 +48,9 @@ const ContactMe = () => {
   }, []);
   return (
     <div id="contactme" className="contactMeSection" ref={contactMeSection}>
-      <h1 id="heading2" className="heading">{`Let's Connect`}</h1>
+      <GsapHeading>
+        <h1 id="heading2" className="heading">{`Let's Connect`}</h1>
+      </GsapHeading>
       <p id="contactMeParagraph" className="contactMeParagraph">
         {`Welcome! If you're ready to enhance your projects or ventures through
         the prowess of software development, I'm here to collaborate with you.

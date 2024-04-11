@@ -2,7 +2,7 @@
 import React, { useCallback, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import GsapMegnetic from "./GsapMegnetic";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 
 const Header = () => {
   const headerSection = useRef();

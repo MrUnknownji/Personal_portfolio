@@ -5,7 +5,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import GsapMegnetic from "./GsapMegnetic";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 // import ChangeTheme from "./ChangeTheme";
 
 // const isMobile =
