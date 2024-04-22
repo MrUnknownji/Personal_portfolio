@@ -33,7 +33,7 @@ const Skills = () => {
           height={100}
           alt={value.Text}
           loading="lazy"
-          style={value.name === "java-vertical.svg" ? { padding: 8 } : {}}
+          style={value.name === "java-vertical.svg" ? { padding: 8 } : value.name === "python-logo-only.svg" ? { padding: 6, paddingTop:7 } : {}}
         />
         {isDesktop && (
           <div className="skillTextOverlay">
