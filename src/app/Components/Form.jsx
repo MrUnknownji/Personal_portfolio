@@ -3,6 +3,7 @@ import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import { v4 as uuidv4 } from "uuid";
 import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
+import LoopIcon from "@mui/icons-material/Loop";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAcoroQsqHAIhzjGItrVigIZvMUTaeNLa4",
@@ -71,6 +72,9 @@ const Form = () => {
       });
       formRef.current.reset();
       alert("Data Submitted successfully");
+      setEmail("");
+      setSubject("");
+      setDescription("");
       setSubmitting(false);
     } catch (error) {
       alert("Error submitting data:", error);
@@ -115,9 +119,13 @@ const Form = () => {
             disabled={submitting}
           >
             Send{" "}
-            <font id="Arrow" className="inline-block">
-              →
-            </font>
+            {submitting ? (
+              <LoopIcon />
+            ) : (
+              <font id="Arrow" className="inline-block">
+                →
+              </font>
+            )}
           </button>
         </GsapMegnetic>
       </div>
