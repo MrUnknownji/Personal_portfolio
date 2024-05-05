@@ -1,22 +1,11 @@
 import React, { useRef, useState } from "react";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import { v4 as uuidv4 } from "uuid";
-import { getDatabase, ref, set } from "firebase/database";
-import { initializeApp } from "firebase/app";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
 import LoopIcon from "@mui/icons-material/Loop";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAcoroQsqHAIhzjGItrVigIZvMUTaeNLa4",
-  authDomain: "survey-data-d8732.firebaseapp.com",
-  databaseURL: "https://survey-data-d8732-default-rtdb.firebaseio.com",
-  projectId: "survey-data-d8732",
-  storageBucket: "survey-data-d8732.appspot.com",
-  messagingSenderId: "405400394272",
-  appId: "1:405400394272:web:f82c292007481ad6d5fa45",
-};
-const app = initializeApp(firebaseConfig);
-
-const Form = () => {
+const Form = ({app}) => {
   const formRef = useRef(null);
   const [submitting, setSubmitting] = useState(false);
   const [Email, setEmail] = useState("");
@@ -33,7 +22,6 @@ const Form = () => {
     setDescription(event.target.value);
   };
   const validateForm = () => {
-    // Validate the form data
     if (Email === "") {
       alert("Please enter an email address.");
       return;
@@ -63,13 +51,15 @@ const Form = () => {
       setSubmitting(false);
       return;
     }
-    const database = getDatabase(app);
+    const database = firebase.database(app);
+
     try {
-      await set(ref(database, "Feedback/" + uuidv4()), {
+      database.ref("Feedback/" + uuidv4()).set({
         email: Email,
         subject: Subject,
         description: Description,
       });
+
       formRef.current.reset();
       alert("Data Submitted successfully");
       setEmail("");

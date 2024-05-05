@@ -4,11 +4,10 @@ import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import svg1 from "../Assets/HeroDivSvg.svg";
-import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
+// import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
 import { mainHeadingArr, subHeadingArr } from "./Arrays";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import FlexibleDragAndDrop from "./elements/FlexibleDragAndDrop";
-
 const HeroSection = () => {
   const heroSection = useRef();
   const [arrowRotation, setArrowRotation] = useState(0);
@@ -149,7 +148,7 @@ const HeroSection = () => {
           <Image
             id="mainImage"
             className="object-contain"
-            src={MyImage}
+            src={require("../Assets/MyImageUncropped-transformed-transparent2.png")}
             alt="MyImage"
             width={900}
             height={900}

@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Loading from "./loading";
 import HeroSection from "./Components/HeroSection";
 import Projects from "./Components/Projects";
@@ -16,8 +16,10 @@ import FlexibleDragAndDrop from "./Components/elements/FlexibleDragAndDrop";
 import PinnedFan from "./Components/elements/PinnedFan";
 import { Meteors } from "./Components/ui/meteors";
 import Header from "./Components/Header";
-// import Image from "next/image";
-// import Bg from "./Assets/BackgroundPortfolioBgSmall.jpg";
+import firebaseConfig from "./firebaseConfiguration";
+import firebase from "firebase/compat/app"
+
+const app = firebase.initializeApp(firebaseConfig)
 
 export default function Home() {
   const [IsLoading, setLoading] = useState(true);
@@ -38,34 +40,18 @@ export default function Home() {
     <CustomThemeProvider>
       <ImageProvider>
         <DeviceTypeProvider>
-          {/* <Image
-            src={Bg}
-            width={1000}
-            height={1000}
-            alt="background"
-            style={{
-              position: "fixed",
-              zIndex: -1,
-              width: "100%",
-              top: 0,
-              left: 0,
-              backgroundSize: "cover",
-              backgroundPosition: "top",
-              backgroundRepeat: "no-repeat",
-            }}
-          /> */}
           <Header />
           <Meteors number={30} className="" />
           <FlexibleDragAndDrop />
           <PinnedFan />
-          <HeroSection />
+          <HeroSection app={app}/>
           <Skills />
           <Projects />
           <hr className="mt-10" />
           <AboutMe />
           <hr className="mt-10" />
           <ContactMe />
-          <ContactForm />
+          <ContactForm app={app}/>
           <ThankYou />
           <Ring />
         </DeviceTypeProvider>

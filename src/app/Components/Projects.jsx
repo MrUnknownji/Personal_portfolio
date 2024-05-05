@@ -46,7 +46,3 @@ const Projects = () => {
   );
 };
 export default Projects;
-
-// initial={{ opacity: 0, y: 70 }}
-// transition={{ type: "spring", duration: 2,delay:0.5, stiffness: 100 }}
-// whileInView={{ opacity: 1, y: 0 }}

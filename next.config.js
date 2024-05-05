@@ -3,9 +3,9 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.example.com",
-        port: "",
-        pathname: "/sandeep-portfolio/src/app/Assets/**",
+        hostname: "lh3.googleusercontent.com",
+        port:"",
+        pathname:"/**"
       },
     ],
   },
