@@ -103,9 +103,7 @@ const ContactForm = () => {
   return (
     <div className="bg-center bg-cover relative">
       <Image
-        src={
-          "https://lh3.googleusercontent.com/pw/AP1GczPi56l8E0ntfCes8XbR4IHdGzO4xvn2hIVwekyWQ5DX5N887pZlNFQmWSprzw78di91HT9T02PlbPY1Y6C9_U8wYlb6GZ-HaLLSjdUZVnpWykoujtIEOBNLUorvuciBTGgXDIU8jOyt-TB9So78cXFsYCCLjxO6ckdGXjxsXP85d-MtpisTBQJ2VLNwgXMr9VIIrKQ-5uPsmEfFHM70qdNaKbAja3y1U_v9IJ-HkkTF82rgzfIkMi3ZNZoeXCu1cu2H3b2YlT2VseeNth4RHc_nWBqpgxeyXn0GbzINdZAIut4gfoSS6ggcga1BnY8j9bIFZKveAR2GbRFkHAZyBaQF48dgU5hXP2eCjRLx74CWs8EeDAMy4uqs6Y6H-rdBLN35X1oWmFuBtTUbFoH2ucdgfTWoKlDHfiZ0GUc01OvxtCGQLitlCn4zAOi-U1MN4TK8tEkn6jGbCX7ddO_7lALv89XeIgEAtO5FKy0lo-ZCBAbWTLNnWAywN7cdbLbvsNEwINkZE8V0flx5CTAKjsCELV-wU3FDtiPWloqrBNREGNCGepQ49VplzKffXt80w_6x2dG-ox6pfg44J1RYzb0Fqo2ijCASsM21iHsKKZXttEzqH-lVj1_physSzGUSLzpUi2qMR9zRLEeVEST6-eksHRHHKz5EIgOT6_02g0ncdhnNmgkwKyyTC71iDukoamTx6tSBVYs59f5mP0zD0xGzNw-pao0jZSh7L4b4Ez-ehjGC7u6m_zX61NAddokxSdEs2r3I80SwdK6p2m7TScoEdjDO2hLMo6DCIkSJ6v7srnT0nyNTdr4puu-bZjPEU96EwxhCiZJaduk2ZzmcA1du9MMujaxBNnNlqouNc77qSbMzZcZ14w43opH8TMuGKylf1aRlr0vMaauoDLqVGjln2mDq=w1659-h948-s-no-gm?authuser=0"
-        }
+        src={require("../Assets/ContactForm/ContactFormBg.jpg")}
         alt=""
         width={1080}
         height={720}
