@@ -1,17 +1,18 @@
 "use client";
-import React, { useLayoutEffect, useRef } from "react";
-import { SocialMediaInfo } from "./Arrays";
+import React, { useRef } from "react";
+import { SocialMediaInfo } from "../Assets/Data/Arrays";
 import gsap from "gsap";
 import SocialMediaCard from "./SocialMediaCard";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapHeading from "./GsapAnimations/GsapHeading";
+import { useGSAP } from "@gsap/react";
 
 const ContactMe = () => {
   const contactMeSection = useRef();
-  useLayoutEffect(() => {
-    const animateSocialMediaCards = () => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline();
-
+      
       tl.from("#contactMeParagraph", {
         y: -100,
         scale: 0.85,
@@ -41,11 +42,9 @@ const ContactMe = () => {
         animation: tl,
         toggleActions: "play none none reverse",
       });
-    };
-
-    const ctx = gsap.context(animateSocialMediaCards, contactMeSection);
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: contactMeSection }
+  );
   return (
     <div id="contactme" className="contactMeSection" ref={contactMeSection}>
       <GsapHeading>

@@ -1,11 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "./utils.scss";
 @import "./globals.scss";
 
-@media screen and (max-width: 2560px) {
+@mixin responsive($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin font-style($weight, $size, $family) {
+  font: $weight $size $family;
+}
+
+@include responsive(2560px) {
   .heroSvg {
     @apply w-[40vw] right-[-5%] bottom-[45%];
   }
@@ -13,7 +19,8 @@
     @apply w-[25vw] bottom-[55%];
   }
 }
-@media screen and (max-width: 1440px) {
+
+@include responsive(1440px) {
   .heroSvg {
     @apply w-[60vw] right-[-7%] bottom-[38%];
   }
@@ -21,12 +28,14 @@
     @apply w-[35vw];
   }
 }
-@media screen and (max-width: 1160px) {
+
+@include responsive(1160px) {
   h1 {
-    font: 900 3.5rem $nunito;
+    @include font-style(900, 3.5rem, $nunito);
   }
 }
-@media screen and (max-width: 1024px) {
+
+@include responsive(1024px) {
   .image-container {
     height: 200px;
     width: 400px;
@@ -41,13 +50,14 @@
     @apply w-6 h-6;
   }
 }
-@media screen and (max-width: 950px) {
+
+@include responsive(950px) {
   h1 {
-    font: 900 3rem $nunito;
+    @include font-style(900, 3rem, $nunito);
   }
 }
 
-@media screen and (max-width: 820px) {
+@include responsive(820px) {
   .projectInfoDiv {
     @apply gap-4 w-[40vw];
   }
@@ -59,15 +69,14 @@
     @apply gap-12;
   }
   h1 {
-    font: 900 2.5rem $nunito;
+    @include font-style(900, 2.5rem, $nunito);
   }
-
   h2 {
-    font: 400 0.8rem $rubik;
+    @include font-style(400, 0.8rem, $rubik);
     letter-spacing: 1.2px;
   }
   h5 {
-    font: 400 1rem $nunito;
+    @include font-style(400, 1rem, $nunito);
   }
   p {
     @apply tracking-wider text-sm;
@@ -75,11 +84,11 @@
   .greenBtn,
   .LogoBtn,
   .sendBtn {
-    font: 700 1rem $quicksand;
+    @include font-style(700, 1rem, $quicksand);
   }
 }
 
-@media screen and (max-width: 768px) {
+@include responsive(768px) {
   .heroSvg {
     @apply w-[70vw] right-[-10%] bottom-[45%];
   }
@@ -106,26 +115,26 @@
   .greenBtn,
   .LogoBtn,
   .sendBtn {
-    font: 700 0.9rem $quicksand;
+    @include font-style(700, 0.9rem, $quicksand);
   }
   .greenTransparentBtn {
-    font: 500 0.9rem $quicksand;
+    @include font-style(500, 0.9rem, $quicksand);
   }
   .socialMediaCard {
     @apply w-[18vw];
   }
   .heading {
-    font: 600 1.8rem $nunito;
+    @include font-style(600, 1.8rem, $nunito);
   }
   h3 {
-    font: 700 1.2rem $quicksand;
+    @include font-style(700, 1.2rem, $quicksand);
   }
   h4 {
-    font: 700 1.3rem $nunito;
+    @include font-style(700, 1.3rem, $nunito);
   }
 }
 
-@media screen and (max-width: 426px) {
+@include responsive(426px) {
   .header {
     @apply w-full grid grid-cols-[auto_auto] py-2 px-2 duration-500;
   }
@@ -136,7 +145,6 @@
     @apply text-center;
   }
   .heroBtnsDiv {
-    // @apply flex items-center justify-center gap-10 pr-0 -mt-5;
     @apply px-8;
   }
   .SvgBubble,
@@ -244,22 +252,22 @@
   }
 
   h1 {
-    font: 900 2.5rem $nunito;
+    @include font-style(900, 2.5rem, $nunito);
   }
   h2 {
-    font: 400 0.7rem $rubik;
+    @include font-style(400, 0.7rem, $rubik);
     @apply mb-10;
   }
   h3 {
-    font: 700 1.1rem $quicksand;
+    @include font-style(700, 1.1rem, $quicksand);
     letter-spacing: 1.2px;
   }
   h4 {
-    font: 600 1.3rem $nunito;
+    @include font-style(600, 1.3rem, $nunito);
     letter-spacing: 1.3px;
   }
   h5 {
-    font: 600 0.8rem $quicksand;
+    @include font-style(600, 0.8rem, $quicksand);
     letter-spacing: 1.2px;
   }
   p {
@@ -270,10 +278,10 @@
   .sendBtn,
   .transparentBtn,
   .greenTransparentBtn {
-    font: 600 0.7rem $quicksand;
+    @include font-style(600, 0.7rem, $quicksand);
   }
   .heading {
-    font: 600 1.2rem $nunito;
+    @include font-style(600, 1.2rem, $nunito);
     @apply mt-5;
   }
   .greenBtn,
@@ -286,7 +294,7 @@
   }
 }
 
-@media screen and (max-width: 376px) {
+@include responsive(376px) {
   .heroSection {
     @apply h-[60vh];
   }
@@ -333,7 +341,8 @@
     @apply border w-4 h-4;
   }
 }
-@media screen and (max-width: 321px) {
+
+@include responsive(321px) {
   .skill_sub_div {
     @apply w-[5vmax] h-[5vmax];
     transition: filter 0.3s;
@@ -346,17 +355,23 @@
     @apply gap-10;
   }
   h1 {
-    font: 900 2.2rem $nunito;
+    @include font-style(900, 2.2rem, $nunito);
   }
   h2 {
-    font: 400 0.65rem $rubik;
+    @include font-style(400, 0.65rem, $rubik);
     @apply mb-10;
   }
   h5 {
-    font: 500 0.7rem $quicksand;
+    @include font-style(500, 0.7rem, $quicksand);
     letter-spacing: 1.1px;
   }
   .transparentBtn {
     @apply px-0 py-0;
+  }
+}
+
+@include responsive(700px) {
+  .viewer {
+    width: 100%;
   }
 }

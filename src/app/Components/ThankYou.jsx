@@ -1,123 +1,93 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
+import { AppContext } from "../Contexts/AppProvider";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
-// import ChangeTheme from "./ChangeTheme";
+import { useGSAP } from "@gsap/react";
 
-// const isMobile =
-//   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-//     navigator.userAgent
-//   );
-let isWindowsOrMac = false;
-if (typeof navigator !== "undefined") {
-  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 const ThankYou = () => {
-  const ThanksRef = useRef();
-  useLayoutEffect(() => {
-    const tl = gsap.timeline();
-    const tl2 = gsap.timeline();
+  const thanksRef = useRef();
+  const { isDesktop } = useContext(AppContext);
 
-    tl.fromTo(
-      "#ThanksImage",
-      {
-        scale: 2,
-        opacity: 0,
-        borderRadius: 0,
-      },
-      {
-        opacity: 1,
-        borderRadius: "50px",
-        scale: 1,
-        duration: 1,
-      }
-    )
-      .fromTo(
-        "#ThanksPara",
-        {
-          x: -100,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        "-=0.5"
-      )
-      .fromTo(
-        "#Regards",
-        {
-          x: 100,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        "-=0.5"
-      )
-      .fromTo(
-        "#GoToTopButton",
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        "-=0.5"
-      );
-    ScrollTrigger.create({
-      trigger: "#ThanksDiv",
-      start: isWindowsOrMac ? "top center" : "top 80%",
-      animation: tl,
-      toggleActions: "play none none reverse",
-    });
+  useGSAP(
+    () => {
+      const createAnimation = (trigger, start, animations) => {
+        const tl = gsap.timeline();
+        animations.forEach(({ from, to, id, offset = "" }) => {
+          tl.fromTo(id, from, { ...to, duration: 1 }, offset);
+        });
+        ScrollTrigger.create({
+          trigger,
+          start,
+          animation: tl,
+          toggleActions: "play none none reverse",
+        });
+      };
 
-    tl2
-      .fromTo(
-        "#copyrightTxt",
+      const animations = [
         {
-          x: -100,
-          opacity: 0,
+          trigger: "#ThanksDiv",
+          start: isDesktop ? "top center" : "top 80%",
+          animations: [
+            {
+              id: "#ThanksImage",
+              from: { scale: 2, opacity: 0, borderRadius: 0 },
+              to: { opacity: 1, borderRadius: "50px", scale: 1 },
+            },
+            {
+              id: "#ThanksPara",
+              from: { x: -100, opacity: 0 },
+              to: { x: 0, opacity: 1 },
+              offset: "-=0.5",
+            },
+            {
+              id: "#Regards",
+              from: { x: 100, opacity: 0 },
+              to: { x: 0, opacity: 1 },
+              offset: "-=0.5",
+            },
+            {
+              id: "#GoToTopButton",
+              from: { y: 50, opacity: 0 },
+              to: { y: 0, opacity: 1 },
+              offset: "-=0.5",
+            },
+          ],
         },
         {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-        }
-      )
-      .fromTo(
-        "#developerTxt",
-        {
-          x: 100,
-          opacity: 0,
+          trigger: "#copyrightDiv",
+          start: "top 95%",
+          animations: [
+            {
+              id: "#copyrightTxt",
+              from: { x: -100, opacity: 0 },
+              to: { x: 0, opacity: 1 },
+            },
+            {
+              id: "#developerTxt",
+              from: { x: 100, opacity: 0 },
+              to: { x: 0, opacity: 1 },
+              offset: "-=0.5",
+            },
+          ],
         },
-        {
-          x: 0,
-          duration: 1,
-          opacity: 1,
-        },
-        "-=0.5"
+      ];
+
+      animations.forEach(({ trigger, start, animations }) =>
+        createAnimation(trigger, start, animations)
       );
-    ScrollTrigger.create({
-      trigger: "#copyrightDiv",
-      start: "top 95%",
-      animation: tl2,
-      toggleActions: "play none none reverse",
-    });
-  }, []);
+    },
+    { scope: thanksRef }
+  );
+
   return (
-    <div ref={ThanksRef}>
+    <div ref={thanksRef}>
       <div id="ThanksDiv" className="ThanksDiv">
         <Image
           id="ThanksImage"
@@ -144,9 +114,7 @@ const ThankYou = () => {
           <GsapMegnetic>
             <Link id="GoToTopButton" href="#home">
               <button className="greenBtn topBtn">
-                <p>
-                  <ArrowUpwardRoundedIcon />
-                </p>
+                <ArrowUpwardRoundedIcon />
               </button>
             </Link>
           </GsapMegnetic>
@@ -155,9 +123,6 @@ const ThankYou = () => {
       <div id="copyrightDiv" className="relative">
         <p id="copyrightTxt">© 2023 Sandeep Kumar. All rights reserved</p>
         <p id="developerTxt">Designed and developed by Sandeep Kumar</p>
-        {/* <div className="absolute bottom-[50%] right-5 translate-y-[50%]">
-          <ChangeTheme />
-        </div> */}
       </div>
     </div>
   );

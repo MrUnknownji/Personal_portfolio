@@ -1,15 +1,16 @@
 "use client";
-import React, { useLayoutEffect, useRef } from "react";
-import { InfoCardArr } from "./Arrays";
+import React, { useRef } from "react";
+import { InfoCardArr } from "../Assets/Data/Arrays";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapHeading from "../Components/GsapAnimations/GsapHeading";
 
 const AboutMe = () => {
   const aboutMe = useRef();
 
-  useLayoutEffect(() => {
-    const animateInfoContainers = () => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline();
       tl.from(".aboutMeInfoContainer", {
         x: 200,
@@ -24,12 +25,9 @@ const AboutMe = () => {
         toggleActions: "play none none reverse",
         animation: tl,
       });
-    };
-
-    const ctx = gsap.context(animateInfoContainers, aboutMe);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: aboutMe }
+  );
 
   return (
     <div id="aboutme" className="aboutMe" ref={aboutMe}>

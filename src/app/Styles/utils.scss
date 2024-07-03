@@ -13,7 +13,7 @@ form {
   @apply border border-white backdrop-blur-sm rounded-2xl p-10 flex flex-col gap-4;
 }
 
-input {
+@mixin input-styles {
   @apply outline-none px-2 py-1 bg-transparent border-b-2 border-white/50 placeholder-white/75;
   transition: border-color 0.3s;
   &:hover {
@@ -23,94 +23,91 @@ input {
     border-color: $primary;
   }
 }
+
+input {
+  @include input-styles;
+}
+
 textarea {
-  @apply w-full max-h-[30vh] resize-none outline-none px-2 py-1 bg-transparent border-b-2 border-white/50 placeholder-white/75;
-  transition: border-color 0.3s;
-  &:hover {
-    border-color: $secondary;
-  }
-  &:focus {
-    border-color: $primary;
+  @include input-styles;
+  @apply w-full max-h-[30vh] resize-none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-textarea::-webkit-scrollbar {
-  display: none;
+@mixin heading($weight, $size, $font) {
+  font: $weight $size $font;
+  letter-spacing: 1.5px;
 }
 
 h1 {
-  font: 900 4.5rem $nunito;
+  @include heading(900, 4.5rem, $nunito);
 }
-
 h2 {
-  font: 400 1rem $rubik;
-  letter-spacing: 1.5px;
+  @include heading(400, 1rem, $rubik);
   @apply mb-20;
 }
-
 h3 {
-  font: 700 1.5rem $quicksand;
-  letter-spacing: 1.5px;
+  @include heading(700, 1.5rem, $quicksand);
 }
-
 h4 {
-  font: 700 1.5rem $nunito;
-  letter-spacing: 1.5px;
+  @include heading(700, 1.5rem, $nunito);
 }
-
 h5 {
-  font: 400 1.2rem $nunito;
+  @include heading(400, 1.2rem, $nunito);
   letter-spacing: 1.2px;
 }
 
 p {
   @apply leading-snug tracking-wider text-lg;
-  font-family: $nunito;
-  font-weight: 600;
+  font: 600 1em $nunito;
+}
+
+@mixin button-base($bg-color: transparent) {
+  font: 700 1.1rem $quicksand;
+  @apply rounded-full px-4 py-1 flex items-center justify-center;
+  background-color: $bg-color;
 }
 
 .LogoBtn {
-  background-color: $primary;
-  font: 700 1.1rem $quicksand;
-  @apply rounded-full px-4 py-1 text-black cursor-default;
+  @include button-base($primary);
+  @apply text-black cursor-default;
 }
 
-.greenBtn {
-  background-color: $primary;
-  font: 700 1.1rem $quicksand;
-  @apply flex items-center justify-center gap-2 rounded-full px-4 py-2 text-black;
+@mixin green-button {
+  @include button-base($primary);
+  @apply gap-2 py-2 text-black;
   transition: background-color 0.3s;
   &:hover {
     background-color: $secondary;
   }
 }
+
+.greenBtn,
 .sendBtn {
-  background-color: $primary;
-  font: 700 1.1rem $quicksand;
-  @apply flex items-center justify-center gap-2 rounded-full px-4 py-2 text-black;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: $secondary;
-  }
+  @include green-button;
 }
+
 .disabledBtn {
-  font: 700 1.1rem $quicksand;
-  @apply flex items-center justify-center bg-gray-800 gap-2 rounded-full px-4 py-2 text-white;
-  transition: background-color 0.3s;
+  @include button-base;
+  @apply bg-gray-800 gap-2 py-2 text-white;
 }
 
 .transparentBtn {
-  font: 500 1.1rem $quicksand;
-  @apply border border-transparent hover:border-white rounded-full px-4 py-1;
-  transition: border 0.3s;
+  @include button-base;
+  font-weight: 500;
+  @apply border border-transparent hover:border-white;
+  transition: border 0.3s, opacity 0.3s;
   &:hover {
     opacity: 0.7;
   }
 }
 
 .greenTransparentBtn {
-  font: 500 1.1rem $quicksand;
-  @apply border border-white rounded-full py-1 px-4;
+  @include button-base;
+  font-weight: 500;
+  @apply border border-white;
   transition: color 0.3s, border-color 0.3s;
   &:hover {
     color: cyan;

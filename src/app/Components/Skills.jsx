@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef, useMemo, useContext } from "react";
-import { SkillArr, skillHeadingArr } from "./Arrays";
+import React, { useRef, useMemo, useContext } from "react";
+import { SkillArr, skillHeadingArr } from "../Assets/Data/Arrays";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { DeviceTypeContext } from "../Contexts/DeviceTypeProvider";
+import { AppContext } from "../Contexts/AppProvider";
+import { useGSAP } from "@gsap/react";
 
 const Skills = () => {
   const skillContainer = useRef();
-  const { isDesktop } = useContext(DeviceTypeContext);
+  const { isDesktop } = useContext(AppContext);
 
   const skillsList = useMemo(() => {
     return SkillArr.map((value, i) => (
@@ -33,7 +34,13 @@ const Skills = () => {
           height={100}
           alt={value.Text}
           loading="lazy"
-          style={value.name === "java-vertical.svg" ? { padding: 8 } : value.name === "python-logo-only.svg" ? { padding: 6, paddingTop:7 } : {}}
+          style={
+            value.name === "java-vertical.svg"
+              ? { padding: 8 }
+              : value.name === "python-logo-only.svg"
+              ? { padding: 6, paddingTop: 7 }
+              : {}
+          }
         />
         {isDesktop && (
           <div className="skillTextOverlay">
@@ -45,8 +52,8 @@ const Skills = () => {
     ));
   }, [isDesktop]);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline();
       tl.from(".skillChar", { y: 10, opacity: 0, stagger: 0.05 }).from(
         ".skill_sub_div",
@@ -58,25 +65,25 @@ const Skills = () => {
         "-=1"
       );
       ScrollTrigger.create({
-        trigger: ".skill",
-        start: "top 75%",
+        trigger: ".skill_sub_div",
+        start: "top 85%",
         animation: tl,
         toggleActions: "play none none reverse",
       });
-    });
-    !isDesktop &&
-      gsap.fromTo(
-        ".skillsTextMobile",
-        {
-          opacity: 0,
-        },
-        { opacity: 1, duration: 2, repeat: -1, yoyo: true }
-      );
-    return () => ctx.revert();
-  }, [isDesktop]);
+      !isDesktop &&
+        gsap.fromTo(
+          "#skill",
+          {
+            opacity: 0,
+          },
+          { opacity: 1, duration: 2, repeat: -1, yoyo: true }
+        );
+    },
+    { scope: skillContainer }
+  );
 
   return (
-    <div className="skill" ref={skillContainer}>
+    <div id="skill" className="skill" ref={skillContainer}>
       <h5>
         {skillHeadingArr.map((value, index) => (
           <span className="skillHeadingWords" key={index}>

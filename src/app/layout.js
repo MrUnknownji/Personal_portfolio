@@ -1,5 +1,4 @@
 import "./Styles/media.scss";
-// import Bg from "./Assets/BackgroundPortfolioBgSmall.jpg";
 
 export const metadata = {
   title: "Sandeep-portfolio",
@@ -12,9 +11,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/src/app/favicon.ico" sizes="any" />
       </head>
-      <body>
-        <div style={{ width: "100vw", overflowX: "hidden" }}> {children} </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

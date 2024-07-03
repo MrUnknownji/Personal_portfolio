@@ -1,30 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "./utils.scss";
 
+@mixin flex-center {
+  @apply flex items-center justify-center;
+}
+
+@mixin absolute-position($top, $right, $bottom, $left) {
+  @apply absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    @apply w-[8px] bg-black;
+    &-thumb {
+      @apply bg-[#606060] rounded-[8px];
+      &:hover {
+        @apply bg-[#888];
+      }
+    }
+  }
+}
+
+html,
+body {
+  @apply scroll-smooth overflow-x-hidden w-full;
+  @include scrollbar;
+}
+
 html {
-  scroll-behavior: smooth;
   @apply selection:bg-[#ffa442] selection:text-black;
 }
 
 body {
-  overflow-x: hidden;
-  width: 100vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #0e100f;
+  @apply bg-no-repeat bg-cover bg-[#0e100f];
   font-family: $quicksand;
-  &::-webkit-scrollbar {
-    @apply w-[8px] bg-black;
-  }
-  &::-webkit-scrollbar-thumb {
-    @apply bg-[#606060] rounded-[8px];
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    @apply bg-[#888];
-  }
 }
 
 .header {
@@ -41,38 +53,48 @@ body {
   @apply flex items-center justify-between px-[10%] -mt-5;
 }
 
-.heroSvg {
-  @apply w-[70vw] absolute right-[-10%] bottom-[40%];
+.heroSvg,
+.myImage {
+  @include absolute-position(auto, -10%, 40%, auto);
   transform: translateY(50%);
 }
+
 .myImage {
-  @apply w-[40vw] absolute right-[5%] bottom-[55%];
-  transform: translateY(50%);
+  @apply w-[40vw] right-[5%] bottom-[55%];
 }
 
 .skill {
   @apply w-[60vw] bg-gray-900 gap-1 py-2 text-text-color-1 rounded-3xl mx-auto -translate-y-6 flex flex-col items-center;
-}
-.skillsListContainer {
-  @apply w-full flex items-center justify-evenly;
-}
-.skill_sub_div {
-  @apply text-text-color-1 w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden flex flex-col items-center justify-center cursor-pointer;
-  transition: transform 0.3s;
-  &:hover > .skillTextOverlay {
-    @apply opacity-100;
+  &sListContainer {
+    @apply w-full flex items-center justify-evenly;
+  }
+  &_sub_div {
+    @apply text-text-color-1 w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden cursor-pointer;
+    @include flex-center;
+    transition: transform 0.3s;
+    &:hover > .skillTextOverlay {
+      @apply opacity-100;
+    }
   }
 }
+
 .skillTextOverlay {
-  @apply absolute w-full h-full opacity-0 flex items-center justify-center bg-[rgba(0,0,0,0.8)] transition-opacity duration-300;
+  @apply absolute w-full h-full opacity-0 bg-[rgba(0,0,0,0.8)] transition-opacity duration-300;
+  @include flex-center;
 }
-.skillsTextPC {
-  @apply text-[14px] font-bold text-center;
-  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
-}
-.skillsTextMobile {
-  @apply absolute text-[6px] font-bold text-center;
-  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+
+.skillsText {
+  &PC,
+  &Mobile {
+    @apply font-bold text-center;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+  }
+  &PC {
+    @apply text-[14px];
+  }
+  &Mobile {
+    @apply absolute text-[6px];
+  }
 }
 
 .projectContainer {
@@ -81,14 +103,14 @@ body {
 
 .projectInfoDiv {
   @apply flex flex-col gap-5 z-10 w-[45vw];
-}
-
-.projectInfoDivBtnContainer {
-  @apply flex gap-24 items-center mx-auto mt-5;
+  &BtnContainer {
+    @apply flex gap-24 items-center mx-auto mt-5;
+  }
 }
 
 .imageContainer {
   @apply opacity-100 mx-20 p-5 border-gray-600 border-2 rounded-lg overflow-y-hidden flex gap-10 h-[35vh];
+  @include scrollbar;
 }
 
 .containerImage {
@@ -97,26 +119,26 @@ body {
 
 .aboutMe {
   @apply text-text-color-1 px-20;
-}
-
-.aboutMeSubDiv {
-  @apply flex items-center gap-14 mt-16;
-}
-
-.aboutMeInfoContainer {
-  @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 hover:invert selection:bg-[#005bbd] selection:text-white;
-  transition: filter 0.3s;
+  &SubDiv {
+    @apply flex items-center gap-14 mt-16;
+  }
+  &InfoContainer {
+    @apply rounded-3xl p-7 flex flex-col items-center gap-5 bg-gray-900 hover:invert selection:bg-[#005bbd] selection:text-white;
+    transition: filter 0.3s;
+  }
 }
 
 .contactMeSection {
   @apply text-text-color-1 p-20;
+  &Paragraph {
+    @apply text-justify my-10;
+  }
 }
-.contactMeParagraph {
-  @apply text-justify my-10;
-}
+
 .socialMediaCardContainer {
   @apply my-10 grid grid-cols-4 gap-10;
 }
+
 .socialMediaCard {
   @apply rounded-3xl py-8 px-10 flex flex-col items-center self-center justify-self-center gap-10 bg-gray-900 w-[15vw] hover:invert;
   transition: filter 0.3s;
@@ -125,9 +147,7 @@ body {
 .contactForm {
   @apply w-[100vw] h-[100vh] text-text-color-1 relative flex flex-col items-center;
 }
-.topPara {
-  display: none;
-}
+
 .formAndDesc {
   @apply grid grid-cols-2 gap-10 px-20 z-10;
   > div {
@@ -144,57 +164,41 @@ body {
     @apply pt-20;
   }
 }
+
 .regardsDiv,
 .topBtnDiv {
   @apply w-full flex items-center justify-end pt-10 px-28;
 }
+
 #copyrightDiv {
   @apply text-text-color-1 bg-gray-800 m-0 text-sm py-4 px-20 flex items-center justify-between;
 }
+
 #developerTxt {
   @apply text-xs;
 }
 
-// For Image inside Project Container
 .image-container {
-  overflow: hidden;
-  position: relative;
-  height: 240px;
-  width: 420px;
-  border-radius: 15px;
+  @apply overflow-hidden relative h-[240px] w-[420px] rounded-[15px];
 }
 
 .projectImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  object-fit: cover;
+  @include absolute-position(0, auto, auto, 0);
+  @apply h-full object-cover;
 }
 
-// Loading Screen
 .loadingName {
   font: 900 3rem $quicksand;
   margin: 1px;
 }
 
-// Images Container Scrollbar customization of a Project
-.imageContainer::-webkit-scrollbar {
-  @apply h-[8px] mb-[4px];
-}
-.imageContainer::-webkit-scrollbar-thumb {
-  @apply bg-[#606060] rounded-[8px];
-}
-.imageContainer::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#888];
-}
-
-//For Image Viewer
-
 #image-viewer {
-  @apply fixed top-0 left-0 z-[100];
+  @include absolute-position(0, auto, auto, 0);
+  @apply fixed z-[100];
   > div {
-    @apply fixed top-0 left-0 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.8)] overflow-auto flex items-center justify-center;
+    @extend #image-viewer;
+    @apply w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.8)] overflow-auto;
+    @include flex-center;
     > img {
       @apply block w-[80%] h-[80%] max-w-[800px] object-contain;
       animation: showImage 0.5s;
@@ -212,16 +216,10 @@ body {
 }
 
 #close {
-  @apply absolute top-[15px] right-[35px] text-text-color-1 text-[40px] duration-300 cursor-pointer;
-}
-
-#close:hover,
-#close:focus {
-  opacity: 0.8;
-}
-
-@media screen and (max-width: 700px) {
-  .viewer {
-    width: 100%;
+  @include absolute-position(15px, 35px, auto, auto);
+  @apply text-text-color-1 text-[40px] duration-300 cursor-pointer;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
   }
 }

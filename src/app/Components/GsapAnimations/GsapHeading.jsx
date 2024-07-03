@@ -1,19 +1,20 @@
 import gsap from "gsap";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const GsapHeading = ({ children }) => {
   const ref = useRef();
-  useLayoutEffect(() => {
-    const currentElem = ref.current;
-    const headingAnimation = () => {
+  useGSAP(
+    () => {
+      const currentElem = ref.current;
       const WhileInView = gsap.from(currentElem, {
         y: 70,
         opacity: 0,
         duration: 1,
-        paused: true, // Start the animation paused
+        paused: true,
       });
       ScrollTrigger.create({
         trigger: currentElem,
@@ -21,12 +22,9 @@ const GsapHeading = ({ children }) => {
         toggleActions: "play none none reverse",
         animation: WhileInView,
       });
-    };
-    const ctx = gsap.context(headingAnimation, ref);
-    return () => {
-      ctx.revert();
-    };
-  }, []);
+    },
+    { scope: ref }
+  );
   return React.cloneElement(children, { ref });
 };
 

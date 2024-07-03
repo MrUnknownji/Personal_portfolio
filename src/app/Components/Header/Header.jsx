@@ -1,8 +1,9 @@
 "use client";
-import React, { useCallback, useLayoutEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
-import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
+import gsap from "gsap";
+import GsapMegnetic from "../GsapAnimations/GsapMegnetic";
+import { useGSAP } from "@gsap/react";
 
 const Header = () => {
   const headerSection = useRef();
@@ -20,9 +21,9 @@ const Header = () => {
     prevScrollPosRef.current = currentScrollPos;
   }, []);
 
-  useLayoutEffect(() => {
-    window.addEventListener("scroll", scrollFunction);
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
+      window.addEventListener("scroll", scrollFunction);
       gsap.from(".LogoBtn", {
         x: -100,
         opacity: 0,
@@ -38,12 +39,9 @@ const Header = () => {
         duration: 2,
         ease: "back",
       });
-    }, headerSection);
-    return () => {
-      window.removeEventListener("scroll", scrollFunction);
-      ctx.revert();
-    };
-  }, [scrollFunction]);
+    },
+    { scope: headerSection }
+  );
   return (
     <div className={"header"} ref={headerSection}>
       <div>

@@ -1,11 +1,12 @@
 import gsap from "gsap";
-import React, { useLayoutEffect, useRef, useContext } from "react";
-import { DeviceTypeContext } from "../../Contexts/DeviceTypeProvider";
+import React, { useRef, useContext } from "react";
+import { AppContext } from "../../Contexts/AppProvider";
+import { useGSAP } from "@gsap/react";
 
 const GsapMegnetic = ({ children }) => {
   const ref = useRef();
-  const { isDesktop } = useContext(DeviceTypeContext);
-  useLayoutEffect(() => {
+  const { isDesktop } = useContext(AppContext);
+  useGSAP(() => {
     if (isDesktop) {
       const currentElem = ref.current;
       const xTo = gsap.quickTo(currentElem, "x", {
@@ -36,7 +37,7 @@ const GsapMegnetic = ({ children }) => {
         currentElem.removeEventListener("mouseleave", mouseLeave);
       };
     }
-  }, [isDesktop]);
+  },{scope:ref});
   return React.cloneElement(children, { ref });
 };
 

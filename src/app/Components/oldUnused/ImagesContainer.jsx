@@ -1,34 +1,36 @@
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
   const allImages = Object.values(images);
   const containerRef = useRef();
 
-  useLayoutEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      containerRef.current,
-      {
-        y: -100,
-        height: 0,
-        opacity: 0,
-      },
-      { opacity: 1, y: 0, height: "100%", duration: 1 }
-    ).fromTo(
-      ".containerImage",
-      {
-        y: 80,
-        opacity: 0,
-        stagger: 0.2,
-      },
-      { opacity: 1, y: 0 },
-      "-=0.3"
-    );
-    const context = gsap.context(tl, containerRef);
-    return () => context.revert();
-  }, []);
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
+      tl.fromTo(
+        containerRef.current,
+        {
+          y: -100,
+          height: 0,
+          opacity: 0,
+        },
+        { opacity: 1, y: 0, height: "100%", duration: 1 }
+      ).fromTo(
+        ".containerImage",
+        {
+          y: 80,
+          opacity: 0,
+          stagger: 0.2,
+        },
+        { opacity: 1, y: 0 },
+        "-=0.3"
+      );
+    },
+    { scope: containerRef }
+  );
 
   const memoizedImages = useMemo(() => {
     return allImages.map((value, index) => (
@@ -58,5 +60,3 @@ const ImagesContainer = ({ title, images, setViewerImage, setViewImage }) => {
 };
 
 export default ImagesContainer;
-
-

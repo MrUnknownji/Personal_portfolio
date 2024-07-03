@@ -1,35 +1,26 @@
-"use client";
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import React, { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import svg1 from "../Assets/HeroDivSvg.svg";
-// import MyImage from "../Assets/MyImageUncropped-transformed-transparent2.png";
-import { mainHeadingArr, subHeadingArr } from "./Arrays";
-import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
+import { mainHeadingArr, subHeadingArr } from "../Assets/Data/Arrays";
 import FlexibleDragAndDrop from "./elements/FlexibleDragAndDrop";
+import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
+
 const HeroSection = () => {
   const heroSection = useRef();
   const [arrowRotation, setArrowRotation] = useState(0);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline();
 
-      const animateElement = (
-        elementId,
-        animationProps,
-        subDuration = "-=0.6"
-      ) => {
+      const animateElement = (selector, props, position = "-=0.6") => {
         tl.from(
-          elementId,
-          {
-            opacity: 0,
-            duration: 1,
-            ease: "expo",
-            ...animationProps,
-          },
-          subDuration
+          selector,
+          { opacity: 0, duration: 1, ease: "expo", ...props },
+          position
         );
       };
 
@@ -39,7 +30,6 @@ const HeroSection = () => {
         duration: 1,
         ease: "bounce",
       });
-
       animateElement(
         ".subChar",
         {
@@ -61,19 +51,27 @@ const HeroSection = () => {
       animateElement("#projectBtn", { y: 200, ease: "power1.out" }, "-=2");
 
       gsap.from("#HeroSvg", { scale: 0, duration: 1, opacity: 0 });
-      tl.play();
-    }, heroSection);
+    },
+    { scope: heroSection }
+  );
 
-    return () => ctx.revert();
-  }, []);
-
-  const handleMouseEnter = () => {
-    setArrowRotation(45);
-  };
-
-  const handleMouseLeave = () => {
-    setArrowRotation(0);
-  };
+  const renderTextWithAnimation = (textArray, charClassName) =>
+    textArray.map((word, wordIndex) => (
+      <span key={wordIndex}>
+        <span className="inline-block">
+          {word.split("").map((char, charIndex) => (
+            <span className={`${charClassName} inline-block`} key={charIndex}>
+              {charClassName === "mainChar" ? (
+                <FlexibleDragAndDrop>{char}</FlexibleDragAndDrop>
+              ) : (
+                char
+              )}
+            </span>
+          ))}
+        </span>
+        {wordIndex === 1 && charClassName === "mainChar" && <br />}{" "}
+      </span>
+    ));
 
   return (
     <div className="relative" id="hero-div" ref={heroSection}>
@@ -90,34 +88,10 @@ const HeroSection = () => {
       <div className="heroSection">
         <div className="heroHeadingContainer">
           <h1 id="mainHeading">
-            {mainHeadingArr.map((value, index) => (
-              <span key={index}>
-                <span className="mainHeadingWord inline-block" key={index}>
-                  {value.split("").map((char, charIndex) => (
-                    <span className="mainChar inline-block" key={charIndex}>
-                      <FlexibleDragAndDrop key={index}>
-                        {char}
-                      </FlexibleDragAndDrop>
-                    </span>
-                  ))}
-                </span>
-                {index === 1 && <br />}{" "}
-              </span>
-            ))}
+            {renderTextWithAnimation(mainHeadingArr, "mainChar")}
           </h1>
           <h2 id="mainSubHeading">
-            {subHeadingArr.map((value, index) => (
-              <span key={index}>
-                <span className="subHeadingWords inline-block" key={index}>
-                  {" "}
-                  {value.split("").map((char, charIndex) => (
-                    <span className="subChar inline-block" key={charIndex}>
-                      {char}
-                    </span>
-                  ))}
-                </span>{" "}
-              </span>
-            ))}
+            {renderTextWithAnimation(subHeadingArr, "subChar")}
           </h2>
           <div className="heroBtnsDiv">
             <GsapMegnetic>
@@ -128,17 +102,17 @@ const HeroSection = () => {
             <GsapMegnetic>
               <Link href="#projects" id="projectBtn">
                 <h5
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseEnter={() => setArrowRotation(45)}
+                  onMouseLeave={() => setArrowRotation(0)}
                 >
                   Projects{" "}
-                  <font
+                  <span
                     id="Arrow"
                     className="inline-block duration-300"
                     style={{ transform: `rotateZ(${arrowRotation}deg)` }}
                   >
                     →
-                  </font>
+                  </span>
                 </h5>
               </Link>
             </GsapMegnetic>
@@ -152,11 +126,12 @@ const HeroSection = () => {
             alt="MyImage"
             width={900}
             height={900}
-            priority={true}
+            priority
           />
         </div>
       </div>
     </div>
   );
 };
+
 export default HeroSection;

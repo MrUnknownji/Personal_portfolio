@@ -1,22 +1,18 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
-import ImagesContainer from "./ImagesContainer";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import ImageViewer from "./ImageViewer";
-
-let isWindowsOrMac = false;
-if (typeof navigator !== "undefined") {
-  isWindowsOrMac = /(Windows|Macintosh|Mac Os)/i.test(navigator.userAgent);
-}
+import { useGSAP } from "@gsap/react";
+import { AppContext } from "../Contexts/AppProvider";
 
 const ProjectContainer = ({ project, index }) => {
   const [imagesShown, setImagesShown] = useState(false);
   const [viewImage, setViewImage] = useState(false);
   const [viewerImage, setViewerImage] = useState(null);
+  const { isDesktop } = useContext(AppContext);
 
   const { title, desc, url, svg, images } = project;
   const isEvenIndex = index % 2 === 0;
@@ -28,9 +24,10 @@ const ProjectContainer = ({ project, index }) => {
   const imageOrigin = isEvenIndex ? "object-right" : "object-left";
 
   const projectSectionRef = useRef();
+  const imagesContainerRef = useRef();
 
-  useLayoutEffect(() => {
-    const animateProjects = () => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline();
       tl.fromTo(
         ".SvgBubble",
@@ -45,20 +42,18 @@ const ProjectContainer = ({ project, index }) => {
 
       ScrollTrigger.create({
         trigger: ".projectTitle",
-        start: isWindowsOrMac ? "top 75%" : "top 90%",
+        start: isDesktop ? "top 75%" : "top 90%",
         animation: tl,
         toggleActions: "play none none reverse",
       });
-    };
-
-    const ctx = gsap.context(animateProjects, projectSectionRef);
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: projectSectionRef }
+  );
 
   const toggleImages = async () => {
     const fontArrow = document.querySelector(`#fontArrow${index}`);
     if (imagesShown) {
-      await gsap.to(".imagesDivContainer", {
+      await gsap.to(imagesContainerRef.current, {
         y: -100,
         height: 0,
         opacity: 0,
@@ -75,7 +70,7 @@ const ProjectContainer = ({ project, index }) => {
       setImagesShown(true);
       fontArrow.style.transform = "rotateZ(45deg)";
       gsap.fromTo(
-        ".imagesDivContainer",
+        imagesContainerRef.current,
         {
           y: -100,
           height: "0%",
@@ -91,22 +86,58 @@ const ProjectContainer = ({ project, index }) => {
     }
   };
 
+  const memoizedImages = useMemo(() => {
+    const allImages = Object.values(images);
+    return allImages.map((value, index) => (
+      <Image
+        id={`image-${index}`}
+        key={index}
+        src={require(`../Assets/Project/${title}/${value}`)}
+        width={700}
+        height={700}
+        alt={title}
+        loading="lazy"
+        className="containerImage image"
+        onClick={() => {
+          document.body.style.overflow = "hidden";
+          setViewerImage(value);
+          setViewImage(true);
+        }}
+      />
+    ));
+  }, [images, title]);
+
+  const ImageViewer = () => (
+    <div id="image-viewer">
+      <div>
+        <span
+          id="close"
+          onClick={() => {
+            document.body.style.overflowY = "auto";
+            setViewImage(false);
+          }}
+        >
+          &times;
+        </span>
+        <Image
+          src={require(`../Assets/Project/${title}/${viewerImage}`)}
+          id="full-image"
+          alt="Image"
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div>
-      {viewImage && (
-        <ImageViewer
-          title={title}
-          viewerImage={viewerImage}
-          setViewImage={setViewImage}
-        />
-      )}
+      {viewImage && <ImageViewer />}
       <div ref={projectSectionRef} className={`projectContainer ${divClass}`}>
         <Image
           src={imageSrc}
           width={400}
           height={250}
           alt={`Project ${index} Svg`}
-          className={`SvgBubble absolute z-0 w-[45vw] scale-y-90 -bottom-10" ${imageClass}`}
+          className={`SvgBubble absolute z-0 w-[45vw] scale-y-90 -bottom-10 ${imageClass}`}
         />
 
         <div className="image-container">
@@ -122,7 +153,7 @@ const ProjectContainer = ({ project, index }) => {
           <p className="desc text-justify">{desc}</p>
           <div className="projectInfoDivBtnContainer">
             <GsapMegnetic>
-              <Link href={url} target={"_blank"}>
+              <Link href={url} target="_blank">
                 <button className="greenBtn Btn1">
                   Visit <RocketLaunchRoundedIcon />
                 </button>
@@ -143,12 +174,9 @@ const ProjectContainer = ({ project, index }) => {
         </div>
       </div>
       {imagesShown && (
-        <ImagesContainer
-          title={title}
-          images={images}
-          setViewImage={setViewImage}
-          setViewerImage={setViewerImage}
-        />
+        <div ref={imagesContainerRef} className="imagesDivContainer h-full">
+          <div className="imageContainer">{memoizedImages}</div>
+        </div>
       )}
     </div>
   );

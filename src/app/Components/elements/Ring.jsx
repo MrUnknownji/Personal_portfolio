@@ -1,26 +1,25 @@
-import React, { useLayoutEffect, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import Image from "next/image";
 import SimpleFan from "../../Assets/RoundedFan.svg";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { DeviceTypeContext } from "../../Contexts/DeviceTypeProvider";
+import { AppContext } from "../../Contexts/AppProvider";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Ring = () => {
   const ringDiv = useRef();
-  const { isDesktop } = useContext(DeviceTypeContext);
+  const { isDesktop } = useContext(AppContext);
 
-  useLayoutEffect(() => {
-    if (isDesktop) {
-      const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
+      if (isDesktop) {
         const tl = gsap.timeline();
-
         tl.to("#simpleFanSvg", {
           rotateZ: 1080,
           ease: "none",
         });
-
         ScrollTrigger.create({
           trigger: `body`,
           start: "top 0%",
@@ -28,11 +27,10 @@ const Ring = () => {
           scrub: 1,
           animation: tl,
         });
-      }, ringDiv);
-
-      return () => ctx.revert();
-    }
-  }, [isDesktop]);
+      }
+    },
+    { scope: ringDiv }
+  );
   return (
     <>
       {isDesktop && (

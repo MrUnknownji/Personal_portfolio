@@ -1,8 +1,9 @@
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 
-const PinnedFan = () => {
-  useLayoutEffect(() => {
+const SkillHider = () => {
+  useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         scrub: 1,
@@ -16,7 +17,7 @@ const PinnedFan = () => {
       y: 100,
       opacity: 0,
     });
-  }, []);
+  });
   return (
     <div
       id="pin-windmill"
@@ -25,4 +26,4 @@ const PinnedFan = () => {
   );
 };
 
-export default PinnedFan;
+export default SkillHider;
