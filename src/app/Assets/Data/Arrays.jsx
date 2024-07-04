@@ -161,7 +161,7 @@ export const SkillArr = [
     url: "https://tailwindcss.com/",
   },
   {
-    name:"python-logo-only.svg",
+    name: "python-logo-only.svg",
     Text: "Python",
     url: "https://www.python.org/",
   },

@@ -1,4 +1,10 @@
-import React, { useContext, useRef, useState, useMemo } from "react";
+import React, {
+  useContext,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
@@ -19,12 +25,10 @@ const ProjectContainer = ({ project, index }) => {
 
   const imageSrc = require(`../Assets/Project/${title}/${svg}`);
   const projectImageSrc = require(`../Assets/Project/${title}/${images.DescHome}`);
-  const divClass = isEvenIndex ? "flex-row-reverse" : "";
-  const imageClass = isEvenIndex ? "left-5" : "right-5";
-  const imageOrigin = isEvenIndex ? "object-right" : "object-left";
 
   const projectSectionRef = useRef();
   const imagesContainerRef = useRef();
+  const isAnimatingRef = useRef(false);
 
   useGSAP(
     () => {
@@ -37,8 +41,11 @@ const ProjectContainer = ({ project, index }) => {
         .from(".projectTitle", { scale: 0.5, opacity: 0 }, "-=0.5")
         .from(".desc", { y: -50, opacity: 0 })
         .from(".image-container", { width: 0, duration: 2 }, "-=1")
-        .from(".Btn1", { x: -50, opacity: 0, duration: 1 }, "-=1")
-        .from(".Btn2", { x: 50, opacity: 0, duration: 1 }, "-=1");
+        .from(
+          ".Btn1, .Btn2",
+          { x: (i) => (i ? 50 : -50), opacity: 0, duration: 1, stagger: 0.1 },
+          "-=1"
+        );
 
       ScrollTrigger.create({
         trigger: ".projectTitle",
@@ -50,62 +57,78 @@ const ProjectContainer = ({ project, index }) => {
     { scope: projectSectionRef }
   );
 
-  const toggleImages = async () => {
+  const toggleImages = useCallback(() => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+
     const fontArrow = document.querySelector(`#fontArrow${index}`);
+    const containerElement = imagesContainerRef.current;
+
     if (imagesShown) {
-      await gsap.to(imagesContainerRef.current, {
-        y: -100,
+      fontArrow.style.transform = "rotateZ(0)";
+      gsap.to(containerElement, {
         height: 0,
         opacity: 0,
-        duration: 1,
-        onComplete: () => setImagesShown(false),
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => {
+          setImagesShown(false);
+          isAnimatingRef.current = false;
+        },
       });
-      fontArrow.style.transform = "rotateZ(0)";
       gsap.to(".containerImage", {
         y: 80,
         opacity: 0,
         stagger: 0.1,
+        duration: 0.3,
       });
     } else {
       setImagesShown(true);
       fontArrow.style.transform = "rotateZ(45deg)";
-      gsap.fromTo(
-        imagesContainerRef.current,
-        {
-          y: -100,
-          height: "0%",
-          opacity: 0,
-        },
-        {
-          y: 0,
-          height: "100%",
-          opacity: 1,
-          duration: 1,
-        }
-      );
-    }
-  };
 
-  const memoizedImages = useMemo(() => {
-    const allImages = Object.values(images);
-    return allImages.map((value, index) => (
-      <Image
-        id={`image-${index}`}
-        key={index}
-        src={require(`../Assets/Project/${title}/${value}`)}
-        width={700}
-        height={700}
-        alt={title}
-        loading="lazy"
-        className="containerImage image"
-        onClick={() => {
-          document.body.style.overflow = "hidden";
-          setViewerImage(value);
-          setViewImage(true);
-        }}
-      />
-    ));
-  }, [images, title]);
+      gsap.set(containerElement, { height: "auto", opacity: 1 });
+      gsap.set(".containerImage", { y: 80, opacity: 0 });
+
+      gsap.from(containerElement, {
+        height: 0,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => {
+          isAnimatingRef.current = false;
+        },
+      });
+
+      gsap.to(".containerImage", {
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.5,
+        delay: 0.2,
+      });
+    }
+  }, [imagesShown, index]);
+
+  const memoizedImages = useMemo(
+    () =>
+      Object.values(images).map((value, index) => (
+        <Image
+          key={index}
+          src={require(`../Assets/Project/${title}/${value}`)}
+          width={700}
+          height={700}
+          alt={title}
+          loading="lazy"
+          className="containerImage image"
+          onClick={() => {
+            document.body.style.overflow = "hidden";
+            setViewerImage(value);
+            setViewImage(true);
+          }}
+        />
+      )),
+    [images, title]
+  );
 
   const ImageViewer = () => (
     <div id="image-viewer">
@@ -131,19 +154,26 @@ const ProjectContainer = ({ project, index }) => {
   return (
     <div>
       {viewImage && <ImageViewer />}
-      <div ref={projectSectionRef} className={`projectContainer ${divClass}`}>
+      <div
+        ref={projectSectionRef}
+        className={`projectContainer ${isEvenIndex ? "flex-row-reverse" : ""}`}
+      >
         <Image
           src={imageSrc}
           width={400}
           height={250}
           alt={`Project ${index} Svg`}
-          className={`SvgBubble absolute z-0 w-[45vw] scale-y-90 -bottom-10 ${imageClass}`}
+          className={`SvgBubble absolute z-0 w-[45vw] scale-y-90 -bottom-10 ${
+            isEvenIndex ? "left-5" : "right-5"
+          }`}
         />
 
         <div className="image-container">
           <Image
             src={projectImageSrc}
-            className={`projectImage ${imageOrigin}`}
+            className={`projectImage ${
+              isEvenIndex ? "object-right" : "object-left"
+            }`}
             alt="Reveal Image"
           />
         </div>
@@ -173,11 +203,13 @@ const ProjectContainer = ({ project, index }) => {
           </div>
         </div>
       </div>
-      {imagesShown && (
-        <div ref={imagesContainerRef} className="imagesDivContainer h-full">
-          <div className="imageContainer">{memoizedImages}</div>
-        </div>
-      )}
+      <div
+        ref={imagesContainerRef}
+        className="imagesDivContainer"
+        style={{ height: imagesShown ? "auto" : 0, overflow: "hidden" }}
+      >
+        <div className="imageContainer">{memoizedImages}</div>
+      </div>
     </div>
   );
 };

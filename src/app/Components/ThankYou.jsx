@@ -15,6 +15,10 @@ const ThankYou = () => {
   const thanksRef = useRef();
   const { isDesktop } = useContext(AppContext);
 
+  const goToTop = () => {
+    globalThis.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   useGSAP(
     () => {
       const createAnimation = (trigger, start, animations) => {
@@ -112,11 +116,13 @@ const ThankYou = () => {
         </div>
         <div className="topBtnDiv">
           <GsapMegnetic>
-            <Link id="GoToTopButton" href="#home">
-              <button className="greenBtn topBtn">
-                <ArrowUpwardRoundedIcon />
-              </button>
-            </Link>
+            <button
+              id="GoToTopButton"
+              className="greenBtn topBtn"
+              onClick={() => goToTop()}
+            >
+              <ArrowUpwardRoundedIcon />
+            </button>
           </GsapMegnetic>
         </div>
       </div>

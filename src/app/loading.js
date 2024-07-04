@@ -3,7 +3,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef } from "react";
 
-const loadingArr = ["L", "o", "a", "d", "i", "n", "g", ".", ".", "."];
 const welcomeArr = ["W", "e", "l", "c", "o", "m", "e", ".", ".", "."];
 
 const Loading = () => {
