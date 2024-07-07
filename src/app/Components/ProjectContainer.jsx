@@ -9,10 +9,9 @@ import Image from "next/image";
 import Link from "next/link";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { AppContext } from "../Contexts/AppProvider";
+import { animations } from "./GsapAnimations/GsapAnimations";
 
 const ProjectContainer = ({ project, index }) => {
   const [imagesShown, setImagesShown] = useState(false);
@@ -32,27 +31,7 @@ const ProjectContainer = ({ project, index }) => {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
-      tl.fromTo(
-        ".SvgBubble",
-        { scale: 0, opacity: 0 },
-        { duration: 1, scale: 0.75, opacity: 1 }
-      )
-        .from(".projectTitle", { scale: 0.5, opacity: 0 }, "-=0.5")
-        .from(".desc", { y: -50, opacity: 0 })
-        .from(".image-container", { width: 0, duration: 2 }, "-=1")
-        .from(
-          ".Btn1, .Btn2",
-          { x: (i) => (i ? 50 : -50), opacity: 0, duration: 1, stagger: 0.1 },
-          "-=1"
-        );
-
-      ScrollTrigger.create({
-        trigger: ".projectTitle",
-        start: isDesktop ? "top 75%" : "top 90%",
-        animation: tl,
-        toggleActions: "play none none reverse",
-      });
+      animations.projectContainer.init(projectSectionRef, isDesktop);
     },
     { scope: projectSectionRef }
   );
@@ -61,53 +40,27 @@ const ProjectContainer = ({ project, index }) => {
     if (isAnimatingRef.current) return;
     isAnimatingRef.current = true;
 
-    const fontArrow = document.querySelector(`#fontArrow${index}`);
-    const containerElement = imagesContainerRef.current;
-
-    if (imagesShown) {
-      fontArrow.style.transform = "rotateZ(0)";
-      gsap.to(containerElement, {
-        height: 0,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-        onComplete: () => {
-          setImagesShown(false);
-          isAnimatingRef.current = false;
-        },
-      });
-      gsap.to(".containerImage", {
-        y: 80,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.3,
-      });
-    } else {
-      setImagesShown(true);
-      fontArrow.style.transform = "rotateZ(45deg)";
-
-      gsap.set(containerElement, { height: "auto", opacity: 1 });
-      gsap.set(".containerImage", { y: 80, opacity: 0 });
-
-      gsap.from(containerElement, {
-        height: 0,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-        onComplete: () => {
-          isAnimatingRef.current = false;
-        },
-      });
-
-      gsap.to(".containerImage", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.5,
-        delay: 0.2,
-      });
-    }
+    animations.projectContainer.toggleImages(
+      imagesContainerRef,
+      `fontArrow${index}`,
+      imagesShown,
+      () => {
+        setImagesShown(!imagesShown);
+        isAnimatingRef.current = false;
+      }
+    );
   }, [imagesShown, index]);
+
+  const handleImageClick = useCallback((value) => {
+    document.body.style.overflow = "hidden";
+    setViewerImage(value);
+    setViewImage(true);
+  }, []);
+
+  const closeImageViewer = useCallback(() => {
+    document.body.style.overflowY = "auto";
+    setViewImage(false);
+  }, []);
 
   const memoizedImages = useMemo(
     () =>
@@ -120,35 +73,28 @@ const ProjectContainer = ({ project, index }) => {
           alt={title}
           loading="lazy"
           className="containerImage image"
-          onClick={() => {
-            document.body.style.overflow = "hidden";
-            setViewerImage(value);
-            setViewImage(true);
-          }}
+          onClick={() => handleImageClick(value)}
         />
       )),
-    [images, title]
+    [images, title, handleImageClick]
   );
 
-  const ImageViewer = () => (
-    <div id="image-viewer">
-      <div>
-        <span
-          id="close"
-          onClick={() => {
-            document.body.style.overflowY = "auto";
-            setViewImage(false);
-          }}
-        >
-          &times;
-        </span>
-        <Image
-          src={require(`../Assets/Project/${title}/${viewerImage}`)}
-          id="full-image"
-          alt="Image"
-        />
+  const ImageViewer = useCallback(
+    () => (
+      <div id="image-viewer">
+        <div>
+          <span id="close" onClick={closeImageViewer}>
+            &times;
+          </span>
+          <Image
+            src={require(`../Assets/Project/${title}/${viewerImage}`)}
+            id="full-image"
+            alt="Image"
+          />
+        </div>
       </div>
-    </div>
+    ),
+    [title, viewerImage, closeImageViewer]
   );
 
   return (

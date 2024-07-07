@@ -1,30 +1,14 @@
-import gsap from "gsap";
 import React, { useRef } from "react";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { animations } from "./GsapAnimations";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const GsapHeading = ({ children }) => {
+const GsapHeading = ({ children, animationOptions }) => {
   const ref = useRef();
-  useGSAP(
-    () => {
-      const currentElem = ref.current;
-      const WhileInView = gsap.from(currentElem, {
-        y: 70,
-        opacity: 0,
-        duration: 1,
-        paused: true,
-      });
-      ScrollTrigger.create({
-        trigger: currentElem,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-        animation: WhileInView,
-      });
-    },
-    { scope: ref }
-  );
+  
+  useGSAP(() => {
+    animations.heading.init(ref.current, animationOptions);
+  }, { scope: ref });
+
   return React.cloneElement(children, { ref });
 };
 

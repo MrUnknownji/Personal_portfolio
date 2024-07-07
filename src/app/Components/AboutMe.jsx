@@ -1,30 +1,15 @@
 "use client";
 import React, { useRef } from "react";
 import { InfoCardArr } from "../Assets/Data/Arrays";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapHeading from "../Components/GsapAnimations/GsapHeading";
+import { animations } from "./GsapAnimations/GsapAnimations";
 
 const AboutMe = () => {
   const aboutMe = useRef();
-
   useGSAP(
     () => {
-      const tl = gsap.timeline();
-      tl.from(".aboutMeInfoContainer", {
-        x: 200,
-        opacity: 0,
-        duration: 3,
-        stagger: 0.4,
-        ease: "elastic.out(3, 0.7)",
-      });
-      ScrollTrigger.create({
-        trigger: ".aboutMeInfoContainer",
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-        animation: tl,
-      });
+      animations.aboutMe.init(aboutMe);
     },
     { scope: aboutMe }
   );

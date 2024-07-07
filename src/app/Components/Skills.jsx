@@ -1,94 +1,54 @@
 "use client";
+import React, { useContext, useMemo } from "react";
 import Image from "next/image";
-import React, { useRef, useMemo, useContext } from "react";
-import { SkillArr, skillHeadingArr } from "../Assets/Data/Arrays";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { AppContext } from "../Contexts/AppProvider";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { AppContext } from "../Contexts/AppProvider";
+import { SkillArr, skillHeadingArr } from "../Assets/Data/Arrays";
+import { animations } from "./GsapAnimations/GsapAnimations";
 
 const Skills = () => {
-  const skillContainer = useRef();
   const { isDesktop } = useContext(AppContext);
 
-  const skillsList = useMemo(() => {
-    return SkillArr.map((value, i) => (
-      <div
-        key={i}
-        id={`skill_sub_div${i}`}
-        className={`skill_sub_div ${i % 2 === 1 ? "bg-white" : "bg-black"}`}
-        onMouseEnter={(item) => {
-          isDesktop && (item.currentTarget.style.transform = "scale(1.25)");
-        }}
-        onMouseLeave={(item) => {
-          isDesktop && (item.currentTarget.style.transform = "scale(1)");
-        }}
-        onClick={() => {
-          window.open(value.url);
-        }}
-      >
-        <Image
-          className="skillImage"
-          src={require(`../Assets/Skills/${value.name}`)}
-          width={100}
-          height={100}
-          alt={value.Text}
-          loading="lazy"
-          style={
-            value.name === "java-vertical.svg"
-              ? { padding: 8 }
-              : value.name === "python-logo-only.svg"
-              ? { padding: 6, paddingTop: 7 }
-              : {}
-          }
+  const skillsList = useMemo(
+    () =>
+      SkillArr.map((skill, index) => (
+        <SkillItem
+          key={index}
+          skill={skill}
+          index={index}
+          isDesktop={isDesktop}
         />
-        {isDesktop && (
-          <div className="skillTextOverlay">
-            <h4 className="skillsTextPC">{value.Text}</h4>
-          </div>
-        )}
-        {!isDesktop && <h4 className="skillsTextMobile">{value.Text}</h4>}
-      </div>
-    ));
-  }, [isDesktop]);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline();
-      tl.from(".skillChar", { y: 10, opacity: 0, stagger: 0.05 }).from(
-        ".skill_sub_div",
-        {
-          y: 50,
-          opacity: 0,
-          stagger: 0.1,
-        },
-        "-=1"
-      );
-      ScrollTrigger.create({
-        trigger: ".skill_sub_div",
-        start: "top 85%",
-        animation: tl,
-        toggleActions: "play none none reverse",
-      });
-      !isDesktop &&
-        gsap.fromTo(
-          "#skill",
-          {
-            opacity: 0,
-          },
-          { opacity: 1, duration: 2, repeat: -1, yoyo: true }
-        );
-    },
-    { scope: skillContainer }
+      )),
+    [isDesktop]
   );
 
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    tl.add(animations.textReveal(".skillChar")).add(
+      animations.staggerChildren(".skill_sub_div"),
+      "-=1"
+    );
+
+    animations.createScrollTrigger(".skill_sub_div", tl, {
+      start: "top 85%",
+      end: "bottom 15%",
+      toggleActions: "play none none reverse",
+    });
+
+    if (!isDesktop) {
+      animations.fadeIn("#skill", { duration: 2, repeat: -1, yoyo: true });
+    }
+  }, [isDesktop]);
+
   return (
-    <div id="skill" className="skill" ref={skillContainer}>
+    <div id="skill" className="skill">
       <h5>
-        {skillHeadingArr.map((value, index) => (
-          <span className="skillHeadingWords" key={index}>
+        {skillHeadingArr.map((word, wordIndex) => (
+          <span className="skillHeadingWords" key={wordIndex}>
             {" "}
-            {value.split("").map((char, charIndex) => (
+            {word.split("").map((char, charIndex) => (
               <span className="skillChar inline-block" key={charIndex}>
                 {char}
               </span>
@@ -105,3 +65,57 @@ const Skills = () => {
 };
 
 export default Skills;
+
+const SkillItem = ({ skill, index, isDesktop }) => {
+  const handleMouseEnter = (e) => {
+    if (isDesktop) {
+      e.currentTarget.style.scale = "1.25";
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    if (isDesktop) {
+      e.currentTarget.style.scale = "1";
+    }
+  };
+
+  const handleClick = () => {
+    window.open(skill.url);
+  };
+
+  const getImageStyle = () => {
+    if (skill.name === "java-vertical.svg") {
+      return { padding: 8 };
+    } else if (skill.name === "python-logo-only.svg") {
+      return { padding: 6, paddingTop: 7 };
+    }
+    return {};
+  };
+
+  return (
+    <div
+      id={`skill_sub_div${index}`}
+      className={`skill_sub_div ${index % 2 === 1 ? "bg-white" : "bg-black"}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+    >
+      <Image
+        className="skillImage"
+        src={require(`../Assets/Skills/${skill.name}`)}
+        width={100}
+        height={100}
+        alt={skill.Text}
+        loading="lazy"
+        style={getImageStyle()}
+      />
+      {isDesktop ? (
+        <div className="skillTextOverlay">
+          <h4 className="skillsTextPC">{skill.Text}</h4>
+        </div>
+      ) : (
+        <h4 className="skillsTextMobile">{skill.Text}</h4>
+      )}
+    </div>
+  );
+};

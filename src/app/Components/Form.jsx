@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
 import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase/compat/app";
@@ -14,51 +14,60 @@ const Form = ({ app }) => {
     Description: "",
   });
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     const { id, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
-  };
+  }, []);
 
-  const validateForm = () => {
+  const validateForm = useCallback(() => {
     const { Email, Subject, Description } = formData;
-    if (!Email) return alert("Please enter an email address.");
+    if (!Email) return "Please enter an email address.";
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(Email))
-      return alert("Please enter a valid email address.");
-    if (!Subject) return alert("Please enter a subject.");
-    if (!Description) return alert("Please enter a description.");
-    return true;
-  };
+      return "Please enter a valid email address.";
+    if (!Subject) return "Please enter a subject.";
+    if (!Description) return "Please enter a description.";
+    return null;
+  }, [formData]);
 
-  const formSubmitHandler = async (event) => {
-    event.preventDefault();
-    setSubmitting(true);
-    if (!validateForm()) return setSubmitting(false);
+  const formSubmitHandler = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setSubmitting(true);
+      const validationError = validateForm();
+      if (validationError) {
+        alert(validationError);
+        setSubmitting(false);
+        return;
+      }
 
-    try {
-      await firebase
-        .database(app)
-        .ref("Feedback/" + uuidv4())
-        .set(formData);
-      formRef.current.reset();
-      setFormData({ Email: "", Subject: "", Description: "" });
-      alert("Data Submitted successfully");
-    } catch (error) {
-      alert("Error submitting data:", error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+      try {
+        await firebase
+          .database(app)
+          .ref("Feedback/" + uuidv4())
+          .set(formData);
+        formRef.current.reset();
+        setFormData({ Email: "", Subject: "", Description: "" });
+        alert("Data Submitted successfully");
+      } catch (error) {
+        alert("Error submitting data: " + error.message);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [app, formData, validateForm]
+  );
 
   return (
     <div className="formAndDesc">
       <form ref={formRef} onSubmit={formSubmitHandler}>
-        {["Email", "Subject"].map((field, index) => (
+        {["Email", "Subject"].map((field) => (
           <input
             key={field}
             id={field}
             type={field.toLowerCase()}
             placeholder={field}
             onChange={handleInputChange}
+            value={formData[field]}
           />
         ))}
         <textarea
@@ -66,6 +75,7 @@ const Form = ({ app }) => {
           rows={10}
           placeholder="Description"
           onChange={handleInputChange}
+          value={formData.Description}
         />
       </form>
 
@@ -85,7 +95,7 @@ const Form = ({ app }) => {
           >
             Send{" "}
             {submitting ? (
-              <LoopIcon />
+              <LoopIcon className="animate-spin" />
             ) : (
               <span id="Arrow" className="inline-block">
                 →
@@ -98,4 +108,4 @@ const Form = ({ app }) => {
   );
 };
 
-export default Form;
+export default React.memo(Form);

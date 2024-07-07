@@ -1,50 +1,20 @@
 "use client";
 import React, { useRef } from "react";
 import { SocialMediaInfo } from "../Assets/Data/Arrays";
-import gsap from "gsap";
 import SocialMediaCard from "./SocialMediaCard";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import GsapHeading from "./GsapAnimations/GsapHeading";
 import { useGSAP } from "@gsap/react";
+import { animations } from "./GsapAnimations/GsapAnimations";
 
 const ContactMe = () => {
   const contactMeSection = useRef();
   useGSAP(
     () => {
-      const tl = gsap.timeline();
-      
-      tl.from("#contactMeParagraph", {
-        y: -100,
-        scale: 0.85,
-        duration: 1,
-        opacity: 0,
-      })
-        .from(
-          "#ContactMeArrowText",
-          { x: -100, duration: 1, opacity: 0 },
-          "-=0.5"
-        )
-        .from(
-          ".socialMediaCard",
-          {
-            opacity: 0,
-            x: -400,
-            duration: 1,
-            stagger: 0.3,
-            ease: "back",
-          },
-          "-=0.5"
-        );
-
-      ScrollTrigger.create({
-        trigger: "#contactMeParagraph",
-        start: "top 75%",
-        animation: tl,
-        toggleActions: "play none none reverse",
-      });
+      animations.contactMe.init(contactMeSection);
     },
     { scope: contactMeSection }
   );
+
   return (
     <div id="contactme" className="contactMeSection" ref={contactMeSection}>
       <GsapHeading>

@@ -71,7 +71,7 @@ body {
   &_sub_div {
     @apply text-text-color-1 w-[5.1vmax] h-[5.1vmax] rounded-xl p-[0.5vmax] overflow-hidden cursor-pointer;
     @include flex-center;
-    transition: transform 0.3s;
+    transition: scale 0.3s;
     &:hover > .skillTextOverlay {
       @apply opacity-100;
     }

@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import svg1 from "../Assets/HeroDivSvg.svg";
 import { mainHeadingArr, subHeadingArr } from "../Assets/Data/Arrays";
 import FlexibleDragAndDrop from "./elements/FlexibleDragAndDrop";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
+import { heroAnimations } from "./GsapAnimations/GsapAnimations";
 
 const HeroSection = () => {
   const heroSection = useRef();
@@ -14,43 +14,7 @@ const HeroSection = () => {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
-
-      const animateElement = (selector, props, position = "-=0.6") => {
-        tl.from(
-          selector,
-          { opacity: 0, duration: 1, ease: "expo", ...props },
-          position
-        );
-      };
-
-      animateElement(".mainChar", {
-        y: -50,
-        stagger: 0.1,
-        duration: 1,
-        ease: "bounce",
-      });
-      animateElement(
-        ".subChar",
-        {
-          y: "random(-300,300)",
-          x: "random(-100,400)",
-          opacity: 0,
-          duration: 1,
-          ease: "bounce",
-          stagger: 0.05,
-        },
-        "-=1.5"
-      );
-      animateElement(
-        "#mainImage",
-        { y: 100, duration: 0.7, ease: "none" },
-        "-=1.5"
-      );
-      animateElement("#contactBtn", { y: 200 }, "-=2");
-      animateElement("#projectBtn", { y: 200, ease: "power1.out" }, "-=2");
-
-      gsap.from("#HeroSvg", { scale: 0, duration: 1, opacity: 0 });
+      heroAnimations.createHeroTimeline();
     },
     { scope: heroSection }
   );

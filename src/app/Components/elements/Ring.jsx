@@ -1,12 +1,9 @@
 import React, { useRef, useContext } from "react";
 import Image from "next/image";
 import SimpleFan from "../../Assets/RoundedFan.svg";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { AppContext } from "../../Contexts/AppProvider";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { animations } from "../GsapAnimations/GsapAnimations";
 
 const Ring = () => {
   const ringDiv = useRef();
@@ -14,23 +11,11 @@ const Ring = () => {
 
   useGSAP(
     () => {
-      if (isDesktop) {
-        const tl = gsap.timeline();
-        tl.to("#simpleFanSvg", {
-          rotateZ: 1080,
-          ease: "none",
-        });
-        ScrollTrigger.create({
-          trigger: `body`,
-          start: "top 0%",
-          end: "bottom 100%",
-          scrub: 1,
-          animation: tl,
-        });
-      }
+      animations.ring.init(isDesktop);
     },
     { scope: ringDiv }
   );
+
   return (
     <>
       {isDesktop && (

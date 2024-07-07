@@ -9,7 +9,7 @@ import ContactMe from "./Components/ContactMe";
 import ContactForm from "./Components/ContactForm";
 import ThankYou from "./Components/ThankYou";
 import Ring from "./Components/elements/Ring";
-import SkillHider from "./Components/elements/PinnedFan";
+import SkillHider from "./Components/elements/SkillHider";
 import Header from "./Components/Header/Header";
 import { Meteors } from "./Components/ui/meteors";
 import firebaseConfig from "./firebaseConfiguration";

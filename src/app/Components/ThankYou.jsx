@@ -1,15 +1,11 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useContext, useRef } from "react";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import { AppContext } from "../Contexts/AppProvider";
 import GsapMegnetic from "./GsapAnimations/GsapMegnetic";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { animations } from "./GsapAnimations/GsapAnimations";
 
 const ThankYou = () => {
   const thanksRef = useRef();
@@ -21,71 +17,7 @@ const ThankYou = () => {
 
   useGSAP(
     () => {
-      const createAnimation = (trigger, start, animations) => {
-        const tl = gsap.timeline();
-        animations.forEach(({ from, to, id, offset = "" }) => {
-          tl.fromTo(id, from, { ...to, duration: 1 }, offset);
-        });
-        ScrollTrigger.create({
-          trigger,
-          start,
-          animation: tl,
-          toggleActions: "play none none reverse",
-        });
-      };
-
-      const animations = [
-        {
-          trigger: "#ThanksDiv",
-          start: isDesktop ? "top center" : "top 80%",
-          animations: [
-            {
-              id: "#ThanksImage",
-              from: { scale: 2, opacity: 0, borderRadius: 0 },
-              to: { opacity: 1, borderRadius: "50px", scale: 1 },
-            },
-            {
-              id: "#ThanksPara",
-              from: { x: -100, opacity: 0 },
-              to: { x: 0, opacity: 1 },
-              offset: "-=0.5",
-            },
-            {
-              id: "#Regards",
-              from: { x: 100, opacity: 0 },
-              to: { x: 0, opacity: 1 },
-              offset: "-=0.5",
-            },
-            {
-              id: "#GoToTopButton",
-              from: { y: 50, opacity: 0 },
-              to: { y: 0, opacity: 1 },
-              offset: "-=0.5",
-            },
-          ],
-        },
-        {
-          trigger: "#copyrightDiv",
-          start: "top 95%",
-          animations: [
-            {
-              id: "#copyrightTxt",
-              from: { x: -100, opacity: 0 },
-              to: { x: 0, opacity: 1 },
-            },
-            {
-              id: "#developerTxt",
-              from: { x: 100, opacity: 0 },
-              to: { x: 0, opacity: 1 },
-              offset: "-=0.5",
-            },
-          ],
-        },
-      ];
-
-      animations.forEach(({ trigger, start, animations }) =>
-        createAnimation(trigger, start, animations)
-      );
+      animations.thankYou.init(isDesktop);
     },
     { scope: thanksRef }
   );
