@@ -65,11 +65,12 @@ const HeroSection = () => {
             </GsapMegnetic>
             <GsapMegnetic>
               <Link href="#projects" id="projectBtn">
-                <h5
+                <button
                   onMouseEnter={() => setArrowRotation(45)}
                   onMouseLeave={() => setArrowRotation(0)}
+                  className="normalBtn"
                 >
-                  Projects{" "}
+                  Projects
                   <span
                     id="Arrow"
                     className="inline-block duration-300"
@@ -77,7 +78,7 @@ const HeroSection = () => {
                   >
                     →
                   </span>
-                </h5>
+                </button>
               </Link>
             </GsapMegnetic>
           </div>

@@ -17,9 +17,9 @@ const AboutMe = () => {
   return (
     <div id="aboutme" className="aboutMe" ref={aboutMe}>
       <GsapHeading>
-        <h2 id="heading1" className="heading my-10">
+        <h3 id="heading1" className="heading my-10">
           About Me
-        </h2>
+        </h3>
       </GsapHeading>
       <InfoContainer
         desc={InfoCardArr[0].desc}
@@ -48,7 +48,7 @@ const InfoContainer = ({ title, desc, idNumber }) => {
         idNumber == 0 ? "firstContainer" : "notFirstContainer"
       }`}
     >
-      {title && <h3>{title}</h3>}
+      {title && <h4>{title}</h4>}
       <p>{desc}</p>
     </div>
   );

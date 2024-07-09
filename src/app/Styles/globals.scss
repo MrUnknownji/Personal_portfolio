@@ -28,6 +28,7 @@ html,
 body {
   @apply scroll-smooth overflow-x-hidden w-full;
   @include scrollbar;
+  font: 400 1.05rem $nunito;
 }
 
 html {

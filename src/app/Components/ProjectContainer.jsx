@@ -22,7 +22,7 @@ const ProjectContainer = ({ project, index }) => {
   const { title, desc, url, svg, images } = project;
   const isEvenIndex = index % 2 === 0;
 
-  const imageSrc = require(`../Assets/Project/${title}/${svg}`);
+  const svgSrc = require(`../Assets/Project/${title}/${svg}`);
   const projectImageSrc = require(`../Assets/Project/${title}/${images.DescHome}`);
 
   const projectSectionRef = useRef();
@@ -105,7 +105,7 @@ const ProjectContainer = ({ project, index }) => {
         className={`projectContainer ${isEvenIndex ? "flex-row-reverse" : ""}`}
       >
         <Image
-          src={imageSrc}
+          src={svgSrc}
           width={400}
           height={250}
           alt={`Project ${index} Svg`}
@@ -135,16 +135,14 @@ const ProjectContainer = ({ project, index }) => {
                 </button>
               </Link>
             </GsapMegnetic>
-            <button className="Btn2" onClick={toggleImages}>
-              <h5>
-                Images{" "}
-                <font
-                  id={`fontArrow${index}`}
-                  className="inline-block fontArrow duration-300"
-                >
-                  →
-                </font>
-              </h5>
+            <button className="normalBtn Btn2" onClick={toggleImages}>
+              Images
+              <span
+                id={`fontArrow${index}`}
+                className="inline-block fontArrow duration-300"
+              >
+                →
+              </span>
             </button>
           </div>
         </div>

@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 
-$primary: #00ffff;
-$secondary: #2aff00;
+$primary-color: #00ffff;
+$secondary-color: #2aff00;
 $nunito: "Nunito", sans-serif;
 $quicksand: "Quicksand", sans-serif;
 $rubik: "Rubik", sans-serif;
+$comfortaa: "Comfortaa", sans-serif;
+$orbitron: "Orbitron", sans-serif;
 
 form {
   @apply border border-white backdrop-blur-sm rounded-2xl p-10 flex flex-col gap-4;
@@ -17,10 +21,10 @@ form {
   @apply outline-none px-2 py-1 bg-transparent border-b-2 border-white/50 placeholder-white/75;
   transition: border-color 0.3s;
   &:hover {
-    border-color: $secondary;
+    border-color: $secondary-color;
   }
   &:focus {
-    border-color: $primary;
+    border-color: $primary-color;
   }
 }
 
@@ -42,17 +46,17 @@ textarea {
 }
 
 h1 {
-  @include heading(900, 4.5rem, $nunito);
+  @include heading(900, 4rem, $comfortaa );
 }
 h2 {
-  @include heading(400, 1rem, $rubik);
-  @apply mb-20;
+  @include heading(500, 1rem, $comfortaa);
+  @apply mb-20 pl-1;
 }
 h3 {
-  @include heading(700, 1.5rem, $quicksand);
+  @include heading(700, 2rem, $comfortaa);
 }
 h4 {
-  @include heading(700, 1.5rem, $nunito);
+  @include heading(600, 1.3rem, $comfortaa);
 }
 h5 {
   @include heading(400, 1.2rem, $nunito);
@@ -60,27 +64,27 @@ h5 {
 }
 
 p {
-  @apply leading-snug tracking-wider text-lg;
-  font: 600 1em $nunito;
+  @apply leading-snug tracking-wider;
+  // font: 400 1.2rem $nunito;
 }
 
 @mixin button-base($bg-color: transparent) {
-  font: 700 1.1rem $quicksand;
-  @apply rounded-full px-4 py-1 flex items-center justify-center;
+  font: 500 1rem $orbitron;
+  @apply rounded-full px-4 py-1 flex items-center justify-center tracking-wider;
   background-color: $bg-color;
 }
 
 .LogoBtn {
-  @include button-base($primary);
+  @include button-base($primary-color);
   @apply text-black cursor-default;
 }
 
 @mixin green-button {
-  @include button-base($primary);
+  @include button-base($primary-color);
   @apply gap-2 py-2 text-black;
   transition: background-color 0.3s;
   &:hover {
-    background-color: $secondary;
+    background-color: $secondary-color;
   }
 }
 
@@ -96,7 +100,6 @@ p {
 
 .transparentBtn {
   @include button-base;
-  font-weight: 500;
   @apply border border-transparent hover:border-white;
   transition: border 0.3s, opacity 0.3s;
   &:hover {
@@ -106,7 +109,6 @@ p {
 
 .greenTransparentBtn {
   @include button-base;
-  font-weight: 500;
   @apply border border-white;
   transition: color 0.3s, border-color 0.3s;
   &:hover {
@@ -115,14 +117,11 @@ p {
   }
 }
 
-.heading {
-  font: 600 2rem $nunito;
-  @apply text-center z-10 mt-10;
+.normalBtn{
+  @include button-base;
+  @apply flex items-center justify-center gap-2;
 }
 
-.themeBtn {
-  @apply cursor-pointer z-50 text-white;
-  button > svg {
-    @apply border-2 border-white p-1 rounded-full w-7 h-7;
-  }
+.heading {
+  @apply text-center z-10 mt-10;
 }

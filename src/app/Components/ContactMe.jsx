@@ -18,7 +18,7 @@ const ContactMe = () => {
   return (
     <div id="contactme" className="contactMeSection" ref={contactMeSection}>
       <GsapHeading>
-        <h1 id="heading2" className="heading">{`Let's Connect`}</h1>
+        <h3 id="heading2" className="heading">{`Let's Connect`}</h3>
       </GsapHeading>
       <p id="contactMeParagraph" className="contactMeParagraph">
         {`Welcome! If you're ready to enhance your projects or ventures through

@@ -31,9 +31,9 @@ const ContactForm = memo(() => {
           height={1000}
           alt="Contact Form SVG"
         />
-        <h2 id="heading3" className="heading contactFormHeading">
+        <h3 id="heading3" className="heading contactFormHeading">
           Suggestion/Feedback
-        </h2>
+        </h3>
         <Form />
       </div>
     </div>

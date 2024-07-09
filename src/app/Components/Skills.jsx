@@ -44,7 +44,7 @@ const Skills = () => {
 
   return (
     <div id="skill" className="skill">
-      <h5>
+      <h4>
         {skillHeadingArr.map((word, wordIndex) => (
           <span className="skillHeadingWords" key={wordIndex}>
             {" "}
@@ -55,7 +55,7 @@ const Skills = () => {
             ))}
           </span>
         ))}
-      </h5>
+      </h4>
       <div className="skillsListContainer">{skillsList}</div>
       <div>
         <hr className="py-1" />
